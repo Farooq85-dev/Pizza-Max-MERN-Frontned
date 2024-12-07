@@ -1,2 +1,5 @@
 # Pizza-Max-React
-Aim of creating this repository is about to build the e-commerce react.
+
+## In-Progress
+
+### Aim of creating this repository is about to build the e-commerce react.
