@@ -16,6 +16,7 @@ const SliderComp = () => {
       slidesPerView={1}
       navigation
       speed={1200}
+      loop={true}
       autoplay={{
         delay: 2000,
         disableOnInteraction: true,
