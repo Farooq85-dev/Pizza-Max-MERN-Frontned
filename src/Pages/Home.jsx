@@ -1,4 +1,5 @@
 import Navbar from "../Components/Navbar";
+import Slider from "../Components/Slider";
 
 const HomePage = () => {
   return (
@@ -6,7 +7,9 @@ const HomePage = () => {
       <>
         <Navbar />
       </>
-      <h3 className="bg-red-500">Home</h3>
+      <>
+        <Slider />
+      </>
     </>
   );
 };
