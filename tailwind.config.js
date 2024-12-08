@@ -5,6 +5,7 @@ export default {
     extend: {
       colors: {
         navbarColor: "#270800",
+        btnColor: "#0F0F0F",
       },
       screens: {
         xs: "320px",
