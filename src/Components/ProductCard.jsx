@@ -1,19 +1,9 @@
 import PropTypes from "prop-types";
 import Button from "./Button";
 
-const ProductCard = ({
-  categoryTitle,
-  productTitle,
-  productDescription,
-  productPrice,
-}) => {
+const ProductCard = ({ productTitle, productDescription, productPrice }) => {
   return (
-    <div>
-      <div className="category-title">
-        <h2 className="text-base lg:text-3xl font-bold pl-4 pt-4">
-          {categoryTitle}
-        </h2>
-      </div>
+    <>
       <div className="products-grid grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
         <div className="product-container flex flex-col sm:flex-row justify-start sm:items-center gap-2 sm:gap-8 bg-white rounded-lg shadow-lg p-4">
           <div className="left-side ">
@@ -21,7 +11,7 @@ const ProductCard = ({
               <img
                 className="rounded-md w-full h-full sm:h-48 sm:w-48 object-cover"
                 src="https://em-cdn.eatmubarak.pk/55083/dish_image/1717390225.jpg"
-                alt={`${categoryTitle} image`}
+                alt={`${productTitle}`}
               />
             </div>
           </div>
@@ -47,12 +37,11 @@ const ProductCard = ({
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
 ProductCard.propTypes = {
-  categoryTitle: PropTypes.string.isRequired,
   productTitle: PropTypes.string.isRequired,
   productDescription: PropTypes.string.isRequired,
   productPrice: PropTypes.number.isRequired,
