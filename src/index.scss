@@ -18,3 +18,19 @@
 .swiper-button-next:after {
   @apply bg-navbarColor text-white py-1 px-4 sm:py-2 sm:px-4 rounded-md;
 }
+
+// Modal Css
+.ant-modal .ant-modal-close {
+  color: red !important;
+  font-size: 20px !important;
+}
+.ant-modal .ant-modal-close:hover {
+  color: red !important;
+  background-color: rgb(252, 230, 230) !important;
+}
+
+.ant-modal-title {
+  text-align: center !important;
+  font-weight: 700 !important;
+  font-size: 20px !important;
+}

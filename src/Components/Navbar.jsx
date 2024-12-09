@@ -1,10 +1,27 @@
 import { FaCartShopping } from "react-icons/fa6";
 import { RiAccountCircle2Fill } from "react-icons/ri";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 import Pizza_Max_Logo from "../Assets/Images/pizza-max-logo.png";
+import Modal from "./Modal";
 import Button from "./Button";
 
 const NavbarComp = () => {
+  const [isModalVisible, setModalVisible] = useState(false);
+  const [modalContent, setModalContent] = useState({
+    title: "Sample Title",
+    content: "Sample Content",
+  });
+
+  const openModal = (title, content) => {
+    setModalContent({ title, content });
+    setModalVisible(!isModalVisible);
+  };
+
+  const closeModal = () => {
+    setModalVisible(!isModalVisible);
+  };
+
   return (
     <div className="navbar flex justify-between items-center bg-navbarColor px-4 py-4 sm:px-10 ">
       <div className="left-side-navbar flex justify-center items-center">
@@ -37,8 +54,9 @@ const NavbarComp = () => {
           />
           <Button
             className={
-              "hidden sm:flex border-2 border-white rounded-md px-4 py-2 text-white font-semibold"
+              "hidden sm:flex border-2 border-white rounded-md px-4 py-2 text-white font-semibold text-base"
             }
+            onClick={() => openModal("Login/Signup", "Email, Password")}
             title={"Login/Register"}
             type={"button"}
             name={"login/register"}
@@ -46,6 +64,12 @@ const NavbarComp = () => {
           />
         </div>
       </div>
+      <Modal
+        isVisible={isModalVisible}
+        onClose={closeModal}
+        title={modalContent.title}
+        content={modalContent.content}
+      />
     </div>
   );
 };
