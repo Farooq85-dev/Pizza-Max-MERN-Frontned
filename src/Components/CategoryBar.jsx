@@ -1,5 +1,5 @@
-import { NavLink } from "react-router-dom";
 import ProductCard from "./ProductCard";
+import { Link } from "react-scroll";
 
 const categories = [
   {
@@ -273,9 +273,9 @@ const categories = [
 const CategoryBarComp = () => {
   return (
     <>
-      <div className="relative px-4 py-4 shadow-md">
+      <div className="relative px-4 py-4">
         <div
-          className="categories flex lg:justify-center lg:items-center gap-8 overflow-x-scroll 
+          className="categories flex lg:justify-center lg:items-center gap-8 overflow-x-scroll cursor-grab
           [&::-webkit-scrollbar]:w-2
   [&::-webkit-scrollbar-track]:rounded-full
   [&::-webkit-scrollbar-track]:bg-gray-100
@@ -284,13 +284,15 @@ const CategoryBarComp = () => {
           px-12 py-2"
         >
           {categories?.map((category) => (
-            <NavLink
-              className="text-base sm:text-xl text-center font-semibold whitespace-nowrap"
-              to={`#${category.id}`}
+            <Link
+              className="text-base sm:text-xl text-center font-semibold whitespace-nowrap cursor-pointer"
+              to={category.id}
+              smooth={true}
+              duration={1200}
               key={category.id}
             >
               {category.title}
-            </NavLink>
+            </Link>
           ))}
         </div>
         <div className="mt-8">
@@ -298,18 +300,20 @@ const CategoryBarComp = () => {
             <div
               id={category.id}
               key={category.id}
-              className="category-section py-8 px-4 border-b"
+              className="category-section py-4 md:py-8 border-b"
             >
               <h2 className="text-2xl font-bold">{category.title}</h2>
               <p className="text-gray-600">{category.description}</p>
-              {category?.products?.map((product) => (
-                <ProductCard
-                  key={product.id}
-                  productTitle={product.title}
-                  productDescription={product.description}
-                  productPrice={product.price}
-                />
-              ))}
+              <div className="products-grid grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                {category?.products?.map((product) => (
+                  <ProductCard
+                    key={product.id}
+                    productTitle={product.title}
+                    productDescription={product.description}
+                    productPrice={product.price}
+                  />
+                ))}
+              </div>
             </div>
           ))}
         </div>
