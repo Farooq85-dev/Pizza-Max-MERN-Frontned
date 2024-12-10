@@ -7,7 +7,7 @@ const ProductsComp = () => {
       {categories?.map((category) => (
         <div id={category.id} key={category.id} className="category-section">
           <h2 className="text-2xl font-bold">{category.title}</h2>
-          <p className="text-gray-600">{category.description}</p>
+          <p>{category.description}</p>
           <div className="products-grid grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 py-2 sm:py-4">
             {category?.products?.map((product) => (
               <ProductCard
