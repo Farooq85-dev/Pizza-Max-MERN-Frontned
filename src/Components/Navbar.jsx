@@ -25,7 +25,7 @@ const NavbarComp = () => {
   };
 
   return (
-    <div className="navbar flex justify-between items-center bg-navbarColor p-4 sm:px-10">
+    <div className="navbar flex justify-between items-center bg-navbarColor p-4 sm:px-10 w-full">
       <div className="left-side-navbar flex justify-center items-center">
         <div className="logo">
           <Link to={"/"}>
@@ -53,6 +53,7 @@ const NavbarComp = () => {
             color="white"
             className="sm:hidden"
             cursor={"pointer"}
+            onClick={() => openModal(modalContent.title, modalContent.content)}
           />
           <Button
             className={
