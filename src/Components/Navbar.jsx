@@ -1,16 +1,18 @@
+import { useState } from "react";
 import { FaCartShopping } from "react-icons/fa6";
 import { RiAccountCircle2Fill } from "react-icons/ri";
 import { Link } from "react-router-dom";
-import { useState } from "react";
 import Pizza_Max_Logo from "../Assets/Images/pizza-max-logo.png";
-import Modal from "./Modal";
 import Button from "./Button";
+import Modal from "./Modal";
+import Account from "./Account";
 
 const NavbarComp = () => {
   const [isModalVisible, setModalVisible] = useState(false);
+  const showConfirm = "Not Confirm";
   const [modalContent, setModalContent] = useState({
-    title: "Sample Title",
-    content: "Sample Content",
+    title: "Register/Login",
+    content: <Account />,
   });
 
   const openModal = (title, content) => {
@@ -23,7 +25,7 @@ const NavbarComp = () => {
   };
 
   return (
-    <div className="navbar flex justify-between items-center bg-navbarColor px-4 py-4 sm:px-10 ">
+    <div className="navbar flex justify-between items-center bg-navbarColor px-4 py-4 sm:px-10">
       <div className="left-side-navbar flex justify-center items-center">
         <div className="logo">
           <Link to={"/"}>
@@ -56,15 +58,16 @@ const NavbarComp = () => {
             className={
               "hidden sm:flex border-2 border-white rounded-md px-4 py-2 text-white font-semibold text-base"
             }
-            onClick={() => openModal("Login/Signup", "Email, Password")}
-            title={"Login/Register"}
+            onClick={() => openModal(modalContent.title, modalContent.content)}
+            title={"Register/Login"}
             type={"button"}
-            name={"login/register"}
-            id={"login/register"}
+            name={"Register/Login"}
+            id={"Register/Login"}
           />
         </div>
       </div>
       <Modal
+        showConfirm={showConfirm}
         isVisible={isModalVisible}
         onClose={closeModal}
         title={modalContent.title}

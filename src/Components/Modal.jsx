@@ -2,7 +2,7 @@ import { Modal } from "antd";
 import PropTypes from "prop-types";
 import Button from "./Button";
 
-const ModalComp = ({ isVisible, onClose, title, content }) => {
+const ModalComp = ({ showConfirm, isVisible, onClose, title, content }) => {
   return (
     <Modal
       title={title}
@@ -25,16 +25,18 @@ const ModalComp = ({ isVisible, onClose, title, content }) => {
             onClick={onClose}
             title={"Cancel"}
           />
-          <Button
-            key={"account-ok-btn"}
-            id={"account-ok-btn"}
-            type={"button"}
-            className={
-              "border-2 border-navbarColor bg-navbarColor rounded-md px-4 py-2 font-semibold text-white text-base"
-            }
-            name={"account-ok-btn"}
-            title={"Confirm"}
-          />
+          {showConfirm === "confirm" && (
+            <Button
+              key={"account-ok-btn"}
+              id={"account-ok-btn"}
+              type={"button"}
+              className={
+                "border-2 border-navbarColor bg-navbarColor rounded-md px-4 py-2 font-semibold text-white text-base"
+              }
+              name={"account-ok-btn"}
+              title={"Confirm"}
+            />
+          )}
         </div>,
       ]}
     >
@@ -44,6 +46,7 @@ const ModalComp = ({ isVisible, onClose, title, content }) => {
 };
 
 ModalComp.propTypes = {
+  showConfirm: PropTypes.string.isRequired,
   isVisible: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
   title: PropTypes.string.isRequired,
