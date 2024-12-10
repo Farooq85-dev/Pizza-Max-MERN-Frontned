@@ -6,14 +6,21 @@ import Pizza_Max_Logo from "../Assets/Images/pizza-max-logo.png";
 import Button from "./Button";
 import Modal from "./Modal";
 import Account from "./Account";
+import DrawerComp from "./Drawer";
 
 const NavbarComp = () => {
   const [isModalVisible, setModalVisible] = useState(false);
+  const [openDrawer, setOpenDrawer] = useState(false);
+
   const showConfirm = "Not Confirm";
   const [modalContent, setModalContent] = useState({
     title: "Register/Login",
     content: <Account />,
   });
+
+  const handleDrawer = () => {
+    setOpenDrawer(!openDrawer);
+  };
 
   const openModal = (title, content) => {
     setModalContent({ title, content });
@@ -44,7 +51,12 @@ const NavbarComp = () => {
             {"0"}
           </div>
           <div className="cart-icon">
-            <FaCartShopping size={35} color="white" cursor={"pointer"} />
+            <FaCartShopping
+              onClick={handleDrawer}
+              size={35}
+              color="white"
+              cursor={"pointer"}
+            />
           </div>
         </div>
         <div className="account-btn">
@@ -67,6 +79,7 @@ const NavbarComp = () => {
           />
         </div>
       </div>
+      <DrawerComp isOpen={openDrawer} handleDrawer={handleDrawer} />
       <Modal
         showConfirm={showConfirm}
         isVisible={isModalVisible}

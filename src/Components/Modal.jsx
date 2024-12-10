@@ -1,8 +1,9 @@
 import { Modal } from "antd";
 import PropTypes from "prop-types";
 import Button from "./Button";
+import React from "react";
 
-const ModalComp = ({ showConfirm, isVisible, onClose, title, content }) => {
+const ModalComp = React.memo(({ showConfirm, isVisible, onClose, title, content }) => {
   return (
     <Modal
       title={title}
@@ -43,7 +44,7 @@ const ModalComp = ({ showConfirm, isVisible, onClose, title, content }) => {
       {content}
     </Modal>
   );
-};
+});
 
 ModalComp.propTypes = {
   showConfirm: PropTypes.string.isRequired,

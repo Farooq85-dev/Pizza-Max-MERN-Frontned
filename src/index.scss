@@ -20,11 +20,13 @@
 }
 
 // Modal Css
-.ant-modal .ant-modal-close {
+.ant-modal .ant-modal-close,
+.ant-drawer-close {
   color: red !important;
-  font-size: 20px !important;
 }
-.ant-modal .ant-modal-close:hover {
+
+.ant-modal .ant-modal-close:hover,
+.ant-drawer-close:hover {
   color: red !important;
   background-color: rgb(252, 230, 230) !important;
 }
@@ -38,4 +40,12 @@
 // Product Css
 .product {
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px !important;
+}
+
+// Drawer Css
+.ant-drawer .ant-drawer-header-title {
+  flex-direction: row-reverse !important;
+}
+.ant-drawer .ant-drawer-title {
+  font-size: 20px !important;
 }
