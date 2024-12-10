@@ -7,12 +7,13 @@ import Button from "./Button";
 import Modal from "./Modal";
 import Account from "./Account";
 import DrawerComp from "./Drawer";
+import { useSelector } from "react-redux";
 
 const NavbarComp = () => {
   const [isModalVisible, setModalVisible] = useState(false);
   const [openDrawer, setOpenDrawer] = useState(false);
+  const cartItems = useSelector((state) => state.cart.cart);
 
-  const showConfirm = "Not Confirm";
   const [modalContent, setModalContent] = useState({
     title: "Register/Login",
     content: <Account />,
@@ -48,7 +49,7 @@ const NavbarComp = () => {
       <div className="right-side-navbar flex justify-center items-center gap-4 sm:gap-8">
         <div className="cart-container relative">
           <div className="cart-status absolute bottom-7 left-8 text-center font-bold text-white h-6 w-6 border-2 border-white rounded-md">
-            {"0"}
+            {cartItems.length}
           </div>
           <div className="cart-icon">
             <FaCartShopping
@@ -81,7 +82,7 @@ const NavbarComp = () => {
       </div>
       <DrawerComp isOpen={openDrawer} handleDrawer={handleDrawer} />
       <Modal
-        showConfirm={showConfirm}
+        isConfirm={false}
         isVisible={isModalVisible}
         onClose={closeModal}
         title={modalContent.title}
