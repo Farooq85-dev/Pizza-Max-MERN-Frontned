@@ -25,7 +25,7 @@ const NavbarComp = () => {
   };
 
   return (
-    <div className="navbar flex justify-between items-center bg-navbarColor px-4 py-4 sm:px-10">
+    <div className="navbar flex justify-between items-center bg-navbarColor p-4 sm:px-10">
       <div className="left-side-navbar flex justify-center items-center">
         <div className="logo">
           <Link to={"/"}>

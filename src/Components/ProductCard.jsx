@@ -3,7 +3,7 @@ import Button from "./Button";
 
 const ProductCard = ({ productTitle, productDescription, productPrice }) => {
   return (
-    <div className="product-container flex flex-col sm:flex-row justify-between sm:items-center gap-2 sm:gap-8 bg-white rounded-xl shadow-lg p-4">
+    <div className="product flex flex-col sm:flex-row justify-between sm:items-center gap-2 sm:gap-8 bg-white rounded-xl p-4">
       <div className="left-side">
         <div className="product-image">
           <img

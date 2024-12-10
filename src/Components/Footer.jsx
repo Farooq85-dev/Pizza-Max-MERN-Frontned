@@ -25,7 +25,7 @@ const socialMediaPlatforms = [
 const FooterComp = () => {
   return (
     <>
-      <footer className="mt-auto w-full max-w-[85rem] mx-auto">
+      <footer className="mt-auto py-2 w-full max-w-[85rem] mx-auto">
         <div className="text-center">
           <div>
             <Link
@@ -37,13 +37,13 @@ const FooterComp = () => {
             </Link>
           </div>
 
-          <div className="mt-3 p-2 sm:p-0">
+          <div className="p-2">
             <p className="text-base">
               Satisfy your cheesy cravings with the best pizza in Pakistan.
             </p>
           </div>
 
-          <div className="mt-3 space-x-4">
+          <div className="space-x-4">
             {socialMediaPlatforms?.map((socialMediaPlatform) => (
               <Link
                 className="size-8 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-full border border-transparent text-gray-500 hover:bg-gray-50 focus:outline-none focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none"
