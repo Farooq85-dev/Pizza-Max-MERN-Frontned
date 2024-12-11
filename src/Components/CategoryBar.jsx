@@ -8,7 +8,7 @@ const CategoryBarComp = () => {
         className="categories flex lg:justify-center lg:items-center gap-8 overflow-x-scroll cursor-grab
           [&::-webkit-scrollbar]:w-2
   [&::-webkit-scrollbar-track]:rounded-full
-  [&::-webkit-scrollbar-track]:bg-gray-100
+  [&::-webkit-scrollbar-track]:bg-scrollBarColor
   [&::-webkit-scrollbar-thumb]:rounded-md
   [&::-webkit-scrollbar-thumb]:bg-gray-300
           px-12 py-2"

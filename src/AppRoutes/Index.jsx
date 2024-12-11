@@ -3,17 +3,21 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 const HomePage = lazy(() => import("../Pages/Home"));
 import Checkout from "../Pages/Checkout";
 import Loader from "../Components/Loader";
+import Navbar from "../Components/Navbar";
+import Footer from "../Components/Footer";
 
 const AppRouting = () => {
   return (
-    <BrowserRouter>
-      <Suspense fallback={<Loader width={30} />}>
+    <Suspense fallback={<Loader width={30} />}>
+      <BrowserRouter>
+        <Navbar />
         <Routes>
           <Route index element={<HomePage />} />
           <Route path="/checkout" element={<Checkout />} />
         </Routes>
-      </Suspense>
-    </BrowserRouter>
+        <Footer />
+      </BrowserRouter>
+    </Suspense>
   );
 };
 

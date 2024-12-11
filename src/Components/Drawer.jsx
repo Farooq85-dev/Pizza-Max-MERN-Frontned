@@ -12,6 +12,7 @@ import {
   incQuantity,
   decQuantity,
 } from "../Redux/Reducers/Cart";
+import { Link } from "react-router-dom";
 
 const DrawerComp = React.memo(({ isOpen, handleDrawer }) => {
   const cartItems = useSelector((state) => state.cart.cart);
@@ -90,15 +91,18 @@ const DrawerComp = React.memo(({ isOpen, handleDrawer }) => {
                   type="button"
                   onClick={handleRemoveAllItemFromCart}
                 />
-                <Button
-                  title="Checkout"
-                  id="cart-checkout-btn"
-                  name="cart-checkout-btn"
-                  className={
-                    "border-2 border-navbarColor bg-navbarColor rounded-md px-4 py-2 font-semibold text-white text-base w-full"
-                  }
-                  type="button"
-                />
+                <Link to={"/checkout"} className="w-full">
+                  <Button
+                    title="Checkout"
+                    id="cart-checkout-btn"
+                    name="cart-checkout-btn"
+                    className={
+                      "border-2 border-navbarColor bg-navbarColor rounded-md px-4 py-2 font-semibold text-white text-base w-full"
+                    }
+                    type="button"
+                    onClick={handleDrawer}
+                  />
+                </Link>
               </div>
             </div>
           ) : null}

@@ -62,6 +62,7 @@ const AccountComp = () => {
             placeHolder={"Enter name."}
             id="name"
             name="name"
+            label="Name"
             ariaLabel="name"
             type="text"
             value={registerValues.name}
@@ -76,6 +77,7 @@ const AccountComp = () => {
             placeHolder={"Enter email."}
             id="email"
             name="email"
+            label="Email"
             ariaLabel="email"
             type="email"
             value={registerValues.email}
@@ -90,6 +92,7 @@ const AccountComp = () => {
             placeHolder={"Enter password."}
             id="password"
             name="password"
+            label="Password"
             ariaLabel="password"
             type="password"
             value={registerValues.password}
@@ -104,6 +107,7 @@ const AccountComp = () => {
             placeHolder={"Enter password again."}
             id="confirmPassword"
             name="confirmPassword"
+            label="Confirm Password"
             ariaLabel="confirmPassword"
             type="password"
             value={registerValues.confirmPassword}

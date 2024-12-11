@@ -25,7 +25,7 @@ const socialMediaPlatforms = [
 const FooterComp = () => {
   return (
     <>
-      <footer className="mt-auto py-2 w-full max-w-[85rem] mx-auto">
+      <footer className="mt-auto py-2 w-full mx-auto border-t">
         <div className="text-center">
           <div>
             <Link
