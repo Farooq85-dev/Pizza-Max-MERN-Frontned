@@ -66,3 +66,23 @@
     border-radius: 15px 15px 0px 0px !important;
   }
 }
+
+// Loader Css
+.loader-container {
+  @apply flex justify-center items-center h-screen;
+}
+
+.loader {
+  width: 40px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 4px solid #270800;
+  border-right-color: #fff;
+  animation: l2 1s infinite linear;
+}
+
+@keyframes l2 {
+  to {
+    transform: rotate(1turn);
+  }
+}
