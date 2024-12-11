@@ -8,6 +8,7 @@ import { useMediaQuery } from "react-responsive";
 import { useDispatch, useSelector } from "react-redux";
 import {
   removeItemFromCart,
+  removeAllItemFromCart,
   incQuantity,
   decQuantity,
 } from "../Redux/Reducers/Cart";
@@ -27,6 +28,10 @@ const DrawerComp = React.memo(({ isOpen, handleDrawer }) => {
 
   const handleRemoveItemFromCart = (id) => {
     dispatch(removeItemFromCart(id));
+  };
+
+  const handleRemoveAllItemFromCart = () => {
+    dispatch(removeAllItemFromCart());
   };
 
   const handleIncQuantity = (id) => {
@@ -51,7 +56,6 @@ const DrawerComp = React.memo(({ isOpen, handleDrawer }) => {
       placement={
         (greateThanSmallScreen && "right") || (lessThanSmallScreen && "bottom")
       }
-      className="rounded-l-xl"
       width={400}
       onClose={handleDrawer}
       footer={
@@ -84,6 +88,7 @@ const DrawerComp = React.memo(({ isOpen, handleDrawer }) => {
                     "border-2 border-red-600 rounded-md px-4 py-2 font-semibold text-red-600 text-base w-full"
                   }
                   type="button"
+                  onClick={handleRemoveAllItemFromCart}
                 />
                 <Button
                   title="Checkout"
