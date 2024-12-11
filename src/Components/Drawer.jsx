@@ -79,7 +79,7 @@ const DrawerComp = React.memo(({ isOpen, handleDrawer }) => {
                   {cartItems?.length <= 4 ? subtotal + 100 : subtotal + 150}
                 </h4>
               </div>
-              <div className="flex justify-between items-center w-full gap-2">
+              <div className="flex flex-col-reverse sm:flex-row justify-between items-center w-full gap-2">
                 <Button
                   title="Clear"
                   id="clear-cart-btn"
