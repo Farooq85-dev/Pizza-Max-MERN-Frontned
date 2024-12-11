@@ -72,7 +72,7 @@ const DrawerComp = React.memo(({ isOpen, handleDrawer }) => {
                 <h4 className="text-base font-bold">Grand Total</h4>
                 <h4 className="text-base font-bold">
                   Rs:
-                  {cartItems?.length <= 4 ? subtotal + 100 : setSubtotal + 150}
+                  {cartItems?.length <= 4 ? subtotal + 100 : subtotal + 150}
                 </h4>
               </div>
               <div className="flex justify-between items-center w-full gap-2">
