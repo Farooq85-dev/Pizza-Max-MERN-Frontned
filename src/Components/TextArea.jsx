@@ -24,7 +24,7 @@ const TextAreaComp = ({
           value={value}
           onChange={onChange}
           onBlur={onBlur}
-          className="py-2 pl-3 pr-4 w-full bg-white border rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-navbarColor focus:border-navbarColor resize-y"
+          className="py-2 pl-3 pr-4 w-full bg-white border rounded-md shadow-sm focus:outline-none  resize-y"
         />
       </div>
     </div>

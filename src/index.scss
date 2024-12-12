@@ -104,3 +104,9 @@
 .ant-result {
   padding: 0px !important;
 }
+
+// Input css
+textarea:focus,
+input:focus {
+  box-shadow: 0 0 0 0.25rem rgba(39, 8, 0, 0.25) !important;
+}
