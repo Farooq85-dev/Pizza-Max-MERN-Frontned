@@ -5,6 +5,7 @@ import Navbar from "../Components/Navbar";
 import Footer from "../Components/Footer";
 const HomePage = lazy(() => import("../Pages/Home"));
 const Checkout = lazy(() => import("../Pages/Checkout"));
+const NotFound = lazy(() => import("../Pages/NotFound"));
 
 const AppRouting = () => {
   return (
@@ -14,6 +15,7 @@ const AppRouting = () => {
         <Routes>
           <Route index element={<HomePage />} />
           <Route path="/checkout" element={<Checkout />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />
       </BrowserRouter>

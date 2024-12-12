@@ -3,8 +3,17 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import Button from "./Button";
 
-const ResultComp = ({ icon, text, className, btnText, url, isBtn = false }) => (
+const ResultComp = ({
+  status,
+  icon,
+  text,
+  className,
+  btnText,
+  url,
+  isBtn = false,
+}) => (
   <Result
+    status={status}
     className="flex flex-col justify-center items-center gap-1"
     icon={icon}
     title={text}
@@ -15,7 +24,6 @@ const ResultComp = ({ icon, text, className, btnText, url, isBtn = false }) => (
             id="result-redirection-btn"
             name="result-redirection-btn"
             type="button"
-          
             title={btnText}
             className={className}
           />
@@ -25,7 +33,8 @@ const ResultComp = ({ icon, text, className, btnText, url, isBtn = false }) => (
   />
 );
 ResultComp.propTypes = {
-  icon: PropTypes.node.isRequired,
+  status: PropTypes.number,
+  icon: PropTypes.node,
   text: PropTypes.string.isRequired,
   btnText: PropTypes.string.isRequired,
   url: PropTypes.string.isRequired,
