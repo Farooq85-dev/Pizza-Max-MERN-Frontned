@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { FaCartShopping } from "react-icons/fa6";
+import { MdShoppingBag } from "react-icons/md";
 import { RiAccountCircle2Fill } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import Pizza_Max_Logo from "../Assets/Images/pizza-max-logo.png";
@@ -33,7 +33,7 @@ const NavbarComp = () => {
   };
 
   return (
-    <div className="navbar flex justify-between items-center bg-navbarColor p-4 sm:px-10 w-full">
+    <div className="navbar flex justify-between items-center h-20 fixed top-0 z-50 bg-navbarColor p-4 sm:px-10 w-full">
       <div className="left-side-navbar flex justify-center items-center">
         <div className="logo">
           <Link to={"/"}>
@@ -48,11 +48,11 @@ const NavbarComp = () => {
       </div>
       <div className="right-side-navbar flex justify-center items-center gap-4 sm:gap-8">
         <div className="cart-container relative">
-          <div className="cart-status absolute bottom-7 left-8 text-center font-bold text-white h-6 w-6 border-2 border-white rounded-md">
+          <div className="cart-status absolute bottom-6 left-7 text-center font-bold text-white h-6 w-6 border-2 border-white rounded-lg">
             {cartItems.length}
           </div>
           <div className="cart-icon">
-            <FaCartShopping
+            <MdShoppingBag
               onClick={handleDrawer}
               size={35}
               color="white"

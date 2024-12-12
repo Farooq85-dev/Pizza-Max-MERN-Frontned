@@ -11,6 +11,7 @@ import Days_Banner3 from "../Assets/Images/midnight-deals-banner.jpg";
 const SliderComp = () => {
   return (
     <Swiper
+      className="mt-20"
       modules={[Navigation, Autoplay]}
       slidesPerView={1}
       navigation
