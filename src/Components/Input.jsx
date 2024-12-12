@@ -22,7 +22,7 @@ const InputComp = ({
 
   return (
     <div className="relative">
-      <label htmlFor={name} className="block font-semibold mb-2">
+      <label htmlFor={name} className="block font-semibold mb-2 text-left">
         {label}
       </label>
       <div className="relative">

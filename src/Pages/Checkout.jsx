@@ -45,7 +45,7 @@ const CheckoutPage = () => {
     });
 
   return (
-    <>
+    <div className="mt-20">
       <Breadcrumb
         className="p-4 pb-0 sm:px-10 text-sm"
         items={[
@@ -229,7 +229,7 @@ const CheckoutPage = () => {
           </div>
         </div>
       </form>
-    </>
+    </div>
   );
 };
 

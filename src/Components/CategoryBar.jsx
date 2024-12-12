@@ -23,7 +23,7 @@ const CategoryBarComp = () => {
           onClick={() => handleScroll("left")}
           className="block absolute left-0 z-40 bg-white p-2 rounded-lg shadow-lg hover:scale-105 transition-transform"
         >
-          <MdArrowBackIos size={16} />
+          <MdArrowBackIos size={16} name="category-scrollbar-previous-btn" />
         </button>
         <div
           ref={scrollRef}
@@ -48,7 +48,7 @@ const CategoryBarComp = () => {
           onClick={() => handleScroll("right")}
           className="block absolute right-0 z-40 bg-white p-2 rounded-lg shadow-lg hover:scale-105 transition-transform"
         >
-          <MdArrowForwardIos size={16} />
+          <MdArrowForwardIos size={16} name="category-scrollbar-next-btn" />
         </button>
       </div>
     </div>
