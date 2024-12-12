@@ -13,6 +13,8 @@ import {
   decQuantity,
 } from "../Redux/Reducers/Cart";
 import { Link } from "react-router-dom";
+import Result from "./Result";
+import { ImSpoonKnife } from "react-icons/im";
 
 const DrawerComp = React.memo(({ isOpen, handleDrawer }) => {
   const cartItems = useSelector((state) => state.cart.cart);
@@ -169,7 +171,16 @@ const DrawerComp = React.memo(({ isOpen, handleDrawer }) => {
           ))}
         </div>
       ) : (
-        <h1 className="text-base sm:text-xl">Please add items to cart!</h1>
+        <Result
+          icon={<ImSpoonKnife size={40} />}
+          text="Your cart is empty!"
+          btnText="Add items"
+          url={"/"}
+          isBtn={false}
+          className={
+            "border-2 border-navbarColor bg-navbarColor rounded-md px-4 py-2 font-semibold text-white text-base"
+          }
+        />
       )}
     </Drawer>
   );

@@ -11,6 +11,8 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Breadcrumb } from "antd";
 import { useLocation } from "react-router-dom";
+import Result from "../Components/Result";
+import { ImSpoonKnife } from "react-icons/im";
 
 const initialValues = {
   fullName: "",
@@ -180,53 +182,70 @@ const CheckoutPage = () => {
               </div>
             </div>
           ))}
-          <Link to={"/"}>
-            <span className="hover:text-red-600 underline flex justify-end">
-              +Add more items
-            </span>
-          </Link>
-          <Input
-            id="promoCode"
-            name="promoCode"
-            label="Promo Code"
-            ariaLabel="promoCode"
-            type="text"
-            icon={<MdConfirmationNumber size={18} />}
-            placeHolder="Enter Promo code."
-            value={values.promoCode}
-            onChange={handleChange}
-            onBlur={handleBlur}
-          />
-          {touched.promoCode && errors.promoCode ? (
-            <p className="text-base text-red-600">{errors.promoCode}</p>
-          ) : null}
-          <div className="place-order-details-container flex flex-col gap-1 p-2 rounded-md  bg-scrollBarColor">
-            <div className="subtotal-container flex justify-between items-center w-full">
-              <h4 className="text-base font-medium">Subtotal</h4>
-              <h4 className="text-base font-medium">Rs: {subtotal}</h4>
-            </div>
-            <div className="delivery-container flex justify-between items-center w-full">
-              <h4 className="text-base font-medium">Delivery Charges</h4>
-              <h4 className="text-base font-medium">
-                Rs: {cartItems?.length <= 4 ? 100 : 150}
-              </h4>
-            </div>
-            <div className="grandtotal-container flex justify-between items-center w-full">
-              <h4 className="text-base font-bold">Grand Total</h4>
-              <h4 className="text-base font-bold">
-                Rs: {cartItems?.length <= 4 ? subtotal + 100 : subtotal + 150}
-              </h4>
-            </div>
-            <ButtonComp
-              id="place-order-btn"
-              name="place-order-btn"
-              type="submit"
-              title="Place Order"
+          {cartItems?.length > 0 ? (
+            <>
+              <Link to={"/"}>
+                <span className="hover:text-red-600 underline flex justify-end">
+                  +Add more items
+                </span>
+              </Link>
+
+              <Input
+                id="promoCode"
+                name="promoCode"
+                label="Promo Code"
+                ariaLabel="promoCode"
+                type="text"
+                icon={<MdConfirmationNumber size={18} />}
+                placeHolder="Enter Promo code."
+                value={values.promoCode}
+                onChange={handleChange}
+                onBlur={handleBlur}
+              />
+              {touched.promoCode && errors.promoCode ? (
+                <p className="text-base text-red-600">{errors.promoCode}</p>
+              ) : null}
+              <div className="place-order-details-container flex flex-col gap-1 p-2 rounded-md  bg-scrollBarColor">
+                <div className="subtotal-container flex justify-between items-center w-full">
+                  <h4 className="text-base font-medium">Subtotal</h4>
+                  <h4 className="text-base font-medium">Rs: {subtotal}</h4>
+                </div>
+                <div className="delivery-container flex justify-between items-center w-full">
+                  <h4 className="text-base font-medium">Delivery Charges</h4>
+                  <h4 className="text-base font-medium">
+                    Rs: {cartItems?.length <= 4 ? 100 : 150}
+                  </h4>
+                </div>
+                <div className="grandtotal-container flex justify-between items-center w-full">
+                  <h4 className="text-base font-bold">Grand Total</h4>
+                  <h4 className="text-base font-bold">
+                    Rs:{" "}
+                    {cartItems?.length <= 4 ? subtotal + 100 : subtotal + 150}
+                  </h4>
+                </div>
+                <ButtonComp
+                  id="place-order-btn"
+                  name="place-order-btn"
+                  type="submit"
+                  title="Place Order"
+                  className={
+                    "border-2 border-navbarColor bg-navbarColor rounded-md px-4 py-2 font-semibold text-white text-base"
+                  }
+                />
+              </div>
+            </>
+          ) : (
+            <Result
+              icon={<ImSpoonKnife size={50} />}
+              text="Your cart is empty!"
+              btnText="Add items"
+              url={"/"}
+              isBtn={true}
               className={
                 "border-2 border-navbarColor bg-navbarColor rounded-md px-4 py-2 font-semibold text-white text-base"
               }
             />
-          </div>
+          )}
         </div>
       </form>
     </div>
