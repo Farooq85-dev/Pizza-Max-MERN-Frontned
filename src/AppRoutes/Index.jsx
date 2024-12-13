@@ -1,5 +1,5 @@
 import { lazy, Suspense } from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import Loader from "../Components/Loader";
 import Navbar from "../Components/Navbar";
 import Footer from "../Components/Footer";
@@ -9,18 +9,24 @@ const NotFound = lazy(() => import("../Pages/NotFound"));
 const UserDashboard = lazy(() => import("../Pages/UserDashboard"));
 
 const AppRouting = () => {
+  const location = useLocation();
+
+  const noHeaderFooterRoutes = ["/user"];
+
+  const shouldShowNavbarFooter = !noHeaderFooterRoutes.includes(
+    location.pathname
+  );
+
   return (
     <Suspense fallback={<Loader width={30} />}>
-      <BrowserRouter>
-        <Navbar />
-        <Routes>
-          <Route index element={<Home />} />
-          <Route path="/checkout" element={<Checkout />} />
-          <Route path="/user" element={<UserDashboard />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-        <Footer />
-      </BrowserRouter>
+      {shouldShowNavbarFooter && <Navbar />}
+      <Routes>
+        <Route index element={<Home />} />
+        <Route path="/checkout" element={<Checkout />} />
+        <Route path="/user" element={<UserDashboard />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+      {shouldShowNavbarFooter && <Footer />}
     </Suspense>
   );
 };

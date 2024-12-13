@@ -1,7 +1,12 @@
-import AppRouting from "./AppRoutes";
+import { BrowserRouter } from "react-router-dom";
+import AppRouting from "./AppRoutes/Index";
 
 function App() {
-  return <AppRouting />;
+  return (
+    <BrowserRouter>
+      <AppRouting />
+    </BrowserRouter>
+  );
 }
 
 export default App;
