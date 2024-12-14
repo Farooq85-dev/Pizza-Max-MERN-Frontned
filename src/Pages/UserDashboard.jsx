@@ -10,6 +10,9 @@ import { useState } from "react";
 import { useMediaQuery } from "react-responsive";
 const { Header, Content, Sider } = Layout;
 import Welcome from "../Components/User/Welcome";
+import Orders from "../Components/User/Orders";
+import { SiWelcometothejungle } from "react-icons/si";
+import { GiBoxUnpacking } from "react-icons/gi";
 
 // Define menu items
 function getItem(label, key, icon) {
@@ -17,16 +20,12 @@ function getItem(label, key, icon) {
 }
 
 const menuItems = [
-  getItem("Welcome", "Welcome", <PieChartOutlined />),
-  getItem("Orders", "Orders", <PieChartOutlined />),
-  getItem("Reports", "Reports", <DesktopOutlined />),
-  getItem("User Management", "User Management", <UserOutlined />),
-  getItem("Team", "Team", <TeamOutlined />),
-  getItem("Files", "Files", <FileOutlined />),
+  getItem("Welcome", "Welcome", <SiWelcometothejungle />),
+  getItem("Orders", "Orders", <GiBoxUnpacking />),
 ];
 
 const UserDashboardPage = () => {
-  const [selectedKey, setSelectedKey] = useState("Welcome");
+  const [selectedKey, setSelectedKey] = useState("Orders");
   const [breadcrumb, setBreadcrumb] = useState([
     { title: "User" },
     { title: "Welcome" },
@@ -73,7 +72,7 @@ const UserDashboardPage = () => {
       case "Welcome":
         return <Welcome />;
       case "Orders":
-        return <h1>Orders</h1>;
+        return <Orders />;
       case "Reports":
         return <div>Reports Overview</div>;
       case "User Management":
