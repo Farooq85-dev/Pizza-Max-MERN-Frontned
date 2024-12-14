@@ -1,6 +1,8 @@
 import { IoStatsChartSharp } from "react-icons/io5";
 import orders from "../../Db/orders";
 import OrdersStatusCard from "./OrdersStatusCard";
+import Table from "../Table";
+import { columns } from "./Static/Table";
 
 const OrdersComp = () => {
   const howMuchTotalOrders = orders?.length;
@@ -16,6 +18,13 @@ const OrdersComp = () => {
   const howMuchCancelledOrders = orders?.filter(
     (order) => order?.orderStatus === "cancelled"
   );
+
+  const dataSourceWithKeys = orders
+    ?.filter((item) => item?.customerName === "Muhammmad Farooq")
+    .map((item) => ({
+      ...item,
+      key: item.id,
+    }));
 
   return (
     <div>
@@ -48,6 +57,9 @@ const OrdersComp = () => {
             quantity={howMuchCancelledOrders?.length}
           />
         </div>
+      </div>
+      <div className="order-table-container mt-4">
+        <Table data={dataSourceWithKeys} columns={columns} />
       </div>
     </div>
   );

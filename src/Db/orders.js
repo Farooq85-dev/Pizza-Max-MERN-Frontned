@@ -2,7 +2,7 @@ const orders = [
   {
     id: 1,
     image: "https://via.placeholder.com/100",
-    customerName: "John Doe",
+    customerName: "Muhammmad Farooq",
     quantity: 2,
     price: 60.25,
     totalAmount: 120.5,
@@ -12,7 +12,7 @@ const orders = [
   {
     id: 2,
     image: "https://via.placeholder.com/100",
-    customerName: "Jane Smith",
+    customerName: "Muhammmad Farooq",
     quantity: 1,
     price: 89.99,
     totalAmount: 89.99,
@@ -22,7 +22,7 @@ const orders = [
   {
     id: 3,
     image: "https://via.placeholder.com/100",
-    customerName: "Ali Ahmed",
+    customerName: "Muhammmad Farooq",
     quantity: 4,
     price: 50.0,
     totalAmount: 200.0,
@@ -32,7 +32,7 @@ const orders = [
   {
     id: 4,
     image: "https://via.placeholder.com/100",
-    customerName: "Sara Khan",
+    customerName: "Muhammmad Farooq",
     quantity: 3,
     price: 15.0,
     totalAmount: 45.0,
@@ -42,7 +42,7 @@ const orders = [
   {
     id: 5,
     image: "https://via.placeholder.com/100",
-    customerName: "Michael Brown",
+    customerName: "Muhammmad Farooq",
     quantity: 5,
     price: 30.15,
     totalAmount: 150.75,
@@ -52,7 +52,7 @@ const orders = [
   {
     id: 6,
     image: "https://via.placeholder.com/100",
-    customerName: "Emily Davis",
+    customerName: "Muhammmad Farooq",
     quantity: 1,
     price: 300.0,
     totalAmount: 300.0,
@@ -62,7 +62,7 @@ const orders = [
   {
     id: 7,
     image: "https://via.placeholder.com/100",
-    customerName: "David Wilson",
+    customerName: "Muhammmad Farooq",
     quantity: 2,
     price: 80.0,
     totalAmount: 160.0,
@@ -72,7 +72,7 @@ const orders = [
   {
     id: 8,
     image: "https://via.placeholder.com/100",
-    customerName: "Sophia Lopez",
+    customerName: "Muhammmad Farooq",
     quantity: 3,
     price: 45.0,
     totalAmount: 135.0,
@@ -82,7 +82,7 @@ const orders = [
   {
     id: 9,
     image: "https://via.placeholder.com/100",
-    customerName: "William Johnson",
+    customerName: "Muhammmad Farooq",
     quantity: 4,
     price: 22.5,
     totalAmount: 90.0,
@@ -92,7 +92,7 @@ const orders = [
   {
     id: 10,
     image: "https://via.placeholder.com/100",
-    customerName: "Olivia Martinez",
+    customerName: "Muhammmad Farooq",
     quantity: 2,
     price: 75.0,
     totalAmount: 150.0,
@@ -102,7 +102,7 @@ const orders = [
   {
     id: 11,
     image: "https://via.placeholder.com/100",
-    customerName: "James White",
+    customerName: "Muhammmad Farooq",
     quantity: 6,
     price: 15.0,
     totalAmount: 90.0,
@@ -112,7 +112,7 @@ const orders = [
   {
     id: 12,
     image: "https://via.placeholder.com/100",
-    customerName: "Mia Hernandez",
+    customerName: "Muhammmad Farooq",
     quantity: 1,
     price: 120.0,
     totalAmount: 120.0,
@@ -122,7 +122,7 @@ const orders = [
   {
     id: 13,
     image: "https://via.placeholder.com/100",
-    customerName: "Lucas Green",
+    customerName: "Muhammmad Farooq",
     quantity: 5,
     price: 30.0,
     totalAmount: 150.0,
@@ -132,7 +132,7 @@ const orders = [
   {
     id: 14,
     image: "https://via.placeholder.com/100",
-    customerName: "Ella Scott",
+    customerName: "Muhammmad Farooq",
     quantity: 2,
     price: 70.0,
     totalAmount: 140.0,
@@ -142,7 +142,7 @@ const orders = [
   {
     id: 15,
     image: "https://via.placeholder.com/100",
-    customerName: "Benjamin Allen",
+    customerName: "Muhammmad Farooq",
     quantity: 3,
     price: 25.0,
     totalAmount: 75.0,
@@ -152,7 +152,7 @@ const orders = [
   {
     id: 16,
     image: "https://via.placeholder.com/100",
-    customerName: "Amelia Clark",
+    customerName: "Muhammmad Farooq",
     quantity: 4,
     price: 20.0,
     totalAmount: 80.0,
@@ -162,7 +162,7 @@ const orders = [
   {
     id: 17,
     image: "https://via.placeholder.com/100",
-    customerName: "Jack King",
+    customerName: "Muhammmad Farooq",
     quantity: 3,
     price: 50.0,
     totalAmount: 150.0,
@@ -172,7 +172,7 @@ const orders = [
   {
     id: 18,
     image: "https://via.placeholder.com/100",
-    customerName: "Lily Wright",
+    customerName: "Muhammmad Farooq",
     quantity: 1,
     price: 200.0,
     totalAmount: 200.0,
@@ -182,7 +182,7 @@ const orders = [
   {
     id: 19,
     image: "https://via.placeholder.com/100",
-    customerName: "Henry Hill",
+    customerName: "Muhammmad Farooq",
     quantity: 2,
     price: 90.0,
     totalAmount: 180.0,
@@ -192,7 +192,7 @@ const orders = [
   {
     id: 20,
     image: "https://via.placeholder.com/100",
-    customerName: "Charlotte Torres",
+    customerName: "Muhammmad Farooq",
     quantity: 4,
     price: 40.0,
     totalAmount: 160.0,
