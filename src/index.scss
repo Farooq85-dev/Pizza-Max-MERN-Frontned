@@ -110,3 +110,30 @@ textarea:focus,
 input:focus {
   box-shadow: 0 0 0 0.25rem rgba(39, 8, 0, 0.25) !important;
 }
+
+// Dashboard Css
+
+.ant-layout-sider {
+  background-color: #473222;
+}
+.ant-menu-dark {
+  background-color: #473222;
+}
+
+.ant-menu-inline .ant-menu-item {
+  height: 60px;
+  line-height: 60px;
+  font-weight: 600;
+}
+
+
+.ant-menu-dark .ant-menu-item-selected {
+  background-color: #dfd1b7 !important;
+  color: black !important;
+  border-radius: 8px !important;
+}
+
+.ant-menu-item-icon {
+  font-size: 20px !important;
+}
+

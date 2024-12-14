@@ -9,6 +9,7 @@ import { Avatar, Breadcrumb, Dropdown, Layout, Menu, theme } from "antd";
 import { useState } from "react";
 import { useMediaQuery } from "react-responsive";
 const { Header, Content, Sider } = Layout;
+import Welcome from "../Components/User/Welcome";
 
 // Define menu items
 function getItem(label, key, icon) {
@@ -16,7 +17,8 @@ function getItem(label, key, icon) {
 }
 
 const menuItems = [
-  getItem("Dashboard", "Dashboard", <PieChartOutlined />),
+  getItem("Welcome", "Welcome", <PieChartOutlined />),
+  getItem("Orders", "Orders", <PieChartOutlined />),
   getItem("Reports", "Reports", <DesktopOutlined />),
   getItem("User Management", "User Management", <UserOutlined />),
   getItem("Team", "Team", <TeamOutlined />),
@@ -24,10 +26,10 @@ const menuItems = [
 ];
 
 const UserDashboardPage = () => {
-  const [selectedKey, setSelectedKey] = useState("Dashboard");
+  const [selectedKey, setSelectedKey] = useState("Welcome");
   const [breadcrumb, setBreadcrumb] = useState([
     { title: "User" },
-    { title: "Dashboard" },
+    { title: "Welcome" },
   ]);
 
   const {
@@ -68,8 +70,10 @@ const UserDashboardPage = () => {
   // Render dynamic content based on selected key
   const renderContent = () => {
     switch (selectedKey) {
-      case "Dashboard":
-        return <div>Welcome to the Dashboard</div>;
+      case "Welcome":
+        return <Welcome />;
+      case "Orders":
+        return <h1>Orders</h1>;
       case "Reports":
         return <div>Reports Overview</div>;
       case "User Management":
@@ -79,7 +83,7 @@ const UserDashboardPage = () => {
       case "Files":
         return <div>File Management</div>;
       default:
-        return <div>Select an option from the menu</div>;
+        return <h1>Sorry! that page {"doesn't"} exist</h1>;
     }
   };
 
@@ -102,6 +106,10 @@ const UserDashboardPage = () => {
       <Layout>
         <Header
           style={{
+            position: "sticky",
+            top: 0,
+            zIndex: 1,
+            width: "100%",
             padding: "0 16px",
             display: "flex",
             justifyContent: "space-between",
@@ -109,7 +117,7 @@ const UserDashboardPage = () => {
             background: colorBgContainer,
           }}
         >
-          <h2>User Dashboard</h2>
+          <h2 className="font-medium text-base sm:text-xl">Muhammad Farooq</h2>
           {headerMenu}
         </Header>
         <Content style={{ margin: "16px" }}>

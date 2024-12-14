@@ -19,8 +19,8 @@ const ButtonComp = ({
       onClick={onClick}
       className={`${className} flex justify-center items-center gap-2`}
     >
-      {icon}
       {title}
+      {icon}
     </button>
   );
 };
