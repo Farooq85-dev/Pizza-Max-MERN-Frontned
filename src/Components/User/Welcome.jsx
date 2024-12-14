@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import { useState } from "react";
 import Button from "../Button";
 import { VscDebugStart } from "react-icons/vsc";
-import Table from "./Table";
 
 const WelcomeComp = () => {
   const [dateTime, setDateTime] = useState({
@@ -83,9 +82,6 @@ const WelcomeComp = () => {
             loading="lazy"
           />
         </div>
-      </div>
-      <div className="order-table-container">
-        <Table />
       </div>
     </div>
   );

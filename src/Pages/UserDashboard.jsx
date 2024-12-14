@@ -1,18 +1,14 @@
 import {
-  DesktopOutlined,
-  FileOutlined,
-  PieChartOutlined,
-  TeamOutlined,
-  UserOutlined,
+  UserOutlined
 } from "@ant-design/icons";
 import { Avatar, Breadcrumb, Dropdown, Layout, Menu, theme } from "antd";
 import { useState } from "react";
-import { useMediaQuery } from "react-responsive";
-const { Header, Content, Sider } = Layout;
-import Welcome from "../Components/User/Welcome";
-import Orders from "../Components/User/Orders";
-import { SiWelcometothejungle } from "react-icons/si";
 import { GiBoxUnpacking } from "react-icons/gi";
+import { SiWelcometothejungle } from "react-icons/si";
+import { useMediaQuery } from "react-responsive";
+import Orders from "../Components/User/Orders";
+import Welcome from "../Components/User/Welcome";
+const { Header, Content, Sider } = Layout;
 
 // Define menu items
 function getItem(label, key, icon) {
