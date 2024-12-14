@@ -1,13 +1,13 @@
-import {
-  UserOutlined
-} from "@ant-design/icons";
+import { UserOutlined } from "@ant-design/icons";
 import { Avatar, Breadcrumb, Dropdown, Layout, Menu, theme } from "antd";
 import { useState } from "react";
+import { BsBox2HeartFill } from "react-icons/bs";
 import { GiBoxUnpacking } from "react-icons/gi";
 import { SiWelcometothejungle } from "react-icons/si";
 import { useMediaQuery } from "react-responsive";
 import Orders from "../Components/User/Orders";
 import Welcome from "../Components/User/Welcome";
+import Favourites from "../Components/User/Favourites";
 const { Header, Content, Sider } = Layout;
 
 // Define menu items
@@ -18,10 +18,11 @@ function getItem(label, key, icon) {
 const menuItems = [
   getItem("Welcome", "Welcome", <SiWelcometothejungle />),
   getItem("Orders", "Orders", <GiBoxUnpacking />),
+  getItem("Favourites", "Favourites", <BsBox2HeartFill />),
 ];
 
 const UserDashboardPage = () => {
-  const [selectedKey, setSelectedKey] = useState("Orders");
+  const [selectedKey, setSelectedKey] = useState("Favourites");
   const [breadcrumb, setBreadcrumb] = useState([
     { title: "User" },
     { title: "Welcome" },
@@ -48,10 +49,7 @@ const UserDashboardPage = () => {
   const headerMenu = (
     <Dropdown
       menu={{
-        items: [
-          { label: "Profile", key: "profile" },
-          { label: "Logout", key: "logout" },
-        ],
+        items: [{ label: "Logout", key: "logout" }],
       }}
     >
       <Avatar
@@ -69,14 +67,9 @@ const UserDashboardPage = () => {
         return <Welcome />;
       case "Orders":
         return <Orders />;
-      case "Reports":
-        return <div>Reports Overview</div>;
-      case "User Management":
-        return <div>User Management Details</div>;
-      case "Team":
-        return <div>Team Details</div>;
-      case "Files":
-        return <div>File Management</div>;
+      case "Favourites":
+        return <Favourites />;
+
       default:
         return <h1>Sorry! that page {"doesn't"} exist</h1>;
     }
