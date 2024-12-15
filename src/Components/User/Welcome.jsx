@@ -75,9 +75,9 @@ const WelcomeComp = () => {
             </h3>
           </div>
         </div>
-        <div className="right-side hidden sm:flex sm:justify-center sm:items-center">
+        <div className="right-side hidden sm:flex sm:justify-center sm:items-center ">
           <img
-            src="https://img.freepik.com/free-photo/fun-3d-cartoon-teenage-kids_183364-81180.jpg?t=st=1734149852~exp=1734153452~hmac=240490d3ea5ec1e35b4adfecb4ce8e92b51e55fac08a3b0d77723c923ba9a373&w=740"
+            src="https://img.freepik.com/free-photo/funny-3d-illustration-cartoon-teenage-girl_183364-80384.jpg?t=st=1734286969~exp=1734290569~hmac=20bc7ff16434e3c3f625d026962420c7d7c744568d7b5e166a9eeeffe57b8c15&w=740"
             alt="welcome-img"
             loading="lazy"
           />

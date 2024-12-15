@@ -1,18 +1,17 @@
-import { useFormik } from "formik";
-import Input from "../Components/Input";
-import ButtonComp from "../Components/Button";
-import { checkoutSchema } from "../Schemas";
-import { FaRegUserCircle } from "react-icons/fa";
-import { MdConfirmationNumber, MdEmail } from "react-icons/md";
-import TextArea from "../Components/TextArea";
-import { LuMessageSquareMore } from "react-icons/lu";
-import { useSelector } from "react-redux";
-import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import { Breadcrumb } from "antd";
-import { useLocation } from "react-router-dom";
-import Result from "../Components/Result";
+import { useFormik } from "formik";
+import { useEffect, useState } from "react";
+import { FaRegUserCircle } from "react-icons/fa";
 import { ImSpoonKnife } from "react-icons/im";
+import { LuMessageSquareMore } from "react-icons/lu";
+import { MdConfirmationNumber, MdEmail } from "react-icons/md";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import ButtonComp from "../Components/Button";
+import Input from "../Components/Input";
+import Result from "../Components/Result";
+import TextArea from "../Components/TextArea";
+import { checkoutSchema } from "../Schemas";
 
 const initialValues = {
   fullName: "",
@@ -26,8 +25,6 @@ const initialValues = {
 const CheckoutPage = () => {
   const cartItems = useSelector((state) => state.cart.cart);
   const [subtotal, setSubtotal] = useState(0);
-  const location = useLocation();
-  const paths = location.pathname.split("/").filter(Boolean);
 
   useEffect(() => {
     const price = cartItems.reduce(
@@ -52,18 +49,11 @@ const CheckoutPage = () => {
         className="p-4 pb-0 sm:px-10 text-sm"
         items={[
           {
-            title: <Link to="/">Home</Link>,
+            title: "Home",
           },
-          ...paths.map((path, index) => ({
-            title: (
-              <Link
-                to={`/${paths.slice(0, index + 1).join("/")}`}
-                className={index === paths.length - 1 ? "!text-red-600" : ""}
-              >
-                {path.charAt(0).toUpperCase() + path.slice(1)}
-              </Link>
-            ),
-          })),
+          {
+            title: "Checkout",
+          },
         ]}
       />
       <form

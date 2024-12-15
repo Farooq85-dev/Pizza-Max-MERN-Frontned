@@ -28,7 +28,7 @@ const menuItems = [
 ];
 
 const UserDashboardPage = () => {
-  const [selectedKey, setSelectedKey] = useState("Account");
+  const [selectedKey, setSelectedKey] = useState("Welcome");
   const [breadcrumb, setBreadcrumb] = useState([
     { title: "User" },
     { title: "Welcome" },
@@ -50,7 +50,7 @@ const UserDashboardPage = () => {
     content: (
       <Menu
         theme="dark"
-        defaultSelectedKeys={["Dashboard"]}
+        defaultSelectedKeys={["Welcome"]}
         mode="inline"
         items={menuItems}
         onClick={handleMenuClick}
@@ -109,7 +109,7 @@ const UserDashboardPage = () => {
           <div className="demo-logo-vertical" />
           <Menu
             theme="dark"
-            defaultSelectedKeys={["Dashboard"]}
+            defaultSelectedKeys={["Welcome"]}
             mode="inline"
             items={menuItems}
             onClick={handleMenuClick}
