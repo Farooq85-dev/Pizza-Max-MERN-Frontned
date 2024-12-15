@@ -14,8 +14,8 @@ const FavouritesComp = () => {
     dispatch(addItemToCart(product));
   };
 
-  const handleRemoveFromFavourite = (product) => {
-    dispatch(removeItemFromFavourite(product));
+  const handleRemoveFromFavourite = (id) => {
+    dispatch(removeItemFromFavourite({ id }));
   };
 
   return (
@@ -61,7 +61,7 @@ const FavouritesComp = () => {
                     <IoIosHeartDislike
                       size={20}
                       cursor="pointer"
-                      onClick={() => handleRemoveFromFavourite(product)}
+                      onClick={() => handleRemoveFromFavourite(product?.id)}
                     />
                   </div>
                 </div>

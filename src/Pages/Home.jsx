@@ -6,18 +6,10 @@ import Products from "../Components/Products";
 const HomePage = () => {
   return (
     <>
-      <>
-        <Slider />
-      </>
-      <>
-        <CategoryBar />
-      </>
-      <>
-        <Products />
-      </>
-      <>
-        <FloatBtn />
-      </>
+      <Slider />
+      <CategoryBar />
+      <Products />
+      <FloatBtn />
     </>
   );
 };

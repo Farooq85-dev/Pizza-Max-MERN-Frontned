@@ -1,35 +1,51 @@
 import { useState } from "react";
 import { MdShoppingBag } from "react-icons/md";
 import { RiAccountCircle2Fill } from "react-icons/ri";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Pizza_Max_Logo from "../Assets/Images/pizza-max-logo.png";
-import Button from "./Button";
-import Modal from "./Modal";
 import Account from "./Account";
-import DrawerComp from "./Drawer";
-import { useSelector } from "react-redux";
+import { Content, Footer } from "./AddToCart";
+import Button from "./Button";
+import Drawer from "./Drawer";
+import Modal from "./Modal";
+import { useMediaQuery } from "react-responsive";
 
 const NavbarComp = () => {
   const [isModalVisible, setModalVisible] = useState(false);
-  const [openDrawer, setOpenDrawer] = useState(false);
+  const [isDrawerVisible, setDrawerVisible] = useState(false);
   const cartItems = useSelector((state) => state.cart.cart);
+  const isMobile = useMediaQuery({ query: "(max-width: 576px)" });
 
   const [modalContent, setModalContent] = useState({
     title: "Register/Login",
     content: <Account />,
   });
 
-  const handleDrawer = () => {
-    setOpenDrawer(!openDrawer);
+  const [drawerContent, setDrawerContent] = useState({
+    title: "Your Cart",
+    content: <Content />,
+    footer: <Footer />,
+  });
+
+  // Cart Drawer
+  const openDrawer = (title, content, footer) => {
+    setDrawerContent({ title, content, footer });
+    setDrawerVisible(true);
   };
 
+  const closeDrawer = () => {
+    setDrawerVisible(false);
+  };
+
+  // Account Modal
   const openModal = (title, content) => {
     setModalContent({ title, content });
-    setModalVisible(!isModalVisible);
+    setModalVisible(true);
   };
 
   const closeModal = () => {
-    setModalVisible(!isModalVisible);
+    setModalVisible(false);
   };
 
   return (
@@ -53,7 +69,13 @@ const NavbarComp = () => {
           </div>
           <div className="cart-icon">
             <MdShoppingBag
-              onClick={handleDrawer}
+              onClick={() =>
+                openDrawer(
+                  drawerContent.title,
+                  drawerContent.content,
+                  drawerContent.footer
+                )
+              }
               size={35}
               color="white"
               cursor={"pointer"}
@@ -80,7 +102,14 @@ const NavbarComp = () => {
           />
         </div>
       </div>
-      <DrawerComp isOpen={openDrawer} handleDrawer={handleDrawer} />
+      <Drawer
+        isVisible={isDrawerVisible}
+        onClose={closeDrawer}
+        title={drawerContent.title}
+        content={drawerContent.content}
+        footer={drawerContent.footer}
+        placement={isMobile ? "bottom" : "right"}
+      />
       <Modal
         isConfirm={false}
         isVisible={isModalVisible}

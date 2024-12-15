@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { message } from "antd";
 
 const initialCartState = JSON.parse(localStorage.getItem("cart")) || [];
 
@@ -14,10 +15,11 @@ const cartSlice = createSlice({
       );
 
       if (isCartProductExists) {
-        alert("Product Already Exists!");
+        message.error("Product already exists in cart!");
       } else {
         state.cart.push(action.payload);
         localStorage.setItem("cart", JSON.stringify(state.cart));
+        message.success("Product added to cart successfully!");
       }
     },
     removeItemFromCart: (state, action) => {
@@ -25,10 +27,12 @@ const cartSlice = createSlice({
         (product) => product?.id !== action?.payload?.id
       );
       localStorage.setItem("cart", JSON.stringify(state.cart));
+      message.success("Products removed successfully!");
     },
     removeAllItemFromCart: (state) => {
       localStorage.removeItem("cart");
       state.cart = [];
+      message.success("All Products removed successfully!");
     },
     incQuantity: (state, action) => {
       const updatedItem = state.cart.find(

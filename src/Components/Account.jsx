@@ -151,6 +151,7 @@ const AccountComp = () => {
             placeHolder={"Enter email."}
             id="email"
             name="email"
+            label="Email"
             ariaLabel="email"
             type="email"
             value={loginValues.email}
@@ -165,6 +166,7 @@ const AccountComp = () => {
             placeHolder={"Enter password."}
             id="password"
             name="password"
+            label="Password"
             ariaLabel="password"
             type="password"
             value={loginValues.password}

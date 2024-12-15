@@ -21,8 +21,6 @@ const SliderComp = () => {
         delay: 2000,
         disableOnInteraction: true,
       }}
-      onSwiper={(swiper) => console.log(swiper)}
-      onSlideChange={() => console.log("slide change")}
     >
       <SwiperSlide>
         <img src={Days_Banner1} alt="" />
