@@ -6,7 +6,7 @@ export default {
       colors: {
         navbarColor: "#270800",
         btnColor: "#0F0F0F",
-        scrollBarColor: "#f8f9fa",
+        scrollBarColor: "#f3f4f6",
       },
       screens: {
         xs: "320px",

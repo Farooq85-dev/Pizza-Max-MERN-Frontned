@@ -8,10 +8,12 @@ import { useMediaQuery } from "react-responsive";
 import Orders from "../Components/User/Orders";
 import Welcome from "../Components/User/Welcome";
 import Favourites from "../Components/User/Favourites";
+import Account from "../Components/User/Profile";
 import { FiMenu } from "react-icons/fi";
 import Drawer from "../Components/Drawer";
 const { Header, Content, Sider } = Layout;
 import "./user-dashboard.scss";
+import { CgProfile } from "react-icons/cg";
 
 // Define menu items
 function getItem(label, key, icon) {
@@ -22,10 +24,11 @@ const menuItems = [
   getItem("Welcome", "Welcome", <SiWelcometothejungle />),
   getItem("Orders", "Orders", <GiBoxUnpacking />),
   getItem("Favourites", "Favourites", <BsBox2HeartFill />),
+  getItem("Account", "Account", <CgProfile />),
 ];
 
 const UserDashboardPage = () => {
-  const [selectedKey, setSelectedKey] = useState("Favourites");
+  const [selectedKey, setSelectedKey] = useState("Account");
   const [breadcrumb, setBreadcrumb] = useState([
     { title: "User" },
     { title: "Welcome" },
@@ -92,6 +95,8 @@ const UserDashboardPage = () => {
         return <Orders />;
       case "Favourites":
         return <Favourites />;
+      case "Account":
+        return <Account />;
       default:
         return <h1>Sorry! that page {"doesn't"} exist</h1>;
     }

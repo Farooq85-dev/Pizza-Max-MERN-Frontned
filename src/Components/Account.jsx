@@ -1,11 +1,11 @@
-import { MdEmail } from "react-icons/md";
-import { TbPasswordFingerprint } from "react-icons/tb";
-import { FaRegUserCircle } from "react-icons/fa";
-import Input from "./Input";
-import { useState } from "react";
-import Button from "./Button";
 import { useFormik } from "formik";
+import { useState } from "react";
+import { CiLock } from "react-icons/ci";
+import { FaRegUserCircle } from "react-icons/fa";
+import { MdEmail } from "react-icons/md";
 import { userLoginSchema, userRegisterationSchema } from "../Schemas";
+import Button from "./Button";
+import Input from "./Input";
 
 const AccountComp = () => {
   const [formState, setFormState] = useState("Register");
@@ -98,7 +98,7 @@ const AccountComp = () => {
             value={registerValues.password}
             onChange={registerHandleChange}
             onBlur={registerHandleBlur}
-            icon={<TbPasswordFingerprint size={18} />}
+            icon={<CiLock size={18} />}
           />
           {registerErrors && registerTouched.password ? (
             <p className="text-base text-red-600">{registerErrors.password}</p>
@@ -113,7 +113,7 @@ const AccountComp = () => {
             value={registerValues.confirmPassword}
             onChange={registerHandleChange}
             onBlur={registerHandleBlur}
-            icon={<TbPasswordFingerprint size={18} />}
+            icon={<CiLock size={18} />}
           />
           {registerErrors && registerTouched.confirmPassword ? (
             <p className="text-base text-red-600">
@@ -172,7 +172,7 @@ const AccountComp = () => {
             value={loginValues.password}
             onChange={loginHandleChange}
             onBlur={loginHandleBlur}
-            icon={<TbPasswordFingerprint size={18} />}
+            icon={<CiLock size={18} />}
           />
           {loginErrors && LoginTouched.password ? (
             <p className="text-base text-red-600">{loginErrors.password}</p>

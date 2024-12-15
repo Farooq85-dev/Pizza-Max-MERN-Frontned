@@ -10,7 +10,7 @@ export const userRegisterationSchema = yup.object({
     .required("Password must be at least 8 to 12 characters long!"),
   confirmPassword: yup
     .string()
-    .required()
+    .required("Confirm password is required!")
     .oneOf([yup.ref("password"), null], "Password doesn't match!"),
 });
 
@@ -38,4 +38,24 @@ export const checkoutSchema = yup.object({
     .required("Email is required!"),
   address: yup.string().required("Please enter address!"),
   promoCode: yup.string().required("Please enter promo code!"),
+});
+
+export const userNameSchema = yup.object({
+  userName: yup.string().required("Pleaser enter name!"),
+});
+
+export const userEmailSchema = yup.object({
+  userName: yup.string().email().required("Pleaser enter email!"),
+});
+
+export const userPasswordChangeSchema = yup.object({
+  currentPassword: yup
+    .string()
+    .min(8)
+    .max(12)
+    .required("Password must be at least 8 to 12 characters long!"),
+  newPassword: yup
+    .string()
+    .required("New password is required!")
+    .oneOf([yup.ref("currentPassword"), null], "Password doesn't match!"),
 });
