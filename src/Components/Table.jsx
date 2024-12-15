@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 
 const TableComp = ({ columns, data }) => (
   <Table
+    className="overflow-x-auto"
     columns={columns}
     dataSource={data}
     bordered
