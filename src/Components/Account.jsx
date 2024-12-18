@@ -6,6 +6,8 @@ import { MdEmail } from "react-icons/md";
 import { userLoginSchema, userRegisterationSchema } from "../Schemas";
 import Button from "./Button";
 import Input from "./Input";
+import axios from "axios";
+import { message } from "antd";
 
 const AccountComp = () => {
   const [formState, setFormState] = useState("Register");
@@ -23,11 +25,29 @@ const AccountComp = () => {
     handleChange: registerHandleChange,
     handleSubmit: registerHandleSubmit,
     handleBlur: registerHandleBlur,
+    handleReset: registerHandleReset,
   } = useFormik({
     initialValues: registerInitialValues,
     validationSchema: userRegisterationSchema,
-    onSubmit: (values, errors) => {
-      console.log(values, errors);
+    onSubmit: async (registerValues) => {
+      try {
+        const response = await axios.post(
+          `${import.meta.env.VITE_API_URI}/register-user`,
+          registerValues,
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+            withCredentials: true,
+          }
+        );
+        message.success(response?.data?.message || "Congratulation!");
+        registerHandleReset();
+      } catch (error) {
+        message.error(
+          error?.response?.data?.message || "Something went wrong!"
+        );
+      }
     },
   });
 
@@ -43,11 +63,29 @@ const AccountComp = () => {
     handleSubmit: loginHandleSubmit,
     handleChange: loginHandleChange,
     handleBlur: loginHandleBlur,
+    handleReset: loginHandleReset,
   } = useFormik({
     initialValues: loginInitialValues,
     validationSchema: userLoginSchema,
-    onSubmit: (loginValues) => {
-      console.log(loginValues);
+    onSubmit: async (loginValues) => {
+      try {
+        const response = await axios.post(
+          `${import.meta.env.VITE_API_URI}/login-user`,
+          loginValues,
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+            withCredentials: true,
+          }
+        );
+        message.success(response?.data?.message || "Congratulation!");
+        loginHandleReset();
+      } catch (error) {
+        message.error(
+          error?.response?.data?.message || "Something went wrong!"
+        );
+      }
     },
   });
 

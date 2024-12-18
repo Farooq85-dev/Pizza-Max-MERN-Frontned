@@ -1,19 +1,28 @@
 import { UserOutlined } from "@ant-design/icons";
-import { Avatar, Breadcrumb, Dropdown, Layout, Menu, theme } from "antd";
+import {
+  Avatar,
+  Breadcrumb,
+  Dropdown,
+  Layout,
+  Menu,
+  message,
+  theme,
+} from "antd";
+import axios from "axios";
 import { useState } from "react";
 import { BsBox2HeartFill } from "react-icons/bs";
+import { CgProfile } from "react-icons/cg";
+import { FiMenu } from "react-icons/fi";
 import { GiBoxUnpacking } from "react-icons/gi";
 import { SiWelcometothejungle } from "react-icons/si";
 import { useMediaQuery } from "react-responsive";
-import Orders from "../Components/User/Orders";
-import Welcome from "../Components/User/Welcome";
-import Favourites from "../Components/User/Favourites";
-import Account from "../Components/User/Profile";
-import { FiMenu } from "react-icons/fi";
 import Drawer from "../Components/Drawer";
-const { Header, Content, Sider } = Layout;
+import Favourites from "../Components/User/Favourites";
+import Orders from "../Components/User/Orders";
+import Account from "../Components/User/Profile";
+import Welcome from "../Components/User/Welcome";
 import "./user-dashboard.scss";
-import { CgProfile } from "react-icons/cg";
+const { Header, Content, Sider } = Layout;
 
 // Define menu items
 function getItem(label, key, icon) {
@@ -73,20 +82,6 @@ const UserDashboardPage = () => {
     query: "(max-width: 576px)",
   });
 
-  const headerMenu = (
-    <Dropdown
-      menu={{
-        items: [{ label: "Logout", key: "logout" }],
-      }}
-    >
-      <Avatar
-        size="large"
-        style={{ backgroundColor: "#87d068" }}
-        icon={<UserOutlined />}
-      />
-    </Dropdown>
-  );
-
   const renderContent = () => {
     switch (selectedKey) {
       case "Welcome":
@@ -99,6 +94,24 @@ const UserDashboardPage = () => {
         return <Account />;
       default:
         return <h1>Sorry! that page {"doesn't"} exist</h1>;
+    }
+  };
+
+  const handleLogout = async (e) => {
+    if (e.key === "logout") {
+      try {
+        const response = await axios.post(
+          `${import.meta.env.VITE_API_URI}/logout-user`,
+          {
+            withCredentials: true,
+          }
+        );
+        message.success(response?.data?.message || "Congratulation!");
+      } catch (error) {
+        message.error(
+          error?.response?.data?.message || "Something went wrong!"
+        );
+      }
     }
   };
 
@@ -147,7 +160,21 @@ const UserDashboardPage = () => {
                 Muhammad Farooq
               </h2>
             </div>
-            <div className="header-right">{headerMenu}</div>
+            <div className="header-right">
+              <Dropdown
+                menu={{
+                  items: [{ label: "Logout", key: "logout" }],
+                  onClick: handleLogout,
+                }}
+              >
+                <Avatar
+                  size="large"
+                  src="https://cdn.dribbble.com/users/21745538/avatars/normal/data?1723901494 "
+                  icon={<UserOutlined />}
+                  className="cursor-pointer"
+                />
+              </Dropdown>
+            </div>
           </Header>
           <Content style={{ margin: "16px" }}>
             <Breadcrumb style={{ margin: "16px 0" }} items={breadcrumb} />

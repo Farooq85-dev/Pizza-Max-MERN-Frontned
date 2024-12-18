@@ -1,5 +1,6 @@
-import { Divider } from "antd";
+import { Divider, message } from "antd";
 import { useFormik } from "formik";
+import { useState } from "react";
 import { CiLock } from "react-icons/ci";
 import { FaRegUserCircle } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
@@ -10,6 +11,8 @@ import {
 } from "../../Schemas";
 import Button from "../Button";
 import Input from "../Input";
+import UploaderComp from "../Uploader";
+import axios from "axios";
 
 const AccountComp = () => {
   const {
@@ -19,13 +22,31 @@ const AccountComp = () => {
     handleBlur: userNameHandleBlur,
     handleSubmit: userNameHandleSubmit,
     handleChange: userNameHandleChange,
+    handleReset: userNameHandleReset,
   } = useFormik({
     initialValues: {
-      userName: "",
+      name: "",
     },
     validationSchema: userNameSchema,
-    onSubmit: (values) => {
-      console.log(values);
+    onSubmit: async (userNameValues) => {
+      try {
+        const response = await axios.patch(
+          `${import.meta.env.VITE_API_URI}/update-name`,
+          userNameValues,
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+            withCredentials: true,
+          }
+        );
+        message.success(response?.data?.message || "Congratulation!");
+        userNameHandleReset();
+      } catch (error) {
+        message.error(
+          error?.response?.data?.message || "Something went wrong!"
+        );
+      }
     },
   });
 
@@ -36,13 +57,31 @@ const AccountComp = () => {
     handleBlur: userEmailHandleBlur,
     handleSubmit: userEmailHandleSubmit,
     handleChange: userEmailHandleChange,
+    handleReset: userEmailHandleReset,
   } = useFormik({
     initialValues: {
-      userEmail: "",
+      secondaryEmail: "",
     },
     validationSchema: userEmailSchema,
-    onSubmit: (values) => {
-      console.log(values);
+    onSubmit: async (userEmailValues) => {
+      try {
+        const response = await axios.post(
+          `${import.meta.env.VITE_API_URI}/add-email`,
+          userEmailValues,
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+            withCredentials: true,
+          }
+        );
+        message.success(response?.data?.message || "Congratulation!");
+        userEmailHandleReset();
+      } catch (error) {
+        message.error(
+          error?.response?.data?.message || "Something went wrong!"
+        );
+      }
     },
   });
 
@@ -53,35 +92,75 @@ const AccountComp = () => {
     handleBlur: userPasswordHandleBlur,
     handleSubmit: userPasswordHandleSubmit,
     handleChange: userPasswordHandleChange,
+    handleReset: userPasswordHandleReset,
   } = useFormik({
     initialValues: {
       currentPassword: "",
       newPassword: "",
     },
     validationSchema: userPasswordChangeSchema,
-    onSubmit: (values) => {
-      console.log(values);
+    onSubmit: async (userPasswordValues) => {
+      try {
+        const response = await axios.patch(
+          `${import.meta.env.VITE_API_URI}/change-password`,
+          userPasswordValues,
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+            withCredentials: true,
+          }
+        );
+        message.success(response?.data?.message || "Congratulation!");
+        userPasswordHandleReset();
+      } catch (error) {
+        message.error(
+          error?.response?.data?.message || "Something went wrong!"
+        );
+      }
     },
   });
+
+  const [file, setFile] = useState(null);
+  const handleFileChange = (e) => {
+    const uploadedFile = e.target.files;
+    setFile(uploadedFile);
+  };
+
+  const handleFileUpload = async () => {
+    if (!file) {
+      return message.error("Please provide a file!");
+    }
+
+    if (file.length > 1) {
+      return message.error("Please provide a single file!");
+    }
+
+    let data = new FormData();
+    data.append("userAvatar", file[0]);
+
+    try {
+      const response = await axios.post(
+        `${import.meta.env.VITE_API_URI}/upload-avatar`,
+        data,
+        {
+          headers: {
+            "Content-Type": "multipart/formData",
+          },
+          withCredentials: true,
+        }
+      );
+      message.success(response?.data?.message || "Congratulation!");
+    } catch (error) {
+      message.error(error?.response?.data?.message || "Something went wrong!");
+    }
+  };
 
   return (
     <div className="flex flex-col">
       <div className="user-picture-container flex flex-col sm:flex-row justify-between items-center gap-4">
         <div className="left-side flex flex-col sm:flex-row justify-center items-center gap-4 ">
-          <img
-            className="rounded-full h-20 w-20 object-cover border"
-            src="https://cdn.dribbble.com/users/21745538/avatars/normal/data?1723901494"
-            alt="user-profile"
-            loading="lazy"
-          />
-          <div>
-            <h3 className="text-lg text-center sm:text-left font-medium">
-              Profile Picture
-            </h3>
-            <p className="text-sm text-center sm:text-left">
-              Only WEBP format under 10KB
-            </p>
-          </div>
+          <UploaderComp handleChange={handleFileChange} />
         </div>
         <div className="right-side flex gap-4">
           <Button
@@ -90,6 +169,7 @@ const AccountComp = () => {
             type="button"
             title="Upload Picture"
             className="bg-scrollBarColor border rounded-md shadow-sm px-4 py-2 font-bold"
+            onClick={handleFileUpload}
           />
           <Button
             id="delete-pic-btn"
@@ -106,26 +186,26 @@ const AccountComp = () => {
         className="user-name-container flex flex-col gap-2"
       >
         <Input
-          id="userName"
+          id="name"
           type="text"
-          name="userName"
+          name="name"
           label="Full Name"
-          ariaLabel="userName"
+          ariaLabel="name"
           placeHolder="Enter full name"
           icon={<FaRegUserCircle size={18} />}
-          value={userNameValues.userName}
+          value={userNameValues.name}
           onBlur={userNameHandleBlur}
           onChange={userNameHandleChange}
         />
-        {userNameErrors && userNameTouched.userName ? (
-          <p className="text-base text-red-600">{userNameErrors.userName}</p>
+        {userNameErrors && userNameTouched.name ? (
+          <p className="text-base text-red-600">{userNameErrors.name}</p>
         ) : null}
         <Button
           id="addUserName"
           name="addUserName"
           type="submit"
           title="Save Name"
-          className="bg-scrollBarColor border rounded-md shadow-sm px-4 py-2 font-semibold"
+          className="sm:w-[30%] md:w-[20%] bg-scrollBarColor border rounded-md shadow-sm px-4 py-2 font-semibold"
         />
       </form>
       <Divider />
@@ -135,25 +215,27 @@ const AccountComp = () => {
       >
         <Input
           type="email"
-          id="userEmail"
-          name="userEmail"
+          id="secondaryEmail"
+          name="secondaryEmail"
           label="Email"
-          ariaLabel="userEmail"
-          placeHolder="Enter your email"
+          ariaLabel="secondaryEmail"
+          placeHolder="Enter another email"
           icon={<MdEmail size={18} />}
-          value={userEmailValues.userEmail}
+          value={userEmailValues.secondaryEmail}
           onBlur={userEmailHandleBlur}
           onChange={userEmailHandleChange}
         />
-        {userEmailErrors && userEmailTouched.userEmail ? (
-          <p className="text-base text-red-600">{userEmailErrors.userName}</p>
+        {userEmailErrors && userEmailTouched.secondaryEmail ? (
+          <p className="text-base text-red-600">
+            {userEmailErrors.secondaryEmail}
+          </p>
         ) : null}
         <Button
           id="addUserEmail"
           name="addUserEmail"
           type="submit"
           title="Save Email"
-          className="bg-scrollBarColor border rounded-md shadow-sm px-4 py-2 font-semibold"
+          className="sm:w-[30%] md:w-[20%] bg-scrollBarColor border rounded-md shadow-sm px-4 py-2 font-semibold"
         />
       </form>
       <Divider />
@@ -200,7 +282,7 @@ const AccountComp = () => {
           name="changePassword"
           type="submit"
           title="Change Password"
-          className="bg-scrollBarColor border rounded-md shadow-sm px-4 py-2 font-semibold"
+          className="sm:w-[30%] md:w-[20%] bg-scrollBarColor border rounded-md shadow-sm px-4 py-2 font-semibold"
         />
       </form>
       <Divider />

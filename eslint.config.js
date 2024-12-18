@@ -32,7 +32,6 @@ export default [
       "react/display-name": "off",
       "react-refresh/only-export-components": [
         "warn",
-
         { allowConstantExport: true },
       ],
     },

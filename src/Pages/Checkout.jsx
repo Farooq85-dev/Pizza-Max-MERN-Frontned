@@ -15,7 +15,7 @@ import { checkoutSchema } from "../Schemas";
 
 const initialValues = {
   fullName: "",
-  phone: "+92",
+  contactNumber: "+92",
   emailAddress: "",
   address: "",
   specialMessage: "",
