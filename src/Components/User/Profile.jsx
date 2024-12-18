@@ -156,6 +156,23 @@ const AccountComp = () => {
     }
   };
 
+  const handleDeleteAvatar = async () => {
+    try {
+      const response = await axios.patch(
+        `${import.meta.env?.VITE_API_URI}/delete-avatar`,
+        null,
+        {
+          withCredentials: true,
+        }
+      );
+      message.success(response?.data?.message || "Congratulations!");
+    } catch (error) {
+      message.success(
+        error?.response?.data?.message || "Something went wrong!"
+      );
+    }
+  };
+
   return (
     <div className="flex flex-col">
       <div className="user-picture-container flex flex-col sm:flex-row justify-between items-center gap-4">
@@ -177,6 +194,7 @@ const AccountComp = () => {
             type="button"
             title="Delete"
             className="bg-scrollBarColor border rounded-md shadow-sm px-4 py-2 font-semibold"
+            onClick={handleDeleteAvatar}
           />
         </div>
       </div>

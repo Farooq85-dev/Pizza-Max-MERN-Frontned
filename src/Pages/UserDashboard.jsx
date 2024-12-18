@@ -22,6 +22,7 @@ import Orders from "../Components/User/Orders";
 import Account from "../Components/User/Profile";
 import Welcome from "../Components/User/Welcome";
 import "./user-dashboard.scss";
+import { useNavigate } from "react-router-dom";
 const { Header, Content, Sider } = Layout;
 
 // Define menu items
@@ -42,6 +43,8 @@ const UserDashboardPage = () => {
     { title: "User" },
     { title: "Welcome" },
   ]);
+
+  const navigate = useNavigate();
 
   const {
     token: { colorBgContainer, borderRadiusLG },
@@ -102,11 +105,13 @@ const UserDashboardPage = () => {
       try {
         const response = await axios.post(
           `${import.meta.env.VITE_API_URI}/logout-user`,
+          null,
           {
             withCredentials: true,
           }
         );
         message.success(response?.data?.message || "Congratulation!");
+        navigate("/");
       } catch (error) {
         message.error(
           error?.response?.data?.message || "Something went wrong!"

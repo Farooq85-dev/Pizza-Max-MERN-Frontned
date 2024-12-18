@@ -8,6 +8,7 @@ import Button from "./Button";
 import Input from "./Input";
 import axios from "axios";
 import { message } from "antd";
+import { useNavigate } from "react-router-dom";
 
 const AccountComp = () => {
   const [formState, setFormState] = useState("Register");
@@ -17,6 +18,7 @@ const AccountComp = () => {
     password: "",
     confirmPassword: "",
   };
+  const navigate = useNavigate();
 
   const {
     values: registerValues,
@@ -43,6 +45,7 @@ const AccountComp = () => {
         );
         message.success(response?.data?.message || "Congratulation!");
         registerHandleReset();
+        setFormState("Login");
       } catch (error) {
         message.error(
           error?.response?.data?.message || "Something went wrong!"
@@ -81,6 +84,7 @@ const AccountComp = () => {
         );
         message.success(response?.data?.message || "Congratulation!");
         loginHandleReset();
+        navigate("/user");
       } catch (error) {
         message.error(
           error?.response?.data?.message || "Something went wrong!"

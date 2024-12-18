@@ -1,4 +1,5 @@
-import { Breadcrumb } from "antd";
+import { Breadcrumb, message } from "antd";
+import axios from "axios";
 import { useFormik } from "formik";
 import { useEffect, useState } from "react";
 import { FaRegUserCircle } from "react-icons/fa";
@@ -10,7 +11,9 @@ import { Link } from "react-router-dom";
 import ButtonComp from "../Components/Button";
 import Input from "../Components/Input";
 import Result from "../Components/Result";
+import Select from "../Components/Select";
 import TextArea from "../Components/TextArea";
+import { useUser } from "../Context/user.context";
 import { checkoutSchema } from "../Schemas";
 
 const initialValues = {
@@ -18,12 +21,14 @@ const initialValues = {
   contactNumber: "+92",
   emailAddress: "",
   address: "",
-  specialMessage: "",
   promoCode: "",
+  specialMessage: "",
+  deliveryPreference: 100,
 };
 
 const CheckoutPage = () => {
   const cartItems = useSelector((state) => state.cart.cart);
+  const { user } = useUser();
   const [subtotal, setSubtotal] = useState(0);
 
   useEffect(() => {
@@ -34,14 +39,49 @@ const CheckoutPage = () => {
     setSubtotal(price);
   }, [cartItems]);
 
-  const { values, errors, touched, handleBlur, handleSubmit, handleChange } =
-    useFormik({
-      initialValues: initialValues,
-      validationSchema: checkoutSchema,
-      onSubmit: (values) => {
-        console.log(values);
-      },
-    });
+  const {
+    values,
+    errors,
+    touched,
+    handleBlur,
+    handleSubmit,
+    handleChange,
+    handleReset,
+    setFieldValue,
+  } = useFormik({
+    initialValues: initialValues,
+    validationSchema: checkoutSchema,
+    onSubmit: async (values) => {
+      const data = {
+        userId: user?._id,
+        ...values,
+        subtotal,
+        deliveryCharges: values.deliveryPreference,
+        grandTotal: subtotal + values.deliveryPreference,
+      };
+
+      console.log(data);
+
+      try {
+        const response = await axios.post(
+          `${import.meta.env.VITE_API_URI}/place-order`,
+          data,
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+            withCredentials: true,
+          }
+        );
+        message.success(response?.data?.message || "Congratulation!");
+        handleReset();
+      } catch (error) {
+        message.error(
+          error?.response?.data?.message || "Something went wrong!"
+        );
+      }
+    },
+  });
 
   return (
     <div className="mt-20">
@@ -79,18 +119,18 @@ const CheckoutPage = () => {
             ) : null}
             <Input
               id="phone"
-              name="phone"
+              name="contactNumber"
               label="Phone Number"
               ariaLabel="phone"
               icon={<FaRegUserCircle size={18} />}
               type="text"
               placeHolder="Enter phone number."
-              value={values.phone}
+              value={values.contactNumber}
               onChange={handleChange}
               onBlur={handleBlur}
             />
-            {touched.phone && errors.phone ? (
-              <p className="text-base text-red-600">{errors.phone}</p>
+            {touched.contactNumber && errors.contactNumber ? (
+              <p className="text-base text-red-600">{errors.contactNumber}</p>
             ) : null}
             <Input
               id="emailAddress"
@@ -132,8 +172,25 @@ const CheckoutPage = () => {
               onChange={handleChange}
               onBlur={handleBlur}
             />
-            {touched.address && errors.specialMessage ? (
+            {touched.specialMessage && errors.specialMessage ? (
               <p className="text-base text-red-600">{errors.specialMessage}</p>
+            ) : null}
+            <Select
+              name="deliveryPreference"
+              label="Select Delivery Preference"
+              options={[
+                { value: 100, label: "Standard" },
+                { value: 200, label: "Express" },
+                { value: 250, label: "Same Day" },
+              ]}
+              value={values.deliveryPreference}
+              onChange={setFieldValue}
+              onBlur={handleBlur}
+            />
+            {touched.deliveryPreference && errors.deliveryPreference ? (
+              <p className="text-base text-red-600">
+                {errors.deliveryPreference}
+              </p>
             ) : null}
           </div>
         </div>
@@ -179,7 +236,6 @@ const CheckoutPage = () => {
                   +Add more items
                 </span>
               </Link>
-
               <Input
                 id="promoCode"
                 name="promoCode"
@@ -203,14 +259,13 @@ const CheckoutPage = () => {
                 <div className="delivery-container flex justify-between items-center w-full">
                   <h4 className="text-base font-medium">Delivery Charges</h4>
                   <h4 className="text-base font-medium">
-                    Rs: {cartItems?.length <= 4 ? 100 : 150}
+                    Rs: {values.deliveryPreference}
                   </h4>
                 </div>
                 <div className="grandtotal-container flex justify-between items-center w-full">
                   <h4 className="text-base font-bold">Grand Total</h4>
                   <h4 className="text-base font-bold">
-                    Rs:{" "}
-                    {cartItems?.length <= 4 ? subtotal + 100 : subtotal + 150}
+                    Rs: {subtotal + values.deliveryPreference}
                   </h4>
                 </div>
                 <ButtonComp

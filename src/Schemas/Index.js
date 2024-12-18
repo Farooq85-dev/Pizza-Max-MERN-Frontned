@@ -25,7 +25,7 @@ export const userLoginSchema = yup.object({
 
 export const checkoutSchema = yup.object({
   fullName: yup.string().required("Please enter full name!"),
-  phone: yup
+  contactNumber: yup
     .string()
     .matches(
       /^\+92[0-9]{10}$/,
@@ -38,6 +38,10 @@ export const checkoutSchema = yup.object({
     .required("Email is required!"),
   address: yup.string().required("Please enter address!"),
   promoCode: yup.string().required("Please enter promo code!"),
+  specialMessage: yup.string(),
+  deliveryPreference: yup
+    .string()
+    .required("Please select a delivery preference!"),
 });
 
 export const userNameSchema = yup.object({

@@ -133,18 +133,6 @@ const Footer = () => {
             <h4 className="text-base font-medium">Subtotal</h4>
             <h4 className="text-base font-medium">Rs: {subtotal}</h4>
           </div>
-          <div className="delivery-container flex justify-between items-center w-full">
-            <h4 className="text-base font-medium">Delivery Charges</h4>
-            <h4 className="text-base font-medium">
-              Rs: {cartItems?.length <= 4 ? 100 : 150}
-            </h4>
-          </div>
-          <div className="grandtotal-container flex justify-between items-center w-full">
-            <h4 className="text-base font-bold">Grand Total</h4>
-            <h4 className="text-base font-bold">
-              Rs: {cartItems?.length <= 4 ? subtotal + 100 : subtotal + 150}
-            </h4>
-          </div>
           <div className="flex flex-col-reverse sm:flex-row justify-between items-center w-full gap-2">
             <PopupConfirm
               title="Are you sure you want to clear the cart?"
