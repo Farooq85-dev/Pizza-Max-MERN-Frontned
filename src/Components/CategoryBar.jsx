@@ -1,9 +1,10 @@
-import { Link } from "react-scroll";
 import { useRef } from "react";
-import { categories } from "../Db/products";
 import { MdArrowBackIos, MdArrowForwardIos } from "react-icons/md";
+import { Link } from "react-scroll";
+import { useProducts } from "../Context/Products.context";
 
 const CategoryBarComp = () => {
+  const { products } = useProducts();
   const scrollRef = useRef(null);
 
   const handleScroll = (direction) => {
@@ -28,19 +29,19 @@ const CategoryBarComp = () => {
         <div
           ref={scrollRef}
           className="categories flex lg:justify-center lg:items-center gap-4 sm:gap-6 overflow-x-auto scrollbar-hide 
-          [&::-webkit-scrollbar]:hidden px-12 py-2 bg-white w-full"
+          [&::-webkit-scrollbar]:hidden px-12 py-2 bg-bodycolor w-full"
         >
-          {categories?.map((category) => (
+          {products?.map((category) => (
             <Link
               className="text-base sm:text-xl text-center font-semibold whitespace-nowrap cursor-pointer hover:text-primary transition-colors"
-              to={category.id}
+              to={category?.category}
               smooth={true}
               duration={1200}
               activeClass="active-category"
               spy={true}
-              key={category.id}
+              key={category?.category}
             >
-              {category.title}
+              {category?.category}
             </Link>
           ))}
         </div>

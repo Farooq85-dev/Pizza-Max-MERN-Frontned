@@ -4,13 +4,19 @@ import App from "./App.jsx";
 import "./index.scss";
 import { Provider } from "react-redux";
 import store from "./Redux/Store.jsx";
-import { UserProvider } from "./Context/user.context.jsx";
+import { UserProvider } from "./Context/User.context.jsx";
+import { OrderProvider } from "./Context/Orders.context.jsx";
+import { ProductsProvider } from "./Context/Products.context.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <Provider store={store}>
       <UserProvider>
-        <App />
+        <OrderProvider>
+          <ProductsProvider>
+            <App />
+          </ProductsProvider>
+        </OrderProvider>
       </UserProvider>
     </Provider>
   </StrictMode>

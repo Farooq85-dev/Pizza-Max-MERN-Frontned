@@ -13,7 +13,7 @@ import Input from "../Components/Input";
 import Result from "../Components/Result";
 import Select from "../Components/Select";
 import TextArea from "../Components/TextArea";
-import { useUser } from "../Context/user.context";
+import { useUser } from "../Context/User.context";
 import { checkoutSchema } from "../Schemas";
 
 const initialValues = {
@@ -52,15 +52,18 @@ const CheckoutPage = () => {
     initialValues: initialValues,
     validationSchema: checkoutSchema,
     onSubmit: async (values) => {
+      if (!user) {
+        return message.error("Please login or signup to place order!");
+      }
+
       const data = {
         userId: user?._id,
         ...values,
         subtotal,
         deliveryCharges: values.deliveryPreference,
         grandTotal: subtotal + values.deliveryPreference,
+        products: cartItems,
       };
-
-      console.log(data);
 
       try {
         const response = await axios.post(
@@ -98,7 +101,7 @@ const CheckoutPage = () => {
       />
       <form
         onSubmit={handleSubmit}
-        className="grid grid-cols-1 lg:grid-cols-2 gap-4 p-4 sm:py-4 sm:px-10"
+        className="grid sm:grid-cols-1 md:grid-cols-2 gap-4 p-4 sm:py-4 sm:px-10"
       >
         <div className="form-container">
           <div className="flex flex-col justify-start gap-4 bg-white shadow-md rounded-xl py-4 px-6">
@@ -194,14 +197,14 @@ const CheckoutPage = () => {
             ) : null}
           </div>
         </div>
-        <div className="review-cart-container flex flex-col justify-start gap-4 py-4 px-6 rounded-xl shadow-md">
+        <div className="review-cart-container flex flex-col justify-start gap-4 py-4 px-6 rounded-xl shadow-md bg-white">
           <h1 className="textbase sm:text-lg font-semibold mb-2">
             Review Your Cart...
           </h1>
           {cartItems?.map((product) => (
             <div
-              key={product?.id}
-              className="review-cart-product flex flex-col sm:flex-row justify-start gap-4 border-t p-2 rounded-md  bg-scrollBarColor"
+              key={product?._id}
+              className="review-cart-product flex flex-col sm:flex-row justify-start gap-4 border-t p-2 rounded-md"
             >
               <div className="left-side">
                 <div className="product-image">
@@ -214,8 +217,8 @@ const CheckoutPage = () => {
               </div>
               <div className="right-side flex flex-col justify-between gap-1">
                 <div className="product-detail flex sm:flex-col justify-between sm:justify-start items-center sm:items-start">
-                  <h3 className="text-base sm:text-xl font-font-medium">
-                    {product?.title}
+                  <h3 className="text-base sm:text-xl font-semibold">
+                    {product?.name}
                   </h3>
                   <h4 className="text-base sm:text-lg font-normal">
                     x{product?.quantity}
@@ -251,7 +254,7 @@ const CheckoutPage = () => {
               {touched.promoCode && errors.promoCode ? (
                 <p className="text-base text-red-600">{errors.promoCode}</p>
               ) : null}
-              <div className="place-order-details-container flex flex-col gap-1 p-2 rounded-md  bg-scrollBarColor">
+              <div className="place-order-details-container flex flex-col gap-1 p-2 rounded-md bg-bodycolor">
                 <div className="subtotal-container flex justify-between items-center w-full">
                   <h4 className="text-base font-medium">Subtotal</h4>
                   <h4 className="text-base font-medium">Rs: {subtotal}</h4>

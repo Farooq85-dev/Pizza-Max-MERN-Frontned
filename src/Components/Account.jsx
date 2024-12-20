@@ -1,3 +1,5 @@
+import { message } from "antd";
+import axios from "axios";
 import { useFormik } from "formik";
 import { useState } from "react";
 import { CiLock } from "react-icons/ci";
@@ -6,9 +8,6 @@ import { MdEmail } from "react-icons/md";
 import { userLoginSchema, userRegisterationSchema } from "../Schemas";
 import Button from "./Button";
 import Input from "./Input";
-import axios from "axios";
-import { message } from "antd";
-import { useNavigate } from "react-router-dom";
 
 const AccountComp = () => {
   const [formState, setFormState] = useState("Register");
@@ -18,7 +17,6 @@ const AccountComp = () => {
     password: "",
     confirmPassword: "",
   };
-  const navigate = useNavigate();
 
   const {
     values: registerValues,
@@ -84,7 +82,6 @@ const AccountComp = () => {
         );
         message.success(response?.data?.message || "Congratulation!");
         loginHandleReset();
-        navigate("/user");
       } catch (error) {
         message.error(
           error?.response?.data?.message || "Something went wrong!"

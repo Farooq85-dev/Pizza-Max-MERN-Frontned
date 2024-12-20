@@ -6,15 +6,12 @@ export default {
       colors: {
         navbarColor: "#270800",
         btnColor: "#0F0F0F",
-        scrollBarColor: "#f3f4f6",
+        bodycolor: "#f8f9fa",
       },
       screens: {
-        xs: "320px",
-        sm: "576px",
+        sm: "480px",
         md: "768px",
-        lg: "992px",
-        xl: "1200px",
-        xxl: "1400px",
+        lg: "1280px",
       },
     },
   },

@@ -11,23 +11,28 @@ const cartSlice = createSlice({
   reducers: {
     addItemToCart: (state, action) => {
       const isCartProductExists = state.cart.find(
-        (product) => product.id === action.payload.id
+        (product) => product?._id === action?.payload?._id
       );
+
+      const data = {
+        ...action.payload,
+        quantity: 1,
+      };
 
       if (isCartProductExists) {
         message.error("Product already exists in cart!");
       } else {
-        state.cart.push(action.payload);
+        state.cart.push(data);
         localStorage.setItem("cart", JSON.stringify(state.cart));
         message.success("Product added to cart successfully!");
       }
     },
     removeItemFromCart: (state, action) => {
       state.cart = state.cart.filter(
-        (product) => product?.id !== action?.payload?.id
+        (product) => product?._id !== action?.payload
       );
       localStorage.setItem("cart", JSON.stringify(state.cart));
-      message.success("Products removed successfully!");
+      message.success("Product removed successfully!");
     },
     removeAllItemFromCart: (state) => {
       localStorage.removeItem("cart");
@@ -36,7 +41,7 @@ const cartSlice = createSlice({
     },
     incQuantity: (state, action) => {
       const updatedItem = state.cart.find(
-        (product) => product.id === action.payload
+        (product) => product._id === action?.payload
       );
 
       if (updatedItem.quantity >= 1) {
@@ -46,7 +51,7 @@ const cartSlice = createSlice({
     },
     decQuantity: (state, action) => {
       const updatedItem = state.cart.find(
-        (product) => product.id === action.payload
+        (product) => product?._id === action?.payload
       );
 
       if (updatedItem.quantity > 1) {

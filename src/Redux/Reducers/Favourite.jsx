@@ -10,19 +10,19 @@ const favouriteSlice = createSlice({
   reducers: {
     addItemToFavourite: (state, action) => {
       const isFavouriteProductExists = state?.favourite?.find(
-        (product) => product?.id === action?.payload?.id
+        (product) => product?._id === action?.payload?._id
       );
       if (isFavouriteProductExists) {
         message.error("Product already exists in your favourites products!");
       } else {
         state.favourite.push(action.payload);
-        localStorage.setItem("favourite", JSON.stringify(state.favourite));
+        localStorage.setItem("favourite", JSON.stringify(state?.favourite));
         message.success("Product added to favourites!");
       }
     },
     removeItemFromFavourite: (state, action) => {
       state.favourite = state?.favourite?.filter(
-        (product) => product.id !== action?.payload?.id
+        (product) => product._id !== action?.payload
       );
       localStorage.setItem("favourite", JSON.stringify(state?.favourite));
       message.success("Product removed successfuly!");

@@ -10,8 +10,10 @@ import Button from "./Button";
 import Drawer from "./Drawer";
 import Modal from "./Modal";
 import { useMediaQuery } from "react-responsive";
+import { useUser } from "../Context/User.context";
 
 const NavbarComp = () => {
+  const { user } = useUser();
   const [isModalVisible, setModalVisible] = useState(false);
   const [isDrawerVisible, setDrawerVisible] = useState(false);
   const cartItems = useSelector((state) => state.cart.cart);
@@ -83,23 +85,53 @@ const NavbarComp = () => {
           </div>
         </div>
         <div className="account-btn">
-          <RiAccountCircle2Fill
-            size={35}
-            color="white"
-            className="sm:hidden"
-            cursor={"pointer"}
-            onClick={() => openModal(modalContent.title, modalContent.content)}
-          />
-          <Button
-            className={
-              "hidden sm:flex border-2 border-white rounded-md px-4 py-2 text-white font-semibold text-base"
-            }
-            onClick={() => openModal(modalContent.title, modalContent.content)}
-            title={"Register/Login"}
-            type={"button"}
-            name={"Register/Login"}
-            id={"Register/Login"}
-          />
+          {user ? (
+            <>
+              <Link to="/user">
+                <RiAccountCircle2Fill
+                  size={35}
+                  color="white"
+                  className="sm:hidden"
+                  cursor={"pointer"}
+                />
+              </Link>
+              <Link to="/user">
+                <Button
+                  className={
+                    "hidden sm:flex border-2 border-white rounded-md px-4 py-2 text-white font-semibold text-base"
+                  }
+                  title={"Dashbaord"}
+                  type={"button"}
+                  name={"Register/Login"}
+                  id={"Register/Login"}
+                />
+              </Link>
+            </>
+          ) : (
+            <>
+              <RiAccountCircle2Fill
+                size={35}
+                color="white"
+                className="sm:hidden"
+                cursor={"pointer"}
+                onClick={() =>
+                  openModal(modalContent.title, modalContent.content)
+                }
+              />
+              <Button
+                className={
+                  "hidden sm:flex border-2 border-white rounded-md px-4 py-2 text-white font-semibold text-base"
+                }
+                onClick={() =>
+                  openModal(modalContent.title, modalContent.content)
+                }
+                title={"Register/Login"}
+                type={"button"}
+                name={"Register/Login"}
+                id={"Register/Login"}
+              />
+            </>
+          )}
         </div>
       </div>
       <Drawer

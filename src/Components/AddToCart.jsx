@@ -19,7 +19,7 @@ const Content = () => {
   const dispatch = useDispatch();
 
   const handleRemoveItemFromCart = (id) => {
-    dispatch(removeItemFromCart({ id }));
+    dispatch(removeItemFromCart(id));
   };
 
   const handleIncQuantity = useCallback(
@@ -37,8 +37,8 @@ const Content = () => {
       {cartItems?.length > 0 ? (
         <div className="cart-product flex flex-col gap-2">
           {cartItems?.map((product) => (
-            <div key={product.id}>
-              <div className="flex justify-between bg-scrollBarColor rounded-md p-2 gap-2">
+            <div key={product._id}>
+              <div className="flex justify-between bg-bodycolor rounded-md p-2 gap-2">
                 <div className="cart-image">
                   <img
                     src="https://em-cdn.eatmubarak.pk/55083/dish_image/1717390225.jpg"
@@ -48,8 +48,10 @@ const Content = () => {
                 </div>
                 <div className="flex flex-col justify-between items-start">
                   <div className="cart-description flex flex-col justify-start">
-                    <h4 className="text-xl">{product?.title}</h4>
-                    <h5 className="font-medium">{product?.description}</h5>
+                    <h4 className="text-base font-semibold">{product?.name}</h4>
+                    <h5 className="font-normal">
+                      {product?.description.slice(0, 20)}
+                    </h5>
                   </div>
                   <div className="cart-quantity flex justify-start items-center gap-2">
                     <div className="dec-btn-container bg-navbarColor rounded-md p-1">
@@ -57,7 +59,7 @@ const Content = () => {
                         size={20}
                         cursor={"pointer"}
                         color="white"
-                        onClick={handleDecQuantity(product?.id)}
+                        onClick={handleDecQuantity(product?._id)}
                       />
                     </div>
                     <div className="rounded-md border-2 border-navbarColor text-center text-navbarColor px-2">
@@ -68,7 +70,7 @@ const Content = () => {
                         size={20}
                         cursor={"pointer"}
                         color="white"
-                        onClick={handleIncQuantity(product?.id)}
+                        onClick={handleIncQuantity(product?._id)}
                       />
                     </div>
                   </div>
@@ -79,7 +81,7 @@ const Content = () => {
                       size={20}
                       cursor={"pointer"}
                       color="white"
-                      onClick={() => handleRemoveItemFromCart(product?.id)}
+                      onClick={() => handleRemoveItemFromCart(product?._id)}
                     />
                   </div>
                   <div>

@@ -1,30 +1,19 @@
 import { IoStatsChartSharp } from "react-icons/io5";
-import orders from "../../Db/orders";
 import OrdersStatusCard from "./OrdersStatusCard";
 import Table from "../Table";
 import { columns } from "./Static/Table";
+import { useOrder } from "../../Context/Orders.context";
 
 const OrdersComp = () => {
-  const howMuchTotalOrders = orders?.length;
+  const {
+    orders,
+    howMuchTotalOrders,
+    howMuchPendingOrders,
+    howMuchDeliveredOrders,
+    howMuchCancelledOrders,
+  } = useOrder();
 
-  const howMuchPendingOrders = orders?.filter(
-    (order) => order?.orderStatus === "pending"
-  );
-
-  const howMuchCompletedOrders = orders?.filter(
-    (order) => order?.orderStatus === "completed"
-  );
-
-  const howMuchCancelledOrders = orders?.filter(
-    (order) => order?.orderStatus === "cancelled"
-  );
-
-  const dataSourceWithKeys = orders
-    ?.filter((item) => item?.customerName === "Muhammmad Farooq")
-    .map((item) => ({
-      ...item,
-      key: item.id,
-    }));
+  const data = orders.map((order) => order);
 
   return (
     <div>
@@ -45,9 +34,9 @@ const OrdersComp = () => {
         </div>
         <div className="completed-orders-container">
           <OrdersStatusCard
-            title="Completed Orders"
+            title="Delivered Orders"
             icon={<IoStatsChartSharp size={20} />}
-            quantity={howMuchCompletedOrders?.length}
+            quantity={howMuchDeliveredOrders?.length}
           />
         </div>
         <div className="cancelled-orders-container">
@@ -59,7 +48,7 @@ const OrdersComp = () => {
         </div>
       </div>
       <div className="order-table-container mt-4">
-        <Table data={dataSourceWithKeys} columns={columns} />
+        <Table data={data} columns={columns} />
       </div>
     </div>
   );

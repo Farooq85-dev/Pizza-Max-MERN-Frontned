@@ -3,7 +3,7 @@ import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import Footer from "../Components/Footer";
 import Loader from "../Components/Loader";
 import Navbar from "../Components/Navbar";
-import { useUser } from "../Context/user.context";
+import { useUser } from "../Context/User.context.jsx";
 const Home = lazy(() => import("../Pages/Home"));
 const Checkout = lazy(() => import("../Pages/Checkout"));
 const NotFound = lazy(() => import("../Pages/NotFound"));

@@ -15,7 +15,7 @@ const FavouritesComp = () => {
   };
 
   const handleRemoveFromFavourite = (id) => {
-    dispatch(removeItemFromFavourite({ id }));
+    dispatch(removeItemFromFavourite(id));
   };
 
   return (
@@ -24,29 +24,29 @@ const FavouritesComp = () => {
         <div className="favourite-product-container grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {cartItems?.map((product) => (
             <div
-              key={product?.id}
+              key={product?._id}
               className="flex flex-col justify-start gap-4 bg-white rounded-md p-4 shadow-md"
             >
               <div className="product-image flex-shrink-0">
                 <img
                   className="rounded-md w-full object-cover"
                   src="https://em-cdn.eatmubarak.pk/55083/dish_image/1717390225.jpg"
-                  alt={product.title || "Product image"}
+                  alt={product?.name}
                 />
               </div>
               <div className="flex flex-col justify-between gap-4 flex-grow">
                 <div>
                   <h3 className="text-lg sm:text-xl font-bold">
-                    {product.title}
+                    {product?.name}
                   </h3>
                   <p className="text-sm sm:text-base text-gray-600">
-                    {product.description}
+                    {product?.description}
                   </p>
                 </div>
                 <div className="flex flex-row justify-between items-end gap-4">
                   <div className="flex flex-col gap-2">
                     <span className="text-base text-center bg-btnColor text-white rounded-md py-1 px-2">
-                      Rs {product.price}
+                      Rs {product?.price}
                     </span>
                     <Button
                       className="bg-navbarColor rounded-md px-4 py-2 text-white text-base font-semibold"
@@ -61,7 +61,7 @@ const FavouritesComp = () => {
                     <IoIosHeartDislike
                       size={20}
                       cursor="pointer"
-                      onClick={() => handleRemoveFromFavourite(product?.id)}
+                      onClick={() => handleRemoveFromFavourite(product?._id)}
                     />
                   </div>
                 </div>

@@ -4,9 +4,21 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
-import Days_Banner1 from "../Assets/Images/discount-banner.png";
-import Days_Banner2 from "../Assets/Images/launch-deal-banner.jpg";
-import Days_Banner3 from "../Assets/Images/midnight-deals-banner.jpg";
+import Pizza_Banner from "../Assets/Images/pizza-banner.webp";
+import Fifty_Off_Promo_Banner from "../Assets/Images/50-off-promo-banner.webp";
+import Fifty_Off_Discount_banner from "../Assets/Images/50-off-discount-banner.webp";
+import Cashabck_Order from "../Assets/Images/cashabck-order.webp";
+import Launch_Deal_banner from "../Assets/Images/launch-deal-banner.webp";
+import lava_cake from "../Assets/Images/lava-cake.webp";
+
+const images = [
+  Pizza_Banner,
+  Fifty_Off_Discount_banner,
+  Fifty_Off_Promo_Banner,
+  Cashabck_Order,
+  Launch_Deal_banner,
+  lava_cake,
+];
 
 const SliderComp = () => {
   return (
@@ -22,15 +34,11 @@ const SliderComp = () => {
         disableOnInteraction: true,
       }}
     >
-      <SwiperSlide>
-        <img src={Days_Banner1} alt="" />
-      </SwiperSlide>
-      <SwiperSlide>
-        <img src={Days_Banner2} alt="" />
-      </SwiperSlide>
-      <SwiperSlide>
-        <img src={Days_Banner3} alt="" />
-      </SwiperSlide>
+      {images?.map((image) => (
+        <SwiperSlide key={image}>
+          <img src={image} alt={image} />
+        </SwiperSlide>
+      ))}
     </Swiper>
   );
 };
