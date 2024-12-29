@@ -4,12 +4,14 @@ import Button from "../Button";
 import { VscDebugStart } from "react-icons/vsc";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
+import { useUser } from "../../Context/User.context";
 
 const WelcomeComp = () => {
   const [dateTime, setDateTime] = useState({
     time: "",
     date: "",
   });
+  const user = useUser();
 
   useEffect(() => {
     const updateTime = () => {
@@ -50,7 +52,8 @@ const WelcomeComp = () => {
               Welcome!
             </h3>
             <p className="text-sm sm:text-base md:text-xl font-medium sm:font-normal">
-              ✨ Hy <span className="text-red-600">M. Farooq</span> {" We're"}
+              ✨ Hy <span className="text-red-600">{user?.user?.name}</span>
+              {" We're"}
               excited to have you here. Manage your products, orders, and
               customers effortlessly. {"It's"} time to take a tour. {"Let's"}
               get started!
