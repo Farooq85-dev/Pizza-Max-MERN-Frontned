@@ -26,8 +26,8 @@ const socialMediaPlatforms = [
 
 const FooterComp = () => {
   return (
-    <footer className="bg-gray-100 py-8 px-6 md:px-16">
-      <div className="flex flex-col md:flex-row justify-between items-start md:items-center">
+    <footer className="bg-gray-100 py-8 px-4 md:px-10">
+      <div className="flex flex-col md:flex-row justify-between items-center">
         <div className="text-center md:text-left mb-6 md:mb-0">
           <Link
             to="/"

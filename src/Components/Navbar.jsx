@@ -17,7 +17,7 @@ const NavbarComp = () => {
   const [isModalVisible, setModalVisible] = useState(false);
   const [isDrawerVisible, setDrawerVisible] = useState(false);
   const cartItems = useSelector((state) => state.cart.cart);
-  const isMobile = useMediaQuery({ query: "(max-width: 576px)" });
+  const isMobile = useMediaQuery({ query: "(max-width: 480px)" });
 
   const [modalContent, setModalContent] = useState({
     title: "Register/Login",

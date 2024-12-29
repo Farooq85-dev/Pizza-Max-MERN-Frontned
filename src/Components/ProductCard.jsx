@@ -4,6 +4,8 @@ import { useDispatch } from "react-redux";
 import { addItemToCart } from "../Redux/Reducers/Cart";
 import Button from "./Button";
 import { addItemToFavourite } from "../Redux/Reducers/Favourite";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 
 const ProductCard = ({ product }) => {
   const dispatch = useDispatch();
@@ -19,10 +21,11 @@ const ProductCard = ({ product }) => {
   return (
     <div className="product flex flex-col sm:flex-row justify-start sm:items-center gap-4 bg-white rounded-xl p-4 shadow-md">
       <div className="product-image flex-shrink-0">
-        <img
+        <LazyLoadImage
           className="rounded-md w-full sm:h-40 sm:w-40 object-cover"
-          src={product?.image}
+          effect="blur"
           alt={product?.name}
+          src={product?.image}
         />
       </div>
       <div className="flex flex-col justify-between gap-4 flex-grow">

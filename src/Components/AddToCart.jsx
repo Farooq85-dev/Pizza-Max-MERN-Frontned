@@ -13,6 +13,8 @@ import {
 import Button from "./Button";
 import Result from "./Result";
 import PopupConfirm from "./PopupConfirm";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 
 const Content = () => {
   const cartItems = useSelector((state) => state.cart.cart);
@@ -40,10 +42,11 @@ const Content = () => {
             <div key={product._id}>
               <div className="flex justify-between bg-bodycolor rounded-md p-2 gap-2">
                 <div className="cart-image">
-                  <img
-                    src="https://em-cdn.eatmubarak.pk/55083/dish_image/1717390225.jpg"
+                  <LazyLoadImage
+                    effect="blur"
+                    src={product?.image}
                     className="w-24 h-24 rounded-md"
-                    alt="loading..."
+                    alt={product?.name}
                   />
                 </div>
                 <div className="flex flex-col justify-between items-start">

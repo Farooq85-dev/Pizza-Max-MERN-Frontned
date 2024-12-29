@@ -13,7 +13,7 @@ const OrdersComp = () => {
     howMuchCancelledOrders,
   } = useOrder();
 
-  const data = orders.map((order) => order);
+  const data = orders.map((order) => ({ ...order, key: order?._id }));
 
   return (
     <div>

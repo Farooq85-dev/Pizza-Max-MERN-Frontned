@@ -1,5 +1,4 @@
-import { Space, Tag } from "antd";
-import { Link } from "react-router-dom";
+import { Tag } from "antd";
 
 const columns = [
   {
@@ -53,16 +52,7 @@ const columns = [
     key: "grandTotal",
     render: (grandTotal) => `$${grandTotal.toFixed(2)}`,
   },
-
-  {
-    title: "Action",
-    key: "action",
-    render: ({ _id }) => (
-      <Space key={_id} size="middle">
-        <Link to={`/orders/${_id}`}>View Details</Link>
-      </Space>
-    ),
-  },
 ];
 
 export { columns };
+

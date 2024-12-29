@@ -15,6 +15,8 @@ import Select from "../Components/Select";
 import TextArea from "../Components/TextArea";
 import { useUser } from "../Context/User.context";
 import { checkoutSchema } from "../Schemas";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 
 const initialValues = {
   fullName: "",
@@ -208,11 +210,13 @@ const CheckoutPage = () => {
             >
               <div className="left-side">
                 <div className="product-image">
-                  <img
+                  <LazyLoadImage
+                    effect="blur"
                     className="rounded-md w-full h-full sm:h-32 sm:w-32 object-cover"
-                    src="https://em-cdn.eatmubarak.pk/55083/dish_image/1717390225.jpg"
-                    alt="loading..."
+                    src={product?.image}
+                    alt={product?.name}
                   />
+                  <img />
                 </div>
               </div>
               <div className="right-side flex flex-col justify-between gap-1">

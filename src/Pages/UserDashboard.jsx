@@ -21,9 +21,10 @@ import Favourites from "../Components/User/Favourites";
 import Orders from "../Components/User/Orders";
 import Account from "../Components/User/Profile";
 import Welcome from "../Components/User/Welcome";
-import "./user-dashboard.scss";
 import { useNavigate } from "react-router-dom";
 const { Header, Content, Sider } = Layout;
+import { useUser } from "../Context/User.context";
+import "./user-dashboard.scss";
 
 // Define menu items
 function getItem(label, key, icon) {
@@ -43,6 +44,7 @@ const UserDashboardPage = () => {
     { title: "User" },
     { title: "Welcome" },
   ]);
+  const user = useUser();
 
   const navigate = useNavigate();
 
@@ -82,7 +84,7 @@ const UserDashboardPage = () => {
   };
 
   const isMobile = useMediaQuery({
-    query: "(max-width: 576px)",
+    query: "(max-width: 480px)",
   });
 
   const renderContent = () => {
@@ -174,7 +176,7 @@ const UserDashboardPage = () => {
               >
                 <Avatar
                   size="large"
-                  src="https://cdn.dribbble.com/users/21745538/avatars/normal/data?1723901494 "
+                  src={user?.user?.avatar}
                   icon={<UserOutlined />}
                   className="cursor-pointer"
                 />

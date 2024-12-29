@@ -2,6 +2,8 @@ import { useEffect } from "react";
 import { useState } from "react";
 import Button from "../Button";
 import { VscDebugStart } from "react-icons/vsc";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 
 const WelcomeComp = () => {
   const [dateTime, setDateTime] = useState({
@@ -76,10 +78,10 @@ const WelcomeComp = () => {
           </div>
         </div>
         <div className="right-side hidden sm:flex sm:justify-center sm:items-center ">
-          <img
+          <LazyLoadImage
             src="https://img.freepik.com/free-photo/funny-3d-illustration-cartoon-teenage-girl_183364-80384.jpg?t=st=1734286969~exp=1734290569~hmac=20bc7ff16434e3c3f625d026962420c7d7c744568d7b5e166a9eeeffe57b8c15&w=740"
             alt="welcome-img"
-            loading="lazy"
+            effect="blur"
           />
         </div>
       </div>
