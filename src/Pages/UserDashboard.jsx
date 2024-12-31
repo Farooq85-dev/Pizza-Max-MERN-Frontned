@@ -15,15 +15,15 @@ import { CgProfile } from "react-icons/cg";
 import { FiMenu } from "react-icons/fi";
 import { GiBoxUnpacking } from "react-icons/gi";
 import { SiWelcometothejungle } from "react-icons/si";
-import { useMediaQuery } from "react-responsive";
-import Drawer from "../Components/Drawer";
+import { useNavigate } from "react-router-dom";
+import UserDashboardDrawer from "../Components/User/UserDashboardDrawer";
 import Favourites from "../Components/User/Favourites";
 import Orders from "../Components/User/Orders";
 import Account from "../Components/User/Profile";
 import Welcome from "../Components/User/Welcome";
-import { useNavigate } from "react-router-dom";
-const { Header, Content, Sider } = Layout;
 import { useUser } from "../Context/User.context";
+import { useMediaQuery } from "react-responsive";
+const { Header, Content, Sider } = Layout;
 import "./user-dashboard.scss";
 
 // Define menu items
@@ -44,10 +44,12 @@ const UserDashboardPage = () => {
     { title: "User" },
     { title: "Welcome" },
   ]);
+  const [isDrawerVisible, setDrawerVisible] = useState(false);
+
+  const isMobile = useMediaQuery({ query: "(max-width: 480px)" });
+
   const user = useUser();
-
   const navigate = useNavigate();
-
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
@@ -58,9 +60,7 @@ const UserDashboardPage = () => {
     setBreadcrumb([{ title: "User" }, { title: key }]);
   };
 
-  const [isDrawerVisible, setDrawerVisible] = useState(false);
   const [drawerContent, setDrawerContent] = useState({
-    title: "Menu",
     content: (
       <Menu
         theme="dark"
@@ -70,22 +70,17 @@ const UserDashboardPage = () => {
         onClick={handleMenuClick}
       />
     ),
-    footer: <></>,
   });
 
   // Handle Drawer on mobile screen
-  const openDrawer = (title, content, footer) => {
-    setDrawerContent({ title, content, footer });
+  const openDrawer = (content) => {
+    setDrawerContent({ content });
     setDrawerVisible(!isDrawerVisible);
   };
 
   const closeDrawer = () => {
     setDrawerVisible(false);
   };
-
-  const isMobile = useMediaQuery({
-    query: "(max-width: 480px)",
-  });
 
   const renderContent = () => {
     switch (selectedKey) {
@@ -150,21 +145,15 @@ const UserDashboardPage = () => {
             }}
           >
             <div className="header-left-side flex justify-center items-center gap-4">
-              <div className="mobile-menu-btn-container bg-[#f5f5f5] p-2 block sm:hidden">
+              <div className="mobile-menu-btn-container bg-[#f5f5f5] p-1 block sm:hidden">
                 <FiMenu
                   size={20}
                   cursor="pointer"
-                  onClick={() =>
-                    openDrawer(
-                      drawerContent.title,
-                      drawerContent.content,
-                      drawerContent.footer
-                    )
-                  }
+                  onClick={() => openDrawer(drawerContent.content)}
                 />
               </div>
               <h2 className="font-medium text-base sm:text-xl hidden sm:block">
-                Muhammad Farooq
+                {user?.user?.name}
               </h2>
             </div>
             <div className="header-right">
@@ -198,13 +187,10 @@ const UserDashboardPage = () => {
           </Content>
         </Layout>
       </Layout>
-      <Drawer
-        isVisible={isDrawerVisible}
+      <UserDashboardDrawer
+        isOpen={isDrawerVisible}
         onClose={closeDrawer}
-        title={drawerContent.title}
         content={drawerContent.content}
-        footer={drawerContent.footer}
-        placement={"left"}
       />
     </>
   );

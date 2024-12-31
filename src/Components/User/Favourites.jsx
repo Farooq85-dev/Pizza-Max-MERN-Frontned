@@ -30,7 +30,7 @@ const FavouritesComp = () => {
               <div className="product-image flex-shrink-0">
                 <img
                   className="rounded-md w-full object-cover"
-                  src="https://em-cdn.eatmubarak.pk/55083/dish_image/1717390225.jpg"
+                  src={product?.image}
                   alt={product?.name}
                 />
               </div>

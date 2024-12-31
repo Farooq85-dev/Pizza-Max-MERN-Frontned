@@ -53,10 +53,9 @@ const WelcomeComp = () => {
             </h3>
             <p className="text-sm sm:text-base md:text-xl font-medium sm:font-normal">
               ✨ Hy <span className="text-red-600">{user?.user?.name}</span>
-              {" We're"}
-              excited to have you here. Manage your products, orders, and
-              customers effortlessly. {"It's"} time to take a tour. {"Let's"}
-              get started!
+              {" We're"} excited to have you here. Manage your products, orders,
+              and customers effortlessly. {"It's"} time to take a tour.{" "}
+              {"Let's"} get started!
             </p>
             <div className="tour-btn-container">
               <Button

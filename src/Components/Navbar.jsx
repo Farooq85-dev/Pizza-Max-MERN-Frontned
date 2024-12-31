@@ -4,40 +4,26 @@ import { RiAccountCircle2Fill } from "react-icons/ri";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Pizza_Max_Logo from "../Assets/Images/pizza-max-logo.png";
-import Account from "./Account";
-import { Content, Footer } from "./AddToCart";
-import Button from "./Button";
-import Drawer from "./Drawer";
-import Modal from "./Modal";
-import { useMediaQuery } from "react-responsive";
 import { useUser } from "../Context/User.context";
+import Account from "./Account";
+import AddToCartDrawer from "./AddToCartDrawer";
+import Button from "./Button";
+import Modal from "./Modal";
 
 const NavbarComp = () => {
   const { user } = useUser();
   const [isModalVisible, setModalVisible] = useState(false);
   const [isDrawerVisible, setDrawerVisible] = useState(false);
   const cartItems = useSelector((state) => state.cart.cart);
-  const isMobile = useMediaQuery({ query: "(max-width: 480px)" });
 
   const [modalContent, setModalContent] = useState({
     title: "Register/Login",
     content: <Account />,
   });
 
-  const [drawerContent, setDrawerContent] = useState({
-    title: "Your Cart",
-    content: <Content />,
-    footer: <Footer />,
-  });
-
   // Cart Drawer
-  const openDrawer = (title, content, footer) => {
-    setDrawerContent({ title, content, footer });
-    setDrawerVisible(true);
-  };
-
-  const closeDrawer = () => {
-    setDrawerVisible(false);
+  const handleDrawer = () => {
+    setDrawerVisible(!isDrawerVisible);
   };
 
   // Account Modal
@@ -71,13 +57,7 @@ const NavbarComp = () => {
           </div>
           <div className="cart-icon">
             <MdShoppingBag
-              onClick={() =>
-                openDrawer(
-                  drawerContent.title,
-                  drawerContent.content,
-                  drawerContent.footer
-                )
-              }
+              onClick={handleDrawer}
               size={35}
               color="white"
               cursor={"pointer"}
@@ -134,14 +114,7 @@ const NavbarComp = () => {
           )}
         </div>
       </div>
-      <Drawer
-        isVisible={isDrawerVisible}
-        onClose={closeDrawer}
-        title={drawerContent.title}
-        content={drawerContent.content}
-        footer={drawerContent.footer}
-        placement={isMobile ? "bottom" : "right"}
-      />
+      <AddToCartDrawer handleDrawer={handleDrawer} isOpen={isDrawerVisible} />
       <Modal
         isConfirm={false}
         isVisible={isModalVisible}
