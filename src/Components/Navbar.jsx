@@ -67,7 +67,7 @@ const NavbarComp = () => {
         <div className="account-btn">
           {user ? (
             <>
-              <Link to="/user">
+              <Link to={user && user?.role === "user" ? "/user" : "/admin"}>
                 <RiAccountCircle2Fill
                   size={35}
                   color="white"
@@ -75,7 +75,7 @@ const NavbarComp = () => {
                   cursor={"pointer"}
                 />
               </Link>
-              <Link to="/user">
+              <Link to={user && user?.role === "user" ? "/user" : "/admin"}>
                 <Button
                   className={
                     "hidden sm:flex border-2 border-white rounded-md px-4 py-2 text-white font-semibold text-base"

@@ -20,7 +20,7 @@ const columns = [
     title: "Delivery Charges",
     dataIndex: "deliveryCharges",
     key: "deliveryCharges",
-    render: (deliveryCharges) => `$${deliveryCharges.toFixed(2)}`,
+    render: (deliveryCharges) => `Rs ${deliveryCharges.toFixed(2)}`,
   },
 
   {
@@ -50,7 +50,7 @@ const columns = [
     title: "Grand Total",
     dataIndex: "grandTotal",
     key: "grandTotal",
-    render: (grandTotal) => `$${grandTotal.toFixed(2)}`,
+    render: (grandTotal) => `Rs ${grandTotal.toFixed(2)}`,
   },
 ];
 

@@ -216,7 +216,6 @@ const CheckoutPage = () => {
                     src={product?.image}
                     alt={product?.name}
                   />
-                  <img />
                 </div>
               </div>
               <div className="right-side flex flex-col justify-between gap-1">

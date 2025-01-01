@@ -8,12 +8,13 @@ const Home = lazy(() => import("../Pages/Home"));
 const Checkout = lazy(() => import("../Pages/Checkout"));
 const NotFound = lazy(() => import("../Pages/NotFound"));
 const UserDashboard = lazy(() => import("../Pages/UserDashboard"));
+const AdminDashboardPage = lazy(() => import("../Pages/AdminDashboard.jsx"));
 
 const AppRouting = () => {
   const location = useLocation();
-  const { isUser } = useUser();
+  const { isUser, user } = useUser();
 
-  const noHeaderFooterRoutes = ["/user"];
+  const noHeaderFooterRoutes = ["/user", "/admin"];
 
   const shouldShowNavbarFooter = !noHeaderFooterRoutes.includes(
     location.pathname
@@ -31,7 +32,23 @@ const AppRouting = () => {
         <Route path="/checkout" element={<Checkout />} />
         <Route
           path="/user"
-          element={isUser ? <UserDashboard /> : <Navigate to="/" />}
+          element={
+            isUser && user?.role === "user" ? (
+              <UserDashboard />
+            ) : (
+              <Navigate to="/" />
+            )
+          }
+        />
+        <Route
+          path="/admin"
+          element={
+            isUser && user?.role === "admin" ? (
+              <AdminDashboardPage />
+            ) : (
+              <Navigate to="/" />
+            )
+          }
         />
         <Route path="*" element={<NotFound />} />
       </Routes>

@@ -1,4 +1,7 @@
 import { useContext, createContext, useState, useEffect } from "react";
+import PropTypes from "prop-types";
+import axios from "axios";
+
 const orderContext = createContext();
 
 const useOrder = () => useContext(orderContext);
@@ -53,9 +56,6 @@ const OrderProvider = ({ children }) => {
     </orderContext.Provider>
   );
 };
-
-import PropTypes from "prop-types";
-import axios from "axios";
 
 OrderProvider.propTypes = {
   children: PropTypes.node.isRequired,

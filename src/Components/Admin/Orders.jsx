@@ -2,7 +2,7 @@ import { IoStatsChartSharp } from "react-icons/io5";
 import OrdersStatusCard from "../StatusCard";
 import Table from "../Table";
 import { columns } from "./Static/Columns";
-import { useOrder } from "../../Context/User/Orders.context";
+import { useOrder } from "../../Context/Admin/Orders.context";
 
 const OrdersComp = () => {
   const {
