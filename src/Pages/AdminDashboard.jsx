@@ -20,6 +20,7 @@ import Orders from "../Components/Admin/Orders";
 import UserDashboardDrawer from "../Components/User/UserDashboardDrawer";
 import Welcome from "../Components/User/Welcome";
 import Users from "../Components/Admin/Users";
+import AdminAccount from "../Components/Admin/Profile";
 import { useUser } from "../Context/User.context";
 import "./user-dashboard.scss";
 const { Header, Content, Sider } = Layout;
@@ -33,6 +34,7 @@ const menuItems = [
   getItem("Welcome", "Welcome", <SiWelcometothejungle />),
   getItem("Orders", "Orders", <GiBoxUnpacking />),
   getItem("Users", "Users", <FaUserShield />),
+  getItem("Account", "Account", <FaUserShield />),
 ];
 
 const AdminDashboardPage = () => {
@@ -87,6 +89,8 @@ const AdminDashboardPage = () => {
         return <Orders />;
       case "Users":
         return <Users />;
+      case "Account":
+        return <AdminAccount />;
       default:
         return <h1>Sorry! that page {"doesn't"} exist</h1>;
     }
