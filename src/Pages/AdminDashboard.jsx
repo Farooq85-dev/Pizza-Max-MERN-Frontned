@@ -10,16 +10,18 @@ import {
 } from "antd";
 import axios from "axios";
 import { useState } from "react";
+import { FaUserShield } from "react-icons/fa";
 import { FiMenu } from "react-icons/fi";
+import { GiBoxUnpacking } from "react-icons/gi";
 import { SiWelcometothejungle } from "react-icons/si";
 import { useMediaQuery } from "react-responsive";
 import { useNavigate } from "react-router-dom";
+import Orders from "../Components/Admin/Orders";
 import UserDashboardDrawer from "../Components/User/UserDashboardDrawer";
 import Welcome from "../Components/User/Welcome";
+import Users from "../Components/Admin/Users";
 import { useUser } from "../Context/User.context";
 import "./user-dashboard.scss";
-import { GiBoxUnpacking } from "react-icons/gi";
-import Orders from "../Components/Admin/Orders";
 const { Header, Content, Sider } = Layout;
 
 // Define menu items
@@ -30,6 +32,7 @@ function getItem(label, key, icon) {
 const menuItems = [
   getItem("Welcome", "Welcome", <SiWelcometothejungle />),
   getItem("Orders", "Orders", <GiBoxUnpacking />),
+  getItem("Users", "Users", <FaUserShield />),
 ];
 
 const AdminDashboardPage = () => {
@@ -82,6 +85,8 @@ const AdminDashboardPage = () => {
         return <Welcome />;
       case "Orders":
         return <Orders />;
+      case "Users":
+        return <Users />;
       default:
         return <h1>Sorry! that page {"doesn't"} exist</h1>;
     }

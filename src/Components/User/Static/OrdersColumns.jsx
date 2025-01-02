@@ -1,4 +1,5 @@
 import { Tag } from "antd";
+import { dateTimeFormatter } from "../../../Constatns/index.js";
 
 const columns = [
   {
@@ -44,7 +45,7 @@ const columns = [
     title: "Order Date",
     dataIndex: "createdAt",
     key: "createdAt",
-    render: (createdAt) => new Date(createdAt).toLocaleDateString(),
+    render: (createdAt) => dateTimeFormatter.format(new Date(createdAt)),
   },
   {
     title: "Grand Total",
@@ -55,4 +56,3 @@ const columns = [
 ];
 
 export { columns };
-

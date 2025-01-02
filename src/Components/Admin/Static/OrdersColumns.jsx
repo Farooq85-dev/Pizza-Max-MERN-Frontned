@@ -10,6 +10,7 @@ import axios from "axios";
 import Loader from "../../Loader";
 import Select from "../../Select";
 import { useFormik } from "formik";
+import { dateTimeFormatter } from "../../../Constatns/index.js";
 
 const ViewDetailsContent = React.memo(({ orderDetails }) => {
   const { values, handleBlur, handleSubmit, setFieldValue } = useFormik({
@@ -70,9 +71,7 @@ const ViewDetailsContent = React.memo(({ orderDetails }) => {
       </div>
       <div className="delivery-address-contianer">
         <h3 className="text-base sm:text-xl font-semibold">Delivery Address</h3>
-        <p className="text-base sm:text-lg">
-          {orderDetails?.address || "N/A"}
-        </p>
+        <p className="text-base sm:text-lg">{orderDetails?.address || "N/A"}</p>
       </div>
       <form onSubmit={handleSubmit} className="flex flex-col gap-2">
         <Select
@@ -179,7 +178,7 @@ ViewDetails.propTypes = {
   id: PropTypes.string.isRequired,
 };
 
-const columns = [
+const Orderscolumns = [
   { title: "Full Name", dataIndex: "fullName", key: "fullName" },
   { title: "Contact Number", dataIndex: "contactNumber", key: "contactNumber" },
   { title: "Email Address", dataIndex: "emailAddress", key: "emailAddress" },
@@ -224,7 +223,7 @@ const columns = [
     title: "Order Date",
     dataIndex: "createdAt",
     key: "createdAt",
-    render: (date) => new Date(date).toLocaleDateString(),
+    render: (date) => dateTimeFormatter.format(new Date(date)),
   },
   {
     title: "Action",
@@ -237,4 +236,4 @@ const columns = [
   },
 ];
 
-export { columns, ViewDetails };
+export { Orderscolumns, ViewDetails };

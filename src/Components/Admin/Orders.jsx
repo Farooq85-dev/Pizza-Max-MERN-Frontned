@@ -1,7 +1,7 @@
 import { IoStatsChartSharp } from "react-icons/io5";
 import OrdersStatusCard from "../StatusCard";
 import Table from "../Table";
-import { columns } from "./Static/Columns";
+import { Orderscolumns } from "./Static/OrdersColumns";
 import { useOrder } from "../../Context/Admin/Orders.context";
 
 const OrdersComp = () => {
@@ -48,7 +48,7 @@ const OrdersComp = () => {
         </div>
       </div>
       <div className="order-table-container mt-4">
-        <Table data={data} columns={columns} />
+        <Table data={data} columns={Orderscolumns} />
       </div>
     </div>
   );

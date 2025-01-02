@@ -8,6 +8,7 @@ import { OrderProvider } from "./Context/User/Orders.context.jsx";
 import { AdminOrderProvider } from "./Context/Admin/Orders.context.jsx";
 import { ProductsProvider } from "./Context/Products.context.jsx";
 import "./index.scss";
+import { AdminUsersProvider } from "./Context/Admin/Users.context.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -15,12 +16,14 @@ createRoot(document.getElementById("root")).render(
       <UserProvider>
         <OrderProvider>
           <AdminOrderProvider>
-            <ProductsProvider>
-              <App />
-            </ProductsProvider>
+            <AdminUsersProvider>
+              <ProductsProvider>
+                <App />
+              </ProductsProvider>
+            </AdminUsersProvider>
           </AdminOrderProvider>
         </OrderProvider>
       </UserProvider>
-    </Provider>     
+    </Provider>
   </StrictMode>
 );
