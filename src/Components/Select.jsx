@@ -25,7 +25,7 @@ const SelectComp = ({ label, options, value, onChange, onBlur, name }) => {
 SelectComp.propTypes = {
   label: PropTypes.string.isRequired,
   options: PropTypes.array.isRequired,
-  value: PropTypes.string,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   onChange: PropTypes.func.isRequired,
   onBlur: PropTypes.func.isRequired,
   name: PropTypes.string.isRequired,
