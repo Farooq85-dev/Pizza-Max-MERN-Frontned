@@ -13,8 +13,10 @@ import Button from "../Button";
 import Input from "../Input";
 import UploaderComp from "../Uploader";
 import axios from "axios";
+import { useUser } from "../../Context/User.context";
 
 const AccountComp = () => {
+  const { user } = useUser();
   const {
     values: userNameValues,
     errors: userNameErrors,
@@ -131,10 +133,17 @@ const AccountComp = () => {
     if (!file) {
       return message.error("Please provide a file!");
     }
-
     if (file.length > 1) {
       return message.error("Please provide a single file!");
     }
+
+    if (file[0].type !== "image/webp") {
+      return message.error("File must be in WEBP Foramt!");
+    }
+
+    // if (file[0].size > 100000) {
+    //   return message.error("File must be lower than 100 KB!");
+    // }
 
     let data = new FormData();
     data.append("userAvatar", file[0]);
@@ -160,7 +169,7 @@ const AccountComp = () => {
     try {
       const response = await axios.patch(
         `${import.meta.env?.VITE_API_URI}/delete-avatar`,
-        null,
+        { avatarPublicId: user?.avatar },
         {
           withCredentials: true,
         }

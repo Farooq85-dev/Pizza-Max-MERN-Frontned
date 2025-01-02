@@ -47,7 +47,7 @@ const AdminDashboardPage = () => {
   const [isDrawerVisible, setDrawerVisible] = useState(false);
   const isMobile = useMediaQuery({ query: "(max-width: 480px)" });
 
-  const user = useUser();
+  const { user } = useUser();
   const navigate = useNavigate();
   const {
     token: { colorBgContainer, borderRadiusLG },
@@ -152,7 +152,7 @@ const AdminDashboardPage = () => {
                 />
               </div>
               <h2 className="font-medium text-base sm:text-xl hidden sm:block">
-                {user?.user?.name}
+                {user?.name}
               </h2>
             </div>
             <div className="header-right">
@@ -164,7 +164,7 @@ const AdminDashboardPage = () => {
               >
                 <Avatar
                   size="large"
-                  src={user?.user?.avatar}
+                  src={user?.avatar}
                   icon={<UserOutlined />}
                   className="cursor-pointer"
                 />
