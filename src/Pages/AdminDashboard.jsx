@@ -10,17 +10,20 @@ import {
 } from "antd";
 import axios from "axios";
 import { useState } from "react";
+import { AiFillProduct } from "react-icons/ai";
 import { FaUserShield } from "react-icons/fa";
 import { FiMenu } from "react-icons/fi";
 import { GiBoxUnpacking } from "react-icons/gi";
+import { LuUsersRound } from "react-icons/lu";
 import { SiWelcometothejungle } from "react-icons/si";
 import { useMediaQuery } from "react-responsive";
 import { useNavigate } from "react-router-dom";
 import Orders from "../Components/Admin/Orders";
+import AdminProducts from "../Components/Admin/Products";
+import AdminAccount from "../Components/Admin/Profile";
+import Users from "../Components/Admin/Users";
 import UserDashboardDrawer from "../Components/User/UserDashboardDrawer";
 import Welcome from "../Components/User/Welcome";
-import Users from "../Components/Admin/Users";
-import AdminAccount from "../Components/Admin/Profile";
 import { useUser } from "../Context/User.context";
 import "./user-dashboard.scss";
 const { Header, Content, Sider } = Layout;
@@ -32,8 +35,9 @@ function getItem(label, key, icon) {
 
 const menuItems = [
   getItem("Welcome", "Welcome", <SiWelcometothejungle />),
+  getItem("Products", "Products", <AiFillProduct />),
   getItem("Orders", "Orders", <GiBoxUnpacking />),
-  getItem("Users", "Users", <FaUserShield />),
+  getItem("Users", "Users", <LuUsersRound />),
   getItem("Account", "Account", <FaUserShield />),
 ];
 
@@ -85,6 +89,8 @@ const AdminDashboardPage = () => {
     switch (selectedKey) {
       case "Welcome":
         return <Welcome />;
+      case "Products":
+        return <AdminProducts />;
       case "Orders":
         return <Orders />;
       case "Users":

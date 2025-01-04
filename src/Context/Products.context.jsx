@@ -8,7 +8,7 @@ const useProducts = () => useContext(productsContext);
 
 const ProductsProvider = ({ children }) => {
   const [products, setProducts] = useState([]);
-  const [categroies, setCategries] = useState([]);
+  const [categories, setCategories] = useState([]);
 
   const fetchProducts = async () => {
     try {
@@ -17,7 +17,7 @@ const ProductsProvider = ({ children }) => {
         `${import.meta.env?.VITE_API_URI}/get-all-products-categories`
       );
       const categories = categoriesResponse?.data?.categories || [];
-      setCategries(categories);
+      setCategories(categories);
       const allProducts = await Promise.all(
         categories?.map(async (category) => {
           // fetch Prodcuts on the base of category
@@ -43,7 +43,7 @@ const ProductsProvider = ({ children }) => {
   }, []);
 
   return (
-    <productsContext.Provider value={{ products, categroies }}>
+    <productsContext.Provider value={{ products, categories }}>
       {children}
     </productsContext.Provider>
   );

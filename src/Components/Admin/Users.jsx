@@ -34,7 +34,7 @@ const UsersComp = () => {
           quantity={howMuchUnVerifiedUsers?.length}
         />
       </div>
-      <Table data={data} columns={Userscolumns} />
+      <Table data={data} columns={Userscolumns} pageSize={10} />
     </div>
   );
 };

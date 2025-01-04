@@ -48,7 +48,7 @@ const OrdersComp = () => {
         </div>
       </div>
       <div className="order-table-container mt-4">
-        <Table data={data} columns={columns} />
+        <Table data={data} columns={columns} pageSize={10} />
       </div>
     </div>
   );

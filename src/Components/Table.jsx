@@ -1,14 +1,14 @@
 import { Table } from "antd";
 import PropTypes from "prop-types";
 
-const TableComp = ({ columns, data }) => (
+const TableComp = ({ columns, data, pageSize }) => (
   <Table
     className="overflow-x-auto"
     columns={columns}
     dataSource={data}
     bordered
     pagination={{
-      pageSize: 5,
+      pageSize: pageSize,
     }}
   />
 );
@@ -16,6 +16,7 @@ const TableComp = ({ columns, data }) => (
 TableComp.propTypes = {
   columns: PropTypes.array.isRequired,
   data: PropTypes.array.isRequired,
+  pageSize: PropTypes.number.isRequired,
 };
 
 export default TableComp;
