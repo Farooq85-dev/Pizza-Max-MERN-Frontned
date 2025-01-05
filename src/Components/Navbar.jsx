@@ -11,7 +11,7 @@ import LoginRegister from "./LoginRegister";
 import Modal from "./Modal";
 import AddToCartDrawer from "./AddToCartDrawer";
 import Button from "./Button";
-import Pizza_Max_Logo from "../Assets/Images/pizza-max-logo.png";
+import Pizza_Max_Logo from "../Assets/Images/pizza-max-logo.webp";
 
 const NavbarComp = () => {
   const [isModalVisible, setModalVisible] = useState(false);

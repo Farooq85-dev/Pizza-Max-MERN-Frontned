@@ -39,7 +39,7 @@ const SliderComp = () => {
     >
       {images?.map((image) => (
         <SwiperSlide key={image}>
-          <img src={image} alt={image} />
+          <img src={image} alt={image} height={460} width={1520} />
         </SwiperSlide>
       ))}
     </Swiper>

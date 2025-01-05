@@ -25,7 +25,7 @@ const ProductCard = ({ product }) => {
     <div className="product flex flex-col sm:flex-row justify-start sm:items-center gap-4 bg-white rounded-xl p-4 shadow-md">
       <div className="product-image flex-shrink-0">
         <LazyLoadImage
-          className="rounded-md w-full sm:h-40 sm:w-40 object-cover"
+          className="rounded-md w-full h-full sm:h-40 sm:w-40 object-cover"
           effect="blur"
           alt={product?.name}
           src={product?.image}

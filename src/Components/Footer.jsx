@@ -63,6 +63,7 @@ const FooterComp = () => {
             <img
               src={Play_Store}
               width={100}
+              height={100}
               alt="play-store-link"
               loading="lazy"
               className="cursor-pointer"
@@ -70,6 +71,7 @@ const FooterComp = () => {
             <img
               src={App_Store}
               width={100}
+              height={100}
               alt="app-store-link"
               loading="lazy"
               className="cursor-pointer"

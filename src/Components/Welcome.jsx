@@ -77,9 +77,11 @@ const WelcomeComp = () => {
             ))}
           </div>
         </div>
-        <div className="right-side hidden sm:flex sm:justify-center sm:items-center ">
+        <div className="right-side hidden md:flex md:justify-center md:items-center">
           <LazyLoadImage
-            src="https://img.freepik.com/free-photo/funny-3d-illustration-cartoon-teenage-girl_183364-80384.jpg?t=st=1734286969~exp=1734290569~hmac=20bc7ff16434e3c3f625d026962420c7d7c744568d7b5e166a9eeeffe57b8c15&w=740"
+            width="80%"
+            height="auto"
+            src="https://img.freepik.com/free-photo/fun-3d-cartoon-teenage-boy_183364-81177.jpg?t=st=1736095898~exp=1736099498~hmac=81b3871e57e4e4fb5f3fdd91735ec20c47221b16e65c106fc2bc2e2d9da09cc0&w=740"
             alt="welcome-img"
             effect="blur"
           />
