@@ -64,3 +64,17 @@ export const userPasswordChangeSchema = yup.object({
     .max(12)
     .required("Password must be at least 8 to 12 characters long!"),
 });
+
+export const addProductSchema = yup.object({
+  name: yup
+    .string()
+    .matches(/^[A-Za-z\s]+$/, "Category name should contain only letters!")
+    .required("Please enter product name!"),
+  description: yup.string().required("Please enter product description!"),
+  price: yup.number().required("Please enter product price!"),
+  stock: yup.number().required("Please enter product stock!"),
+  categoryName: yup
+    .string()
+    .matches(/^[A-Za-z\s]+$/, "Category name should contain only letters!")
+    .required("Please enter product category name!"),
+});

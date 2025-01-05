@@ -147,6 +147,8 @@ const AccountComp = () => {
 
     let data = new FormData();
     data.append("userAvatar", file[0]);
+    console.log(data);
+    
 
     try {
       const response = await axios.post(
