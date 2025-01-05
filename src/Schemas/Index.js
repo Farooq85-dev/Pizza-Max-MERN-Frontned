@@ -1,7 +1,10 @@
 import * as yup from "yup";
 
 export const userRegisterationSchema = yup.object({
-  name: yup.string().required("Please Enter Name!"),
+  name: yup
+    .string()
+    .matches(/^[A-Za-z\s]+$/, "Name should contain only letters!")
+    .required("Please Enter Name!"),
   email: yup.string().email().required("Please enter email!"),
   password: yup
     .string()
@@ -24,7 +27,10 @@ export const userLoginSchema = yup.object({
 });
 
 export const checkoutSchema = yup.object({
-  fullName: yup.string().required("Please enter full name!"),
+  fullName: yup
+    .string()
+    .matches(/^[A-Za-z\s]+$/, "Name should contain only letters!")
+    .required("Please enter full name!"),
   contactNumber: yup
     .string()
     .matches(
@@ -45,7 +51,10 @@ export const checkoutSchema = yup.object({
 });
 
 export const userNameSchema = yup.object({
-  name: yup.string().required("Pleaser enter name!"),
+  name: yup
+    .string()
+    .matches(/^[A-Za-z\s]+$/, "Name should contain only letters!")
+    .required("Pleaser enter name!"),
 });
 
 export const userEmailSchema = yup.object({
@@ -68,7 +77,7 @@ export const userPasswordChangeSchema = yup.object({
 export const addProductSchema = yup.object({
   name: yup
     .string()
-    .matches(/^[A-Za-z\s]+$/, "Category name should contain only letters!")
+    .matches(/^[A-Za-z\s]+$/, "Name should contain only letters!")
     .required("Please enter product name!"),
   description: yup.string().required("Please enter product description!"),
   price: yup.number().required("Please enter product price!"),
