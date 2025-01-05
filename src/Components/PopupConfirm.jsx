@@ -2,7 +2,15 @@ import { Popconfirm } from "antd";
 import PropTypes from "prop-types";
 import Button from "./Button";
 
-const PopupConfirmComp = ({ title, onConfirm }) => {
+const PopupConfirmComp = ({
+  title,
+  btnTitle,
+  btnId,
+  btnName,
+  onConfirm,
+  className,
+  icon,
+}) => {
   const confirm = () => {
     onConfirm();
   };
@@ -10,13 +18,12 @@ const PopupConfirmComp = ({ title, onConfirm }) => {
   return (
     <Popconfirm title={title} onConfirm={confirm} okText="Yes" cancelText="No">
       <Button
-        title="Clear Cart"
-        id="clear-cart-btn"
-        name="clear-cart-btn"
-        className={
-          "border-2 border-red-600 rounded-md px-4 py-2 font-semibold text-red-600 text-base w-full"
-        }
+        title={btnTitle}
+        id={btnId}
+        name={btnName}
+        className={className}
         type="button"
+        icon={icon}
       />
     </Popconfirm>
   );
@@ -24,7 +31,12 @@ const PopupConfirmComp = ({ title, onConfirm }) => {
 
 PopupConfirmComp.propTypes = {
   title: PropTypes.string.isRequired,
+  btnTitle: PropTypes.string.isRequired,
+  btnId: PropTypes.string.isRequired,
+  btnName: PropTypes.string.isRequired,
   onConfirm: PropTypes.func.isRequired,
+  className: PropTypes.string,
+  icon: PropTypes.node,
 };
 
 export default PopupConfirmComp;

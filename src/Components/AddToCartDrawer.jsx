@@ -69,7 +69,13 @@ const AddToCartDrawer = React.memo(({ isOpen, handleDrawer }) => {
               </div>
               <div className="flex flex-col-reverse sm:flex-row justify-between items-center w-full gap-2">
                 <PopupConfirm
-                  title="Are you sure you want to clear the cart?"
+                  className={
+                    "border-2 border-red-600 rounded-md px-4 py-2 font-semibold text-red-600 text-base w-full"
+                  }
+                  btnTitle="Clear Cart"
+                  btnName="clear-cart-btn"
+                  btnId="clear-cart-btn"
+                  title="Are you sure to to clear the cart?"
                   onConfirm={handleRemoveAllItemFromCart}
                 />
                 <Link to={"/checkout"} className="w-full">
