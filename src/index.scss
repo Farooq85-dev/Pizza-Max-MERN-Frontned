@@ -1,4 +1,7 @@
+// Font
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+// Tailwind Ui Layers
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -8,6 +11,7 @@
     sans-serif !important;
 }
 
+// Custom Varaibles
 :root {
   --navbarcolor: #270800;
 }
@@ -17,7 +21,6 @@ body {
 }
 
 // Swiper Css
-
 .swiper-button-prev:after,
 .swiper-button-next:after {
   @apply bg-navbarColor text-white py-1 px-4 sm:py-2 sm:px-4 rounded-md;
@@ -117,10 +120,10 @@ input:focus {
 }
 
 // Dashboard Css
-
 .ant-layout-sider {
   background-color: #473222;
 }
+
 .ant-menu-dark {
   background-color: #473222;
 }
@@ -141,7 +144,6 @@ input:focus {
   font-size: 20px !important;
 }
 
-// Dashboard Css
 .ant-breadcrumb-link {
   color: black !important;
   font-weight: normal !important;

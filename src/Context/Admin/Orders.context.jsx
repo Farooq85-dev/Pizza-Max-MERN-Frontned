@@ -4,7 +4,7 @@ import axios from "axios";
 
 const orderContext = createContext();
 
-const useOrder = () => useContext(orderContext);
+const useOrders = () => useContext(orderContext);
 
 const AdminOrderProvider = ({ children }) => {
   const [orders, setOrder] = useState([]);
@@ -18,7 +18,6 @@ const AdminOrderProvider = ({ children }) => {
           withCredentials: true,
         }
       );
-      console.log(response);
       setOrder(response?.data?.orders || []);
     } catch (error) {
       console.log(error);
@@ -61,4 +60,4 @@ AdminOrderProvider.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-export { useOrder, AdminOrderProvider };
+export { useOrders, AdminOrderProvider };

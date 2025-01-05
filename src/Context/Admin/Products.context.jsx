@@ -1,3 +1,4 @@
+// Libraries Imports
 import { createContext, useContext, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import axios from "axios";
@@ -58,4 +59,4 @@ AdminProductsProvider.propTypes = {
   children: PropTypes.node,
 };
 
-export { AdminProductsProvider, useProducts };
+export { useProducts, AdminProductsProvider };

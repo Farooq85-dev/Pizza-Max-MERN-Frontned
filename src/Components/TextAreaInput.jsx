@@ -1,6 +1,7 @@
+// Libraries Imports
 import PropTypes from "prop-types";
 
-const TextAreaComp = ({
+const TextAreaInputComp = ({
   id,
   name,
   label,
@@ -31,7 +32,7 @@ const TextAreaComp = ({
   );
 };
 
-TextAreaComp.propTypes = {
+TextAreaInputComp.propTypes = {
   id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
@@ -42,4 +43,4 @@ TextAreaComp.propTypes = {
   onBlur: PropTypes.func,
 };
 
-export default TextAreaComp;
+export default TextAreaInputComp;

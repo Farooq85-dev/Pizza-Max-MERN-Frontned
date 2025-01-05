@@ -1,15 +1,18 @@
+// Libararies Imports
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
+import { useFormik } from "formik";
 import { message, Space, Tag } from "antd";
 import { IoIosDocument } from "react-icons/io";
-import Button from "../../Button";
-import React, { useState, useEffect } from "react";
-import Modal from "../../Modal";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
 import axios from "axios";
+
+// Local Imports
+import Button from "../../Button";
+import Modal from "../../Modal";
 import Loader from "../../Loader";
-import Select from "../../Select";
-import { useFormik } from "formik";
+import Select from "../../SelectInput.jsx";
 import { dateTimeFormatter } from "../../../Constatns/index.js";
 
 const ViewDetailsContent = React.memo(({ orderDetails }) => {
@@ -134,9 +137,8 @@ const ViewDetails = React.memo(({ id }) => {
           { withCredentials: true }
         );
         setOrderDetails(response?.data?.order || []);
-        console.log("response -->", response?.data?.order);
       } catch (error) {
-        console.error("Failed to fetch order details:", error);
+        console.log(error);
       } finally {
         setLoading(false);
       }

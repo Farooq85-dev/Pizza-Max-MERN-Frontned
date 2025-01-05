@@ -1,3 +1,4 @@
+// Libraries Imports
 import { useContext, createContext, useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import axios from "axios";
@@ -9,7 +10,7 @@ const useUsers = () => useContext(orderContext);
 const AdminUsersProvider = ({ children }) => {
   const [users, setUsers] = useState([]);
 
-  const fetchUserOrders = async () => {
+  const fetchOrders = async () => {
     try {
       const response = await axios.post(
         `${import.meta.env?.VITE_API_URI}/get-all-users`,
@@ -18,7 +19,6 @@ const AdminUsersProvider = ({ children }) => {
           withCredentials: true,
         }
       );
-      console.log(response);
       setUsers(response?.data?.users || []);
     } catch (error) {
       console.log(error);
@@ -35,7 +35,7 @@ const AdminUsersProvider = ({ children }) => {
   );
 
   useEffect(() => {
-    fetchUserOrders();
+    fetchOrders();
   }, []);
 
   return (

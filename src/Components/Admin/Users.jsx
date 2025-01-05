@@ -1,9 +1,12 @@
+// Libraries Imports
+import { FaUserSlash } from "react-icons/fa";
 import { LuUserSearch, LuUsersRound } from "react-icons/lu";
-import UsersStatusCard from "../StatusCard";
+
+// Local Imports
 import { useUsers } from "../../Context/Admin/Users.context";
 import Table from "../Table";
 import { Userscolumns } from "./Static/UsersColumns";
-import { FaUserSlash } from "react-icons/fa";
+import UsersStatusCard from "../StatusCard";
 
 const UsersComp = () => {
   const {

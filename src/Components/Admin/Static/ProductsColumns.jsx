@@ -1,18 +1,21 @@
-import { Avatar, message, Space } from "antd";
-import axios from "axios";
-import { useFormik } from "formik";
-import PropTypes from "prop-types";
+// Libraries Imports
 import React, { useEffect, useState } from "react";
+import PropTypes from "prop-types";
+import { Avatar, message, Space } from "antd";
+import { useFormik } from "formik";
 import { GiPriceTag, GiStockpiles } from "react-icons/gi";
 import { MdDelete, MdModeEdit, MdOutlineDescription } from "react-icons/md";
 import { SiNamecheap } from "react-icons/si";
-import { dateTimeFormatter } from "../../../Constatns/index.js";
+import { BiCategoryAlt } from "react-icons/bi";
+import axios from "axios";
+
+// Local Imports
 import Button from "../../Button.jsx";
 import Input from "../../Input.jsx";
 import Loader from "../../Loader.jsx";
 import Modal from "../../Modal.jsx";
 import PopupConfirm from "../../PopupConfirm.jsx";
-import { BiCategoryAlt } from "react-icons/bi";
+import { dateTimeFormatter } from "../../../Constatns/index.js";
 
 const ViewProductContent = React.memo(({ productDetails }) => {
   const initialValues = {
@@ -48,7 +51,6 @@ const ViewProductContent = React.memo(({ productDetails }) => {
         );
         message.success(response?.data?.message);
       } catch (error) {
-        console.log(error);
         message.success(error?.response?.data?.message);
       }
     },
@@ -176,10 +178,8 @@ const EditProductDetailsComp = React.memo(({ id }) => {
           }
         );
         setProductDetails(response?.data?.product || []);
-        console.log("response -->", response?.data?.product);
         message.success(response?.data?.message);
       } catch (error) {
-        console.error("Failed to fetch product details:", error);
         message.error(error?.response?.data?.message);
       } finally {
         setLoading(false);
@@ -235,10 +235,8 @@ const handleDeleteProduct = async (id) => {
         withCredentials: true,
       }
     );
-    console.log(response?.data?.message);
     message.success(response?.data?.message);
   } catch (error) {
-    console.log(error);
     message.error(error?.response?.data?.message);
   }
 };

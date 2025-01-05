@@ -1,5 +1,8 @@
-import { FaFacebook, FaGithub, FaLinkedin } from "react-icons/fa6";
+// Libraries Imports
 import { Link } from "react-router-dom";
+import { FaFacebook, FaGithub, FaLinkedin } from "react-icons/fa6";
+
+// Local Imports
 import Play_Store from "../Assets/Images/playstore.svg";
 import App_Store from "../Assets/Images/appstore.svg";
 

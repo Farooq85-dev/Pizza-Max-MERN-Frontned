@@ -1,3 +1,4 @@
+//Local Imports
 import Result from "../Components/Result";
 
 const NotFoundPage = () => {

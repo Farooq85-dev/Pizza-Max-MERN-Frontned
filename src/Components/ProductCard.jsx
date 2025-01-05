@@ -1,11 +1,14 @@
+// Libraries Imports
 import PropTypes from "prop-types";
-import { FaRegHeart } from "react-icons/fa";
-import { useDispatch } from "react-redux";
-import { addItemToCart } from "../Redux/Reducers/Cart";
-import Button from "./Button";
-import { addItemToFavourite } from "../Redux/Reducers/Favourite";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
+import { FaRegHeart } from "react-icons/fa";
+import { useDispatch } from "react-redux";
+
+// Local Imports
+import { addItemToCart } from "../Redux/Reducers/Cart.reducer";
+import { addItemToFavourite } from "../Redux/Reducers/Favourite.reducer";
+import Button from "./Button";
 
 const ProductCard = ({ product }) => {
   const dispatch = useDispatch();
@@ -65,7 +68,13 @@ const ProductCard = ({ product }) => {
 };
 
 ProductCard.propTypes = {
-  product: PropTypes.object,
+  product: PropTypes.shape({
+    _id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    image: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+  }).isRequired,
 };
 
 export default ProductCard;

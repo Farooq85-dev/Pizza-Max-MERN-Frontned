@@ -1,28 +1,31 @@
-import { Drawer } from "antd";
+// Libraries Imkports
+import React, { useCallback, useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import React from "react";
-import { useCallback, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useMediaQuery } from "react-responsive";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
+import { Drawer } from "antd";
 import { ImSpoonKnife } from "react-icons/im";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { RxCross2 } from "react-icons/rx";
-import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+
+// Local Imports
 import {
   decQuantity,
   incQuantity,
   removeAllItemFromCart,
   removeItemFromCart,
-} from "../Redux/Reducers/Cart";
+} from "../Redux/Reducers/Cart.reducer";
 import Button from "./Button";
 import Result from "./Result";
 import PopupConfirm from "./PopupConfirm";
-import { LazyLoadImage } from "react-lazy-load-image-component";
-import "react-lazy-load-image-component/src/effects/blur.css";
-import { useMediaQuery } from "react-responsive";
 
-const AddToCartDrawer = React.memo(({ isOpen, handleDrawer }) => {
+const AddToCartDrawerComp = React.memo(({ isOpen, handleDrawer }) => {
   const [subtotal, setSubtotal] = useState(0);
   const isMobile = useMediaQuery({ query: "(max-width: 480px)" });
+  const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.cart);
 
   useEffect(() => {
@@ -33,11 +36,12 @@ const AddToCartDrawer = React.memo(({ isOpen, handleDrawer }) => {
     setSubtotal(price);
   }, [cartItems]);
 
-  const dispatch = useDispatch();
-
-  const handleRemoveItemFromCart = (id) => {
-    dispatch(removeItemFromCart(id));
-  };
+  const handleRemoveItemFromCart = useCallback(
+    (id) => () => {
+      dispatch(removeItemFromCart(id));
+    },
+    [dispatch]
+  );
 
   const handleIncQuantity = useCallback(
     (id) => () => dispatch(incQuantity(id)),
@@ -147,7 +151,7 @@ const AddToCartDrawer = React.memo(({ isOpen, handleDrawer }) => {
                         size={20}
                         cursor={"pointer"}
                         color="white"
-                        onClick={() => handleRemoveItemFromCart(product?._id)}
+                        onClick={handleRemoveItemFromCart(product?._id)}
                       />
                     </div>
                     <div>
@@ -165,11 +169,9 @@ const AddToCartDrawer = React.memo(({ isOpen, handleDrawer }) => {
             icon={<ImSpoonKnife size={40} />}
             text="Your cart is empty!"
             btnText="Add items"
-            url={"/"}
+            url="/"
             isBtn={false}
-            className={
-              "border-2 border-navbarColor bg-navbarColor rounded-md px-4 py-2 font-semibold text-white text-base"
-            }
+            className="border-2 border-navbarColor bg-navbarColor rounded-md px-4 py-2 font-semibold text-white text-base"
           />
         )}
       </div>
@@ -177,9 +179,9 @@ const AddToCartDrawer = React.memo(({ isOpen, handleDrawer }) => {
   );
 });
 
-AddToCartDrawer.propTypes = {
+AddToCartDrawerComp.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   handleDrawer: PropTypes.func.isRequired,
 };
 
-export default AddToCartDrawer;
+export default AddToCartDrawerComp;

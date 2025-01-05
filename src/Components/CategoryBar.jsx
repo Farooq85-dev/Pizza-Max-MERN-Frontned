@@ -1,6 +1,9 @@
+// Libraries Imports
 import { useRef } from "react";
-import { MdArrowBackIos, MdArrowForwardIos } from "react-icons/md";
 import { Link } from "react-scroll";
+import { MdArrowBackIos, MdArrowForwardIos } from "react-icons/md";
+
+// Local Imports
 import { useProducts } from "../Context/Products.context";
 
 const CategoryBarComp = () => {

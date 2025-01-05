@@ -1,8 +1,11 @@
+// Libraries Imports
 import { IoStatsChartSharp } from "react-icons/io5";
-import OrdersStatusCard from "../StatusCard";
+
+// Local Imports
+import { useOrders } from "../../Context/Admin/Orders.context";
 import Table from "../Table";
 import { Orderscolumns } from "./Static/OrdersColumns";
-import { useOrder } from "../../Context/Admin/Orders.context";
+import OrdersStatusCard from "../StatusCard";
 
 const OrdersComp = () => {
   const {
@@ -11,7 +14,7 @@ const OrdersComp = () => {
     howMuchPendingOrders,
     howMuchDeliveredOrders,
     howMuchCancelledOrders,
-  } = useOrder();
+  } = useOrders();
 
   const data = orders.map((order) => ({ ...order, key: order?._id }));
 

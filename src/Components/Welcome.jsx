@@ -1,41 +1,27 @@
-import { useEffect } from "react";
-import { useState } from "react";
-import Button from "../Button";
-import { VscDebugStart } from "react-icons/vsc";
+// Libraries Imports
+import { useState, useEffect } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
-import { useUser } from "../../Context/User.context";
+import { VscDebugStart } from "react-icons/vsc";
+
+// Local Imports
+import { useUser } from "../Context/User.context";
+import Button from "./Button";
 
 const WelcomeComp = () => {
-  const [dateTime, setDateTime] = useState({
-    time: "",
-    date: "",
-  });
-
+  const [dateTime, setDateTime] = useState([]);
   const { user } = useUser();
 
   useEffect(() => {
     const updateTime = () => {
       const now = new Date();
-      const formatter = new Intl.DateTimeFormat("en-PK", {
-        timeZone: "Asia/Karachi",
-        year: "numeric",
-        month: "short",
-        day: "numeric",
-        hour: "2-digit",
-        minute: "2-digit",
-        second: "2-digit",
+      const dateTimeFormatter = new Intl.DateTimeFormat("en-PK", {
+        dateStyle: "medium",
+        timeStyle: "medium",
       });
 
-      const parts = formatter.formatToParts(now);
-      const formattedDate = `${parts.find((p) => p.type === "day").value} ${
-        parts.find((p) => p.type === "month").value
-      }, ${parts.find((p) => p.type === "year").value}`;
-      const formattedTime = `${parts.find((p) => p.type === "hour").value}:${
-        parts.find((p) => p.type === "minute").value
-      }:${parts.find((p) => p.type === "second").value}`;
-
-      setDateTime({ date: formattedDate, time: formattedTime });
+      const dateTime = dateTimeFormatter.format(now);
+      setDateTime(dateTime.split(","));
     };
 
     updateTime();
@@ -76,19 +62,19 @@ const WelcomeComp = () => {
                 type="button"
                 title="Start Tour"
                 icon={<VscDebugStart size={20} color="white" />}
-                className={
-                  "border-2 border-navbarColor bg-navbarColor rounded-md px-4 py-2 font-semibold text-white text-base w-full"
-                }
+                className="border-2 border-navbarColor bg-navbarColor rounded-md px-4 py-2 font-semibold text-white text-base w-full"
               />
             </div>
           </div>
           <div className="left-bottom flex flex-col justify-start items-start">
-            <h3 className="text-xl lg:text-2xl xl:text-3xl font-medium sm:font-bold">
-              {dateTime.date}
-            </h3>
-            <h3 className="text-xl md:text-2xl lg:text-3xl xl:text-4xl font-normal sm:font-medium">
-              {dateTime.time}
-            </h3>
+            {dateTime?.map((dateT, index) => (
+              <h3
+                key={index}
+                className="text-xl lg:text-2xl xl:text-3xl font-medium sm:font-bold"
+              >
+                {dateT}
+              </h3>
+            ))}
           </div>
         </div>
         <div className="right-side hidden sm:flex sm:justify-center sm:items-center ">

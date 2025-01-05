@@ -1,9 +1,12 @@
-import { Autoplay, Navigation } from "swiper/modules";
+// Libraries Imports
 import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
+
+// Local Imports
 import Pizza_Banner from "../Assets/Images/pizza-banner.webp";
 import Fifty_Off_Promo_Banner from "../Assets/Images/50-off-promo-banner.webp";
 import Fifty_Off_Discount_banner from "../Assets/Images/50-off-discount-banner.webp";

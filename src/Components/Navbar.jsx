@@ -1,25 +1,23 @@
+// Libraries Imports
 import { useState } from "react";
+import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 import { MdShoppingBag } from "react-icons/md";
 import { RiAccountCircle2Fill } from "react-icons/ri";
-import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import Pizza_Max_Logo from "../Assets/Images/pizza-max-logo.png";
+
+// Local Imports
 import { useUser } from "../Context/User.context";
-import Account from "./Account";
+import LoginRegister from "./LoginRegister";
+import Modal from "./Modal";
 import AddToCartDrawer from "./AddToCartDrawer";
 import Button from "./Button";
-import Modal from "./Modal";
+import Pizza_Max_Logo from "../Assets/Images/pizza-max-logo.png";
 
 const NavbarComp = () => {
-  const { user } = useUser();
   const [isModalVisible, setModalVisible] = useState(false);
   const [isDrawerVisible, setDrawerVisible] = useState(false);
   const cartItems = useSelector((state) => state.cart.cart);
-
-  const [modalContent, setModalContent] = useState({
-    title: "Register/Login",
-    content: <Account />,
-  });
+  const { user } = useUser();
 
   // Cart Drawer
   const handleDrawer = () => {
@@ -27,20 +25,15 @@ const NavbarComp = () => {
   };
 
   // Account Modal
-  const openModal = (title, content) => {
-    setModalContent({ title, content });
-    setModalVisible(true);
-  };
-
-  const closeModal = () => {
-    setModalVisible(false);
+  const handleModal = () => {
+    setModalVisible(!isModalVisible);
   };
 
   return (
     <div className="navbar flex justify-between items-center h-20 fixed top-0 z-50 bg-navbarColor p-4 sm:px-10 w-full">
       <div className="left-side-navbar flex justify-center items-center">
         <div className="logo">
-          <Link to={"/"}>
+          <Link to="/">
             <img
               src={Pizza_Max_Logo}
               loading="lazy"
@@ -60,7 +53,7 @@ const NavbarComp = () => {
               onClick={handleDrawer}
               size={35}
               color="white"
-              cursor={"pointer"}
+              cursor="pointer"
             />
           </div>
         </div>
@@ -72,18 +65,16 @@ const NavbarComp = () => {
                   size={35}
                   color="white"
                   className="sm:hidden"
-                  cursor={"pointer"}
+                  cursor="pointer"
                 />
               </Link>
               <Link to={user && user?.role === "user" ? "/user" : "/admin"}>
                 <Button
-                  className={
-                    "hidden sm:flex border-2 border-white rounded-md px-4 py-2 text-white font-semibold text-base"
-                  }
-                  title={"Dashbaord"}
-                  type={"button"}
-                  name={"Register/Login"}
-                  id={"Register/Login"}
+                  className="hidden sm:flex border-2 border-white rounded-md px-4 py-2 text-white font-semibold text-base"
+                  title="Dashbaord"
+                  type="button"
+                  name="Register/Login"
+                  id="Register/Login"
                 />
               </Link>
             </>
@@ -93,22 +84,16 @@ const NavbarComp = () => {
                 size={35}
                 color="white"
                 className="sm:hidden"
-                cursor={"pointer"}
-                onClick={() =>
-                  openModal(modalContent.title, modalContent.content)
-                }
+                cursor="pointer"
+                onClick={handleModal}
               />
               <Button
-                className={
-                  "hidden sm:flex border-2 border-white rounded-md px-4 py-2 text-white font-semibold text-base"
-                }
-                onClick={() =>
-                  openModal(modalContent.title, modalContent.content)
-                }
-                title={"Register/Login"}
-                type={"button"}
-                name={"Register/Login"}
-                id={"Register/Login"}
+                className="hidden sm:flex border-2 border-white rounded-md px-4 py-2 text-white font-semibold text-base"
+                onClick={handleModal}
+                title="Register/Login"
+                type="button"
+                name="Register/Login"
+                id="Register/Login"
               />
             </>
           )}
@@ -118,9 +103,9 @@ const NavbarComp = () => {
       <Modal
         isConfirm={false}
         isVisible={isModalVisible}
-        onClose={closeModal}
-        title={modalContent.title}
-        content={modalContent.content}
+        onClose={handleModal}
+        title="Register/Login"
+        content={<LoginRegister />}
       />
     </div>
   );

@@ -1,3 +1,4 @@
+// Libraries Imports
 import { createContext, useContext, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import axios from "axios";
@@ -18,9 +19,8 @@ const UserProvider = ({ children }) => {
           withCredentials: true,
         }
       );
-      setIsUser(true);
-      console.log(response);
       setUser(response?.data?.user);
+      setIsUser(true);
     } catch (error) {
       console.log(error);
       setIsUser(false);
@@ -39,7 +39,7 @@ const UserProvider = ({ children }) => {
 };
 
 UserProvider.propTypes = {
-  children: PropTypes.node,
+  children: PropTypes.node.isRequired,
 };
 
 export { useUser, UserProvider };

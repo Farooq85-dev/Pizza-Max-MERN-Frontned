@@ -1,22 +1,25 @@
-import { Breadcrumb, message } from "antd";
-import axios from "axios";
-import { useFormik } from "formik";
+// Libraries Imports
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
+import { Breadcrumb, message } from "antd";
+import { useFormik } from "formik";
+import { useSelector } from "react-redux";
 import { FaRegUserCircle } from "react-icons/fa";
 import { ImSpoonKnife } from "react-icons/im";
 import { LuMessageSquareMore } from "react-icons/lu";
 import { MdConfirmationNumber, MdEmail } from "react-icons/md";
-import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import axios from "axios";
+
+// Local Imports
+import { useUser } from "../Context/User.context";
+import { checkoutSchema } from "../Schemas";
 import ButtonComp from "../Components/Button";
 import Input from "../Components/Input";
 import Result from "../Components/Result";
-import Select from "../Components/Select";
-import TextArea from "../Components/TextArea";
-import { useUser } from "../Context/User.context";
-import { checkoutSchema } from "../Schemas";
-import { LazyLoadImage } from "react-lazy-load-image-component";
-import "react-lazy-load-image-component/src/effects/blur.css";
+import Select from "../Components/SelectInput";
+import TextArea from "../Components/TextAreaInput";
 
 const initialValues = {
   fullName: "",

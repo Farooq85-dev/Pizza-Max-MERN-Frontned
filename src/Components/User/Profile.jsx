@@ -1,21 +1,24 @@
+// Libraries Imports
+import { useState } from "react";
 import { Divider, message } from "antd";
 import { useFormik } from "formik";
-import { useState } from "react";
 import { CiLock } from "react-icons/ci";
 import { FaRegUserCircle } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
+import axios from "axios";
+
+//  Local Imports
+import { useUser } from "../../Context/User.context";
+import UploaderComp from "../FileInput";
+import Input from "../Input";
+import Button from "../Button";
 import {
   userEmailSchema,
   userNameSchema,
   userPasswordChangeSchema,
 } from "../../Schemas";
-import Button from "../Button";
-import Input from "../Input";
-import UploaderComp from "../Uploader";
-import axios from "axios";
-import { useUser } from "../../Context/User.context";
 
-const AccountComp = () => {
+const ProfileComp = () => {
   const { user } = useUser();
   const {
     values: userNameValues,
@@ -147,8 +150,6 @@ const AccountComp = () => {
 
     let data = new FormData();
     data.append("userAvatar", file[0]);
-    console.log(data);
-    
 
     try {
       const response = await axios.post(
@@ -319,4 +320,4 @@ const AccountComp = () => {
   );
 };
 
-export default AccountComp;
+export default ProfileComp;

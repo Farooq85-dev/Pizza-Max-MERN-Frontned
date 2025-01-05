@@ -1,3 +1,4 @@
+// Libraries Imports
 import PropTypes from "prop-types";
 
 const LoaderComp = ({
@@ -9,7 +10,7 @@ const LoaderComp = ({
 }) => {
   const loaderStyle = {
     width: `${width}px`,
-    borderWidth: `${borderWidth}px`,  
+    borderWidth: `${borderWidth}px`,
     borderColor: `${primaryColor}`,
     borderRightColor: `${secondaryColor}vh`,
   };

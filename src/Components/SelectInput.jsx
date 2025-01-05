@@ -1,7 +1,8 @@
+// Libraries Imports
 import PropTypes from "prop-types";
 import { Select } from "antd";
 
-const SelectComp = ({ label, options, value, onChange, onBlur, name }) => {
+const SelectInputComp = ({ label, options, value, onChange, onBlur, name }) => {
   const handleSelectChange = (selectedValue) => {
     onChange(name, selectedValue);
   };
@@ -22,7 +23,7 @@ const SelectComp = ({ label, options, value, onChange, onBlur, name }) => {
   );
 };
 
-SelectComp.propTypes = {
+SelectInputComp.propTypes = {
   label: PropTypes.string.isRequired,
   options: PropTypes.array.isRequired,
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
@@ -31,4 +32,4 @@ SelectComp.propTypes = {
   name: PropTypes.string.isRequired,
 };
 
-export default SelectComp;
+export default SelectInputComp;

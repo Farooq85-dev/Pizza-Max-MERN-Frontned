@@ -1,5 +1,8 @@
-import { Popconfirm } from "antd";
+// Libraries Imports
 import PropTypes from "prop-types";
+import { Popconfirm } from "antd";
+
+// Local Imports
 import Button from "./Button";
 
 const PopupConfirmComp = ({

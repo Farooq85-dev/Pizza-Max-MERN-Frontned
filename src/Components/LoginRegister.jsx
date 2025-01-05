@@ -1,15 +1,18 @@
-import { message } from "antd";
-import axios from "axios";
-import { useFormik } from "formik";
+// Libraries Imports
 import { useState } from "react";
+import { message } from "antd";
+import { useFormik } from "formik";
 import { CiLock } from "react-icons/ci";
 import { FaRegUserCircle } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
+import axios from "axios";
+
+//  Local Imports
 import { userLoginSchema, userRegisterationSchema } from "../Schemas";
 import Button from "./Button";
 import Input from "./Input";
 
-const AccountComp = () => {
+const LoginRegisterComp = () => {
   const [formState, setFormState] = useState("Register");
   const registerInitialValues = {
     name: "",
@@ -160,9 +163,7 @@ const AccountComp = () => {
             </p>
           ) : null}
           <Button
-            className={
-              "border-2 border-navbarColor bg-navbarColor rounded-md px-4 py-2 font-semibold text-white text-base w-auto"
-            }
+            className="border-2 border-navbarColor bg-navbarColor rounded-md px-4 py-2 font-semibold text-white text-base w-auto"
             title="Register"
             id="register-btn"
             name="register-btn"
@@ -176,7 +177,7 @@ const AccountComp = () => {
               name="login-redirection-btn"
               type="button"
               onClick={() => setFormState("Login")}
-              className={"underline decoration-red-600"}
+              className="underline decoration-red-600"
             />
           </p>
         </form>
@@ -217,9 +218,7 @@ const AccountComp = () => {
             <p className="text-base text-red-600">{loginErrors.password}</p>
           ) : null}
           <Button
-            className={
-              "border-2 border-navbarColor bg-navbarColor rounded-md px-4 py-2 font-semibold text-white text-base w-auto"
-            }
+            className="border-2 border-navbarColor bg-navbarColor rounded-md px-4 py-2 font-semibold text-white text-base w-auto"
             title="Login"
             id="login-btn"
             name="login-btn"
@@ -233,7 +232,7 @@ const AccountComp = () => {
               name="register -redirection-btn"
               type="button"
               onClick={() => setFormState("Register")}
-              className={"underline decoration-red-600"}
+              className="underline decoration-red-600"
             />
           </p>
         </form>
@@ -242,4 +241,4 @@ const AccountComp = () => {
   );
 };
 
-export default AccountComp;
+export default LoginRegisterComp;

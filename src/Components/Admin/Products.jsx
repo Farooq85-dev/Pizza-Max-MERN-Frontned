@@ -1,14 +1,17 @@
+// Libraries Imports
+import { useState } from "react";
 import { AiFillProduct } from "react-icons/ai";
 import { BiCategoryAlt } from "react-icons/bi";
+import { MdAdd } from "react-icons/md";
+
+// Local Imports Imports
 import { useProducts } from "../../Context/Admin/Products.context";
-import ProductsStatusCard from "../StatusCard";
 import ProductsTable from "../Table";
 import { ProductsColumns } from "./Static/ProductsColumns";
 import Button from "../Button";
-import { MdAdd } from "react-icons/md";
 import Modal from "../Modal";
-import { useState } from "react";
 import AddProducts from "./AddProducts";
+import ProductsStatusCard from "../StatusCard";
 
 const AdminProductsComp = () => {
   const { howMuchTotalProducts, howMuchTotalCategories, products } =

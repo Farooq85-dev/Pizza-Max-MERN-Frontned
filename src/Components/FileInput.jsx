@@ -1,10 +1,11 @@
+// Libraries Imports
 import PropTypes from "prop-types";
 
-const UploaderComp = ({ handleChange }) => {
+const FileInputComp = ({ handleChange }) => {
   return (
     <div className="flex flex-col justify-start items-start gap-2">
       <label htmlFor="file-input" className="font-semibold text-left">
-        Choose file 
+        Choose file
       </label>
       <input
         type="file"
@@ -18,8 +19,8 @@ const UploaderComp = ({ handleChange }) => {
   );
 };
 
-UploaderComp.propTypes = {
+FileInputComp.propTypes = {
   handleChange: PropTypes.func.isRequired,
 };
 
-export default UploaderComp;
+export default FileInputComp;

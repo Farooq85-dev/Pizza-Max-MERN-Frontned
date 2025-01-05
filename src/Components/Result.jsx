@@ -1,6 +1,9 @@
+// Libraries Imports
 import { Result } from "antd";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
+
+// Local Imports
 import Button from "./Button";
 
 const ResultComp = ({
@@ -32,6 +35,7 @@ const ResultComp = ({
     }
   />
 );
+
 ResultComp.propTypes = {
   status: PropTypes.number,
   icon: PropTypes.node,

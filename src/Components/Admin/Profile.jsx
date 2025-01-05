@@ -1,19 +1,22 @@
+// Libraries Imports
+import { useState } from "react";
 import { Divider, message } from "antd";
 import { useFormik } from "formik";
-import { useState } from "react";
 import { CiLock } from "react-icons/ci";
 import { FaRegUserCircle } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
+import axios from "axios";
+
+// Local Imports
+import { useUser } from "../../Context/User.context";
+import Input from "../Input";
+import UploaderComp from "../FileInput";
+import Button from "../Button";
 import {
   userEmailSchema,
   userNameSchema,
   userPasswordChangeSchema,
 } from "../../Schemas";
-import Button from "../Button";
-import Input from "../Input";
-import UploaderComp from "../Uploader";
-import axios from "axios";
-import { useUser } from "../../Context/User.context";
 
 const AdminAccountComp = () => {
   const { user } = useUser();

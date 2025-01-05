@@ -1,9 +1,12 @@
-import ProductCard from "./ProductCard";
-import Input from "./Input";
-import { IoSearchSharp } from "react-icons/io5";
-import useDebounce from "../Hooks/Debounce";
+// Libraries Imports
 import { useState } from "react";
+import { IoSearchSharp } from "react-icons/io5";
+
+// Local Imports
 import { useProducts } from "../Context/Products.context";
+import ProductCard from "./ProductCard";
+import useDebounce from "../Hooks/Debounce.hook";
+import Input from "./Input";
 
 const ProductsComp = () => {
   const { products } = useProducts();

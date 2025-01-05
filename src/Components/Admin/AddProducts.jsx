@@ -1,15 +1,18 @@
-import { useFormik } from "formik";
+// Libraries Imports
 import React, { useState } from "react";
-import Input from "../Input";
+import { message } from "antd";
+import { useFormik } from "formik";
 import { SiNamecheap } from "react-icons/si";
 import { MdOutlineDescription } from "react-icons/md";
 import { GiPriceTag, GiStockpiles } from "react-icons/gi";
 import { BiCategoryAlt } from "react-icons/bi";
+import axios from "axios";
+
+// Local Imports
+import Input from "../Input";
+import Uploader from "../FileInput";
 import Button from "../Button";
 import { addProductSchema } from "../../Schemas";
-import Uploader from "../Uploader";
-import { message } from "antd";
-import axios from "axios";
 
 const AddProductsComp = React.memo(() => {
   const [file, setFile] = useState(null);
@@ -70,10 +73,8 @@ const AddProductsComp = React.memo(() => {
           }
         );
         message.success(response?.data?.message);
-        console.log(response?.data?.product);
         handleReset();
       } catch (error) {
-        console.log(error);
         message.success(error?.response?.data?.message);
       }
     },

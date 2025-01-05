@@ -1,4 +1,5 @@
-import { UserOutlined } from "@ant-design/icons";
+// Libraries Imports
+import { useState, lazy } from "react";
 import {
   Avatar,
   Breadcrumb,
@@ -8,48 +9,48 @@ import {
   message,
   theme,
 } from "antd";
-import axios from "axios";
-import { useState } from "react";
 import { BsBox2HeartFill } from "react-icons/bs";
 import { CgProfile } from "react-icons/cg";
 import { FiMenu } from "react-icons/fi";
 import { GiBoxUnpacking } from "react-icons/gi";
+import { FaRegUserCircle } from "react-icons/fa";
 import { SiWelcometothejungle } from "react-icons/si";
-import { useNavigate } from "react-router-dom";
-import UserDashboardDrawer from "../Components/User/UserDashboardDrawer";
-import Favourites from "../Components/User/Favourites";
-import Orders from "../Components/User/Orders";
-import Account from "../Components/User/Profile";
-import Welcome from "../Components/User/Welcome";
-import { useUser } from "../Context/User.context";
 import { useMediaQuery } from "react-responsive";
-const { Header, Content, Sider } = Layout;
-import "./user-dashboard.scss";
+import { useNavigate } from "react-router-dom";
+import { useUser } from "../Context/User.context";
+import axios from "axios";
 
-// Define menu items
+// Local Imports
+const Welcome = lazy(() => import("../Components/Welcome"));
+const Orders = lazy(() => import("../Components/User/Orders"));
+const Favourites = lazy(() => import("../Components/User/Favourites"));
+const Profile = lazy(() => import("../Components/User/Profile"));
+const DashboardDrawer = lazy(() => import("../Components/DashboardDrawer"));
+import "./UserDashboard.scss";
+
 function getItem(label, key, icon) {
   return { key, icon, label };
 }
 
+// Menu Items
 const menuItems = [
   getItem("Welcome", "Welcome", <SiWelcometothejungle />),
   getItem("Orders", "Orders", <GiBoxUnpacking />),
   getItem("Favourites", "Favourites", <BsBox2HeartFill />),
-  getItem("Account", "Account", <CgProfile />),
+  getItem("Profile", "Profile", <CgProfile />),
 ];
 
 const UserDashboardPage = () => {
   const [selectedKey, setSelectedKey] = useState("Welcome");
+  const [isDrawerVisible, setDrawerVisible] = useState(false);
   const [breadcrumb, setBreadcrumb] = useState([
     { title: "User" },
     { title: "Welcome" },
   ]);
-  const [isDrawerVisible, setDrawerVisible] = useState(false);
-
-  const isMobile = useMediaQuery({ query: "(max-width: 480px)" });
-
   const user = useUser();
   const navigate = useNavigate();
+  const isMobile = useMediaQuery({ query: "(max-width: 480px)" });
+
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
@@ -60,26 +61,9 @@ const UserDashboardPage = () => {
     setBreadcrumb([{ title: "User" }, { title: key }]);
   };
 
-  const [drawerContent, setDrawerContent] = useState({
-    content: (
-      <Menu
-        theme="dark"
-        defaultSelectedKeys={["Welcome"]}
-        mode="inline"
-        items={menuItems}
-        onClick={handleMenuClick}
-      />
-    ),
-  });
-
   // Handle Drawer on mobile screen
-  const openDrawer = (content) => {
-    setDrawerContent({ content });
+  const handleDrawer = () => {
     setDrawerVisible(!isDrawerVisible);
-  };
-
-  const closeDrawer = () => {
-    setDrawerVisible(false);
   };
 
   const renderContent = () => {
@@ -90,10 +74,10 @@ const UserDashboardPage = () => {
         return <Orders />;
       case "Favourites":
         return <Favourites />;
-      case "Account":
-        return <Account />;
+      case "Profile":
+        return <Profile />;
       default:
-        return <h1>Sorry! that page {"doesn't"} exist</h1>;
+        return <h1>Sorry! this page {"doesn't"} exist</h1>;
     }
   };
 
@@ -120,7 +104,10 @@ const UserDashboardPage = () => {
   return (
     <>
       <Layout style={{ minHeight: "100vh" }}>
-        <Sider className="hidden sm:block" collapsed={isMobile ? true : false}>
+        <Layout.Sider
+          className="hidden sm:block"
+          collapsed={isMobile ? true : false}
+        >
           <div className="demo-logo-vertical" />
           <Menu
             theme="dark"
@@ -129,9 +116,9 @@ const UserDashboardPage = () => {
             items={menuItems}
             onClick={handleMenuClick}
           />
-        </Sider>
+        </Layout.Sider>
         <Layout>
-          <Header
+          <Layout.Header
             style={{
               position: "sticky",
               top: 0,
@@ -146,11 +133,7 @@ const UserDashboardPage = () => {
           >
             <div className="header-left-side flex justify-center items-center gap-4">
               <div className="mobile-menu-btn-container bg-[#f5f5f5] p-1 block sm:hidden">
-                <FiMenu
-                  size={20}
-                  cursor="pointer"
-                  onClick={() => openDrawer(drawerContent.content)}
-                />
+                <FiMenu size={20} cursor="pointer" onClick={handleDrawer} />
               </div>
               <h2 className="font-medium text-base sm:text-xl hidden sm:block">
                 {user?.user?.name}
@@ -166,13 +149,13 @@ const UserDashboardPage = () => {
                 <Avatar
                   size="large"
                   src={user?.user?.avatar}
-                  icon={<UserOutlined />}
+                  icon={<FaRegUserCircle />}
                   className="cursor-pointer"
                 />
               </Dropdown>
             </div>
-          </Header>
-          <Content style={{ margin: "16px" }}>
+          </Layout.Header>
+          <Layout.Content style={{ margin: "16px" }}>
             <Breadcrumb style={{ margin: "16px 0" }} items={breadcrumb} />
             <div
               style={{
@@ -184,13 +167,21 @@ const UserDashboardPage = () => {
             >
               {renderContent()}
             </div>
-          </Content>
+          </Layout.Content>
         </Layout>
       </Layout>
-      <UserDashboardDrawer
+      <DashboardDrawer
         isOpen={isDrawerVisible}
-        onClose={closeDrawer}
-        content={drawerContent.content}
+        onClose={handleDrawer}
+        content={
+          <Menu
+            theme="dark"
+            defaultSelectedKeys={["Welcome"]}
+            mode="inline"
+            items={menuItems}
+            onClick={handleMenuClick}
+          />
+        }
       />
     </>
   );

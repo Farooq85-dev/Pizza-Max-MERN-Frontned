@@ -1,10 +1,13 @@
+// Librarires Imports
 import { IoIosHeartDislike } from "react-icons/io";
-import { useDispatch, useSelector } from "react-redux";
-import { addItemToCart } from "../../Redux/Reducers/Cart";
-import { removeItemFromFavourite } from "../../Redux/Reducers/Favourite";
-import Button from "../Button";
-import Result from "../Result";
 import { ImSpoonKnife } from "react-icons/im";
+import { useDispatch, useSelector } from "react-redux";
+
+// Local Imports  
+import { addItemToCart } from "../../Redux/Reducers/Cart.reducer";
+import { removeItemFromFavourite } from "../../Redux/Reducers/Favourite.reducer";
+import Result from "../Result";
+import Button from "../Button";
 
 const FavouritesComp = () => {
   const cartItems = useSelector((state) => state.favourite.favourite);

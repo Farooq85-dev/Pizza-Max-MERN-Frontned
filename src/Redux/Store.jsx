@@ -1,6 +1,9 @@
+// Libraries Imports
 import { configureStore } from "@reduxjs/toolkit";
-import cartSlice from "./Reducers/Cart";
-import favouriteSlice from "./Reducers/Favourite";
+
+// Local Imports
+import cartSlice from "./Reducers/Cart.reducer";
+import favouriteSlice from "./Reducers/Favourite.reducer";
 
 const store = configureStore({
   reducer: {

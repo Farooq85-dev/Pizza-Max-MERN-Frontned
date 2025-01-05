@@ -1,6 +1,7 @@
-import axios from "axios";
-import PropTypes from "prop-types";
+// Libraries Imports
 import { createContext, useContext, useEffect, useState } from "react";
+import PropTypes from "prop-types";
+import axios from "axios";
 
 const productsContext = createContext();
 
@@ -31,7 +32,6 @@ const ProductsProvider = ({ children }) => {
           };
         })
       );
-      console.log(products);
       setProducts(allProducts);
     } catch (error) {
       console.log(error);
@@ -50,7 +50,7 @@ const ProductsProvider = ({ children }) => {
 };
 
 ProductsProvider.propTypes = {
-  children: PropTypes.node,
+  children: PropTypes.node.isRequired,
 };
 
 export { ProductsProvider, useProducts };

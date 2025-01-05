@@ -1,4 +1,7 @@
+// Libraries Imports
 import { BrowserRouter } from "react-router-dom";
+
+// Local Imports
 import AppRouting from "./AppRoutes/Index";
 
 function App() {

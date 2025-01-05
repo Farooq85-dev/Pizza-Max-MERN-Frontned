@@ -1,10 +1,11 @@
+// Libraries Imports
 import { useContext, createContext, useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import axios from "axios";
 
 const orderContext = createContext();
 
-const useOrder = () => useContext(orderContext);
+const useOrders = () => useContext(orderContext);
 
 const OrderProvider = ({ children }) => {
   const [orders, setOrder] = useState([]);
@@ -18,7 +19,6 @@ const OrderProvider = ({ children }) => {
           withCredentials: true,
         }
       );
-      console.log(response);
       setOrder(response?.data?.orders || []);
     } catch (error) {
       console.log(error);
@@ -61,4 +61,4 @@ OrderProvider.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-export { useOrder, OrderProvider };
+export { useOrders, OrderProvider };

@@ -1,7 +1,8 @@
-import CategoryBar from "../Components/CategoryBar";
+// Local Imports
 import Slider from "../Components/Slider";
-import FloatBtn from "../Components/FloatBtn";
+import CategoryBar from "../Components/CategoryBar";
 import Products from "../Components/Products";
+import FloatBtn from "../Components/FloatBtn";
 
 const HomePage = () => {
   return (

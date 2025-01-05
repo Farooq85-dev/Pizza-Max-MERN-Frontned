@@ -1,8 +1,11 @@
+// Libraries Imports
 import { createSlice } from "@reduxjs/toolkit";
 import { message } from "antd";
 
+// Cart Initial State
 const initialCartState = JSON.parse(localStorage.getItem("cart")) || [];
 
+// Cart Slice
 const cartSlice = createSlice({
   name: "cart",
   initialState: {

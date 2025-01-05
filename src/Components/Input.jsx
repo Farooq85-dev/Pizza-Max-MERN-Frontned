@@ -1,5 +1,6 @@
-import PropTypes from "prop-types";
+// Libraries Imports
 import { useState } from "react";
+import PropTypes from "prop-types";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const InputComp = ({
