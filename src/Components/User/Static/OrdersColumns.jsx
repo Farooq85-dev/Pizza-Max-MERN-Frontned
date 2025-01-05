@@ -4,21 +4,25 @@ import { dateTimeFormatter } from "../../../Constatns/index.js";
 const columns = [
   {
     title: "Full Name",
+    align: "center",
     dataIndex: "fullName",
     key: "fullName",
   },
   {
     title: "Contact Number",
+    align: "center",
     dataIndex: "contactNumber",
     key: "contactNumber",
   },
   {
     title: "Email Address",
+    align: "center",
     dataIndex: "emailAddress",
     key: "emailAddress",
   },
   {
     title: "Delivery Charges",
+    align: "center",
     dataIndex: "deliveryCharges",
     key: "deliveryCharges",
     render: (deliveryCharges) => `Rs ${deliveryCharges.toFixed(2)}`,
@@ -26,6 +30,7 @@ const columns = [
 
   {
     title: "Status",
+    align: "center",
     dataIndex: "status",
     key: "status",
     render: (status, { _id }) => {
@@ -43,12 +48,14 @@ const columns = [
   },
   {
     title: "Order Date",
+    align: "center",
     dataIndex: "createdAt",
     key: "createdAt",
     render: (createdAt) => dateTimeFormatter.format(new Date(createdAt)),
   },
   {
     title: "Grand Total",
+    align: "center",
     dataIndex: "grandTotal",
     key: "grandTotal",
     render: (grandTotal) => `Rs ${grandTotal.toFixed(2)}`,

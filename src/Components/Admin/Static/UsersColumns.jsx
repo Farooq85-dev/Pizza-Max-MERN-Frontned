@@ -10,10 +10,16 @@ const Userscolumns = [
       <Avatar src={avatar} size="large" alt={name} />
     ),
   },
-  { title: "Full Name", dataIndex: "name", key: "fullName" },
-  { title: "Email Address", dataIndex: "email", key: "emailAddress" },
+  { title: "Full Name", align: "center", dataIndex: "name", key: "fullName" },
+  {
+    title: "Email Address",
+    align: "center",
+    dataIndex: "email",
+    key: "emailAddress",
+  },
   {
     title: "Signup Date",
+    align: "center",
     dataIndex: "createdAt",
     key: "signupdate",
     render: (createdAt) => dateTimeFormatter.format(new Date(createdAt)),

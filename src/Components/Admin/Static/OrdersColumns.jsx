@@ -179,35 +179,55 @@ ViewDetails.propTypes = {
 };
 
 const Orderscolumns = [
-  { title: "Full Name", dataIndex: "fullName", key: "fullName" },
-  { title: "Contact Number", dataIndex: "contactNumber", key: "contactNumber" },
-  { title: "Email Address", dataIndex: "emailAddress", key: "emailAddress" },
+  {
+    title: "Full Name",
+    align: "center",
+    dataIndex: "fullName",
+    key: "fullName",
+  },
+  {
+    title: "Contact Number",
+    align: "center",
+    dataIndex: "contactNumber",
+    key: "contactNumber",
+  },
+  {
+    title: "Email Address",
+    align: "center",
+    dataIndex: "emailAddress",
+    key: "emailAddress",
+  },
   {
     title: "Promo Code",
+    align: "center",
     dataIndex: "promoCode",
     key: "promoCode",
     render: (code) => code || "N/A",
   },
   {
     title: "Delivery Preference",
+    align: "center",
     dataIndex: "deliveryPreference",
     key: "deliveryPreference",
     render: (pref) => `Rs ${pref.toFixed(2)}`,
   },
   {
     title: "Subtotal",
+    align: "center",
     dataIndex: "subtotal",
     key: "subtotal",
     render: (subtotal) => `Rs ${subtotal.toFixed(2)}`,
   },
   {
     title: "Grand Total",
+    align: "center",
     dataIndex: "grandTotal",
     key: "grandTotal",
     render: (total) => `Rs ${total.toFixed(2)}`,
   },
   {
     title: "Status",
+    align: "center",
     dataIndex: "status",
     key: "status",
     render: (status) => {
@@ -221,12 +241,14 @@ const Orderscolumns = [
   },
   {
     title: "Order Date",
+    align: "center",
     dataIndex: "createdAt",
     key: "createdAt",
     render: (date) => dateTimeFormatter.format(new Date(date)),
   },
   {
     title: "Action",
+    align: "center",
     key: "action",
     render: ({ _id }) => (
       <Space size="middle">
