@@ -10,11 +10,11 @@ const useUser = () => useContext(userContext);
 const UserProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [isUser, setIsUser] = useState(null);
+
   const fetchUser = async () => {
     try {
-      const response = await axios.post(
-        `${import.meta.env?.VITE_API_URI}/is-user`,
-        null,
+      const response = await axios.get(
+        `${import.meta.env?.VITE_API_URI}/user/isUser`,
         {
           withCredentials: true,
         }

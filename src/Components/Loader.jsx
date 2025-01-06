@@ -16,7 +16,7 @@ const LoaderComp = ({
   };
 
   return (
-    <div className="loader-container" style={{ height }}>
+    <div className="loader-container" style={{ height: `${height}vh` }}>
       <div className="loader" style={loaderStyle}></div>
     </div>
   );

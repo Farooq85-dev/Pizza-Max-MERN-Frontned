@@ -22,9 +22,11 @@ const ViewDetailsContent = React.memo(({ orderDetails }) => {
     },
     onSubmit: async (values) => {
       try {
-        const response = await axios.patch(
-          `${import.meta.env?.VITE_API_URI}/update-order`,
-          { status: values?.status, id: orderDetails?._id },
+        const response = await axios.put(
+          `${import.meta.env?.VITE_API_URI}/order/admin/order/${
+            orderDetails?._id
+          }`,
+          { status: values?.status },
           {
             headers: {
               "Content-Type": "application/json",
@@ -131,9 +133,8 @@ const ViewDetails = React.memo(({ id }) => {
     const fetchOrderById = async () => {
       setLoading(true);
       try {
-        const response = await axios.post(
-          `${import.meta.env?.VITE_API_URI}/get-order-by-id`,
-          { id },
+        const response = await axios.get(
+          `${import.meta.env?.VITE_API_URI}/order/admin/order/${id}`,
           { withCredentials: true }
         );
         setOrderDetails(response?.data?.order || []);

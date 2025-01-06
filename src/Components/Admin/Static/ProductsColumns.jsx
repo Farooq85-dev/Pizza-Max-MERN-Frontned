@@ -30,7 +30,6 @@ const ViewProductContent = React.memo(({ productDetails }) => {
     initialValues: initialValues,
     onSubmit: async () => {
       const data = {
-        id: productDetails?._id,
         name: values.name || productDetails?.name,
         description: values.description || productDetails?.description,
         price: values.price || productDetails?.price,
@@ -39,8 +38,10 @@ const ViewProductContent = React.memo(({ productDetails }) => {
       };
 
       try {
-        const response = await axios.post(
-          `${import.meta.env?.VITE_API_URI}/update-product-by-id`,
+        const response = await axios.put(
+          `${import.meta.env?.VITE_API_URI}/product/admin/product/${
+            productDetails?._id
+          }`,
           data,
           {
             headers: {
@@ -167,13 +168,9 @@ const EditProductDetailsComp = React.memo(({ id }) => {
     const fetchProductById = async () => {
       setLoading(true);
       try {
-        const response = await axios.post(
-          `${import.meta.env?.VITE_API_URI}/get-product-by-id`,
-          { id },
+        const response = await axios.get(
+          `${import.meta.env?.VITE_API_URI}/product/admin/product/${id}`,
           {
-            headers: {
-              "Content-Type": "application/json",
-            },
             withCredentials: true,
           }
         );
@@ -225,13 +222,9 @@ EditProductDetailsComp.propTypes = {
 
 const handleDeleteProduct = async (id) => {
   try {
-    const response = await axios.post(
-      `${import.meta.env.VITE_API_URI}/delete-product`,
-      { id },
+    const response = await axios.delete(
+      `${import.meta.env.VITE_API_URI}/product/admin/product/${id}`,
       {
-        headers: {
-          "Content-Type": "application/json",
-        },
         withCredentials: true,
       }
     );

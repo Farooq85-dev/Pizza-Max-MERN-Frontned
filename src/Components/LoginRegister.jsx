@@ -35,7 +35,7 @@ const LoginRegisterComp = () => {
     onSubmit: async (registerValues) => {
       try {
         const response = await axios.post(
-          `${import.meta.env.VITE_API_URI}/register-user`,
+          `${import.meta.env.VITE_API_URI}/user/register`,
           registerValues,
           {
             headers: {
@@ -74,7 +74,7 @@ const LoginRegisterComp = () => {
     onSubmit: async (loginValues) => {
       try {
         const response = await axios.post(
-          `${import.meta.env.VITE_API_URI}/login-user`,
+          `${import.meta.env.VITE_API_URI}/user/login`,
           loginValues,
           {
             headers: {

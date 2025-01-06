@@ -63,7 +63,7 @@ const AddProductsComp = React.memo(() => {
 
       try {
         const response = await axios.post(
-          `${import.meta.env?.VITE_API_URI}/add-product`,
+          `${import.meta.env?.VITE_API_URI}/product/admin/product/add`,
           data,
           {
             headers: {

@@ -89,7 +89,7 @@ const AdminDashboardPage = () => {
     if (e.key === "logout") {
       try {
         const response = await axios.post(
-          `${import.meta.env.VITE_API_URI}/logout-user`,
+          `${import.meta.env.VITE_API_URI}/user/logout`,
           null,
           {
             withCredentials: true,

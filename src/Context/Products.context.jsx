@@ -14,17 +14,22 @@ const ProductsProvider = ({ children }) => {
   const fetchProducts = async () => {
     try {
       // Fetch categories first
-      const categoriesResponse = await axios.post(
-        `${import.meta.env?.VITE_API_URI}/get-all-products-categories`
+      const categoriesResponse = await axios.get(
+        `${import.meta.env?.VITE_API_URI}/product/categories`
       );
       const categories = categoriesResponse?.data?.categories || [];
       setCategories(categories);
       const allProducts = await Promise.all(
         categories?.map(async (category) => {
           // fetch Prodcuts on the base of category
-          const response = await axios.post(
-            `${import.meta.env?.VITE_API_URI}/get-all-products`,
-            { categoryName: category }
+          const response = await axios.get(
+            `${import.meta.env?.VITE_API_URI}/product/products/${category}`,
+            {
+              headers: {
+                "Content-Type": "application/json",
+              },
+              withCredentials: true,
+            }
           );
           return {
             category: category,
@@ -34,7 +39,7 @@ const ProductsProvider = ({ children }) => {
       );
       setProducts(allProducts);
     } catch (error) {
-      console.log(error);
+      console.log("error ===>", error);
     }
   };
 

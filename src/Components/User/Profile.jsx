@@ -35,8 +35,8 @@ const ProfileComp = () => {
     validationSchema: userNameSchema,
     onSubmit: async (userNameValues) => {
       try {
-        const response = await axios.patch(
-          `${import.meta.env.VITE_API_URI}/update-name`,
+        const response = await axios.put(
+          `${import.meta.env.VITE_API_URI}/user/name`,
           userNameValues,
           {
             headers: {
@@ -71,7 +71,7 @@ const ProfileComp = () => {
     onSubmit: async (userEmailValues) => {
       try {
         const response = await axios.post(
-          `${import.meta.env.VITE_API_URI}/add-email`,
+          `${import.meta.env.VITE_API_URI}/user/email`,
           userEmailValues,
           {
             headers: {
@@ -106,8 +106,8 @@ const ProfileComp = () => {
     validationSchema: userPasswordChangeSchema,
     onSubmit: async (userPasswordValues) => {
       try {
-        const response = await axios.patch(
-          `${import.meta.env.VITE_API_URI}/change-password`,
+        const response = await axios.put(
+          `${import.meta.env.VITE_API_URI}/user/password`,
           userPasswordValues,
           {
             headers: {
@@ -153,7 +153,7 @@ const ProfileComp = () => {
 
     try {
       const response = await axios.post(
-        `${import.meta.env.VITE_API_URI}/upload-avatar`,
+        `${import.meta.env.VITE_API_URI}/user/avatar/upload`,
         data,
         {
           headers: {
@@ -170,8 +170,8 @@ const ProfileComp = () => {
 
   const handleDeleteAvatar = async () => {
     try {
-      const response = await axios.patch(
-        `${import.meta.env?.VITE_API_URI}/delete-avatar`,
+      const response = await axios.delete(
+        `${import.meta.env?.VITE_API_URI}/user/avatar`,
         { avatarPublicId: user?.avatar },
         {
           withCredentials: true,
@@ -187,7 +187,7 @@ const ProfileComp = () => {
 
   return (
     <div className="flex flex-col">
-      <div className="user-picture-container flex flex-col sm:flex-row justify-between items-center gap-4">
+      <div className="user-picture-container flex flex-col sm:flex-row justify-between sm:items-end gap-4">
         <div className="left-side flex flex-col sm:flex-row justify-center items-center gap-4 ">
           <UploaderComp handleChange={handleFileChange} />
         </div>

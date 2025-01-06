@@ -1,22 +1,59 @@
 // Libraries Imports
+import { useEffect, useState } from "react";
 import { IoStatsChartSharp } from "react-icons/io5";
+import axios from "axios";
 
 // Local Imports
-import { useOrders } from "../../Context/Admin/Orders.context";
 import Table from "../Table";
 import { Orderscolumns } from "./Static/OrdersColumns";
 import OrdersStatusCard from "../StatusCard";
+import Loader from "../Loader";
 
 const OrdersComp = () => {
-  const {
-    orders,
-    howMuchTotalOrders,
-    howMuchPendingOrders,
-    howMuchDeliveredOrders,
-    howMuchCancelledOrders,
-  } = useOrders();
+  const [orders, setOrder] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const fetchUserOrders = async () => {
+    setIsLoading(true);
+    try {
+      const response = await axios.get(
+        `${import.meta.env?.VITE_API_URI}/order/admin/orders`,
+        {
+          withCredentials: true,
+        }
+      );
+      setOrder(response?.data?.orders || []);
+      setIsLoading(false);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const howMuchTotalOrders = orders?.length;
+
+  const howMuchPendingOrders = orders?.filter(
+    (order) => order?.status === "pending"
+  );
+
+  const howMuchDeliveredOrders = orders?.filter(
+    (order) => order?.status === "delivered"
+  );
+
+  const howMuchCancelledOrders = orders?.filter(
+    (order) => order?.status === "cancelled"
+  );
+
+  useEffect(() => {
+    fetchUserOrders();
+  }, []);
 
   const data = orders.map((order) => ({ ...order, key: order?._id }));
+
+  if (isLoading) {
+    return <Loader size={30} height={100} />;
+  }
 
   return (
     <div>
