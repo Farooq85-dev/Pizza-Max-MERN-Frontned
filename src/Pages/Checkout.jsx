@@ -72,7 +72,7 @@ const CheckoutPage = () => {
 
       try {
         const response = await axios.post(
-          `${import.meta.env.VITE_API_URI}/place-order`,
+          `${import.meta.env.VITE_API_URI}/order/place`,
           data,
           {
             headers: {
