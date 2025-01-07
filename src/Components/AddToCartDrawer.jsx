@@ -68,8 +68,10 @@ const AddToCartDrawerComp = React.memo(({ isOpen, handleDrawer }) => {
           {cartItems?.length > 0 && (
             <div className="flex flex-col justify-between items-start gap-1">
               <div className="subtotal-container flex justify-between items-center w-full">
-                <h4 className="text-base font-medium">Subtotal</h4>
-                <h4 className="text-base font-medium">Rs: {subtotal}</h4>
+                <h4 className="text-base font-medium sm:font-bold sm:text-lg">Subtotal</h4>
+                <h4 className="text-base font-medium sm:font-bold sm:text-lg">
+                  Rs: {subtotal}
+                </h4>
               </div>
               <div className="flex flex-col-reverse sm:flex-row justify-between items-center w-full gap-2">
                 <PopupConfirm

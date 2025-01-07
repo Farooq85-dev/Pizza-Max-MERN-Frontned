@@ -90,7 +90,7 @@ const AdminDashboardPage = () => {
       try {
         const response = await axios.post(
           `${import.meta.env.VITE_API_URI}/user/logout`,
-          null,
+          {},
           {
             withCredentials: true,
           }

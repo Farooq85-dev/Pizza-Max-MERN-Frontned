@@ -172,16 +172,14 @@ const ProfileComp = () => {
     try {
       const response = await axios.delete(
         `${import.meta.env?.VITE_API_URI}/user/avatar`,
-        { avatarPublicId: user?.avatar },
         {
+          data: { avatarPublicId: user?.avatar },
           withCredentials: true,
         }
       );
       message.success(response?.data?.message || "Congratulations!");
     } catch (error) {
-      message.success(
-        error?.response?.data?.message || "Something went wrong!"
-      );
+      message.error(error?.response?.data?.message || "Something went wrong!");
     }
   };
 
