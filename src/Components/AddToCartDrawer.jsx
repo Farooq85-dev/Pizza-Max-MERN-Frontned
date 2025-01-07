@@ -73,9 +73,7 @@ const AddToCartDrawerComp = React.memo(({ isOpen, handleDrawer }) => {
               </div>
               <div className="flex flex-col-reverse sm:flex-row justify-between items-center w-full gap-2">
                 <PopupConfirm
-                  className={
-                    "border-2 border-red-600 rounded-md px-4 py-2 font-semibold text-red-600 text-base w-full"
-                  }
+                  className="border-2 border-red-600 rounded-md px-4 py-2 font-semibold text-red-600 text-base w-full"
                   btnTitle="Clear Cart"
                   btnName="clear-cart-btn"
                   btnId="clear-cart-btn"
@@ -87,10 +85,9 @@ const AddToCartDrawerComp = React.memo(({ isOpen, handleDrawer }) => {
                     title="Checkout"
                     id="cart-checkout-btn"
                     name="cart-checkout-btn"
-                    className={
-                      "border-2 border-navbarColor bg-navbarColor rounded-md px-4 py-2 font-semibold text-white text-base w-full"
-                    }
+                    className="border-2 border-navbarColor bg-navbarColor rounded-md px-4 py-2 font-semibold text-white text-base w-full"
                     type="button"
+                    onClick={handleDrawer}
                   />
                 </Link>
               </div>
