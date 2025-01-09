@@ -3,8 +3,8 @@ import PropTypes from "prop-types";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
 import { message } from "antd";
-import { FaRegHeart } from "react-icons/fa";
-import { useDispatch } from "react-redux";
+import { FaHeart, FaRegHeart } from "react-icons/fa";
+import { useDispatch, useSelector } from "react-redux";
 
 // Local Imports
 import { useUser } from "../Context/User.context";
@@ -13,6 +13,7 @@ import { addItemToFavourite } from "../Redux/Reducers/Favourite.reducer";
 import Button from "./Button";
 
 const ProductCard = ({ product }) => {
+  const favouriteItems = useSelector((state) => state.favourite.favourite);
   const { isUser } = useUser();
   const dispatch = useDispatch();
 
@@ -28,6 +29,10 @@ const ProductCard = ({ product }) => {
     }
     dispatch(addItemToFavourite(product));
   };
+
+  const isFavourite = favouriteItems.some(
+    (favourtieProdcts) => favourtieProdcts._id === product._id
+  );
 
   return (
     <div className="product flex flex-col sm:flex-row bg-white rounded-lg overflow-hidden shadow-lg">
@@ -61,11 +66,19 @@ const ProductCard = ({ product }) => {
             <span className="text-lg font-bold text-btnColor">
               Rs {product?.price}
             </span>
-            <FaRegHeart
-              size={20}
-              className="text-gray-500 transition cursor-pointer"
-              onClick={() => handleAddToFavourite(product)}
-            />
+            {isFavourite ? (
+              <FaHeart
+                size={20}
+                className="text-red-600 transition cursor-pointer"
+                onClick={() => handleAddToFavourite(product)}
+              />
+            ) : (
+              <FaRegHeart
+                size={20}
+                className="text-gray-500 transition cursor-pointer"
+                onClick={() => handleAddToFavourite(product)}
+              />
+            )}
           </div>
         </div>
       </div>
