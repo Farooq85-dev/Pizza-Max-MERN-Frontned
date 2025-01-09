@@ -27,7 +27,7 @@ const ProductsComp = () => {
   };
 
   return (
-    <div className="text-center sm:text-left p-4 sm:px-10">
+    <div className="text-center sm:text-left p-6 sm:px-20">
       <div className="mb-4">
         <Input
           id="search"
@@ -49,7 +49,7 @@ const ProductsComp = () => {
             className="category-section"
           >
             <h2 className="text-2xl font-bold">{category.category}</h2>
-            <div className="products-grid grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 py-2 sm:py-4">
+            <div className="products-grid grid sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-6 py-2 sm:py-4">
               {category.products.map((product) => (
                 <ProductCard key={product._id} product={product} />
               ))}

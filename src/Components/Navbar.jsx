@@ -30,7 +30,7 @@ const NavbarComp = () => {
   };
 
   return (
-    <div className="navbar flex justify-between items-center h-20 fixed top-0 z-50 bg-navbarColor p-4 sm:px-10 w-full">
+    <div className="navbar flex justify-between items-center h-20 fixed top-0 z-50 bg-navbarColor p-6 sm:px-20 w-full">
       <div className="left-side-navbar flex justify-center items-center">
         <div className="logo">
           <Link to="/">

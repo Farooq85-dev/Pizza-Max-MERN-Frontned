@@ -22,42 +22,40 @@ const ProductCard = ({ product }) => {
   };
 
   return (
-    <div className="product flex flex-col sm:flex-row justify-start sm:items-center gap-4 bg-white rounded-xl p-4 shadow-md">
-      <div className="product-image flex-shrink-0">
+    <div className="product flex flex-col sm:flex-row bg-white rounded-lg overflow-hidden shadow-lg">
+      <div className="product-image w-full sm:w-40 flex-shrink-0 bg-gray-100 flex items-center justify-center">
         <LazyLoadImage
-          className="rounded-md w-full h-full sm:h-40 sm:w-40 object-cover"
+          className="w-full h-full sm:h-full object-contain"
           effect="blur"
           alt={product?.name}
           src={product?.image}
         />
       </div>
-      <div className="flex flex-col justify-between gap-4 flex-grow">
-        <div>
-          <h3 className="text-lg sm:text-xl text-left font-bold">
+      <div className="flex flex-col flex-grow p-4">
+        <div className="flex-grow">
+          <h3 className="text-lg font-semibold text-gray-800">
             {product?.name}
           </h3>
-          <p className="text-sm sm:text-base text-left text-gray-600">
-            {product?.description?.slice(0, 20) + "..."}
+          <p className="text-sm text-gray-600 mt-1 line-clamp-2">
+            {product?.description}
           </p>
         </div>
-        <div className="flex flex-row justify-between items-end gap-4">
-          <div className="flex flex-col gap-2">
-            <span className="text-base text-center bg-btnColor text-white rounded-md py-1 px-2">
-              Rs {product?.price}
-            </span>
+        <div className="flex flex-row justify-between items-center mt-4">
+          <div className="flex items-center justify-between gap-3">
             <Button
-              className="bg-navbarColor rounded-md px-4 py-2 text-white text-base font-semibold"
+              className="bg-navbarColor text-white text-sm px-3 py-1 rounded-lg hover:bg-opacity-90 transition"
               title="Add To Cart"
               id="add-to-cart-btn"
               type="button"
               name="add-to-cart-btn"
               onClick={() => handleAddToCart(product)}
             />
-          </div>
-          <div className="favourite-btn-container">
+            <span className="text-lg font-bold text-btnColor">
+              Rs {product?.price}
+            </span>
             <FaRegHeart
               size={20}
-              cursor="pointer"
+              className="text-gray-500 hover:text-red-500 transition cursor-pointer"
               onClick={() => handleAddToFavourite(product)}
             />
           </div>

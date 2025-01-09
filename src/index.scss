@@ -45,7 +45,6 @@ body {
 }
 
 // Product Css
-
 .product {
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px !important;
 }
@@ -137,4 +136,10 @@ input:focus {
 .ant-breadcrumb-link {
   color: black !important;
   font-weight: normal !important;
+}
+
+// Category Bar Css
+
+.active-category {
+  border-bottom: 2px solid var(--navbarcolor);
 }

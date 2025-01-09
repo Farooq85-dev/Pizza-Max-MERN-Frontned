@@ -21,7 +21,7 @@ const CategoryBarComp = () => {
   };
 
   return (
-    <div className="relative p-4 sm:px-10">
+    <div className="relative p-6 sm:px-20">
       <div className="relative flex items-center">
         <button
           onClick={() => handleScroll("left")}
