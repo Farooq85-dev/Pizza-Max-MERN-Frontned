@@ -13,8 +13,10 @@ import Input from "../Input";
 import Uploader from "../FileInput";
 import Button from "../Button";
 import { addProductSchema } from "../../Schemas";
+import Loader from "../Loader";
 
 const AddProductsComp = React.memo(() => {
+  const [isLoading, setIsLoading] = useState(false);
   const [file, setFile] = useState(null);
   const initialValues = {
     name: "",
@@ -61,6 +63,7 @@ const AddProductsComp = React.memo(() => {
       data.append("stock", values.stock);
       data.append("categoryName", values.categoryName);
 
+      setIsLoading(true);
       try {
         const response = await axios.post(
           `${import.meta.env?.VITE_API_URI}/product/admin/product/add`,
@@ -76,6 +79,8 @@ const AddProductsComp = React.memo(() => {
         handleReset();
       } catch (error) {
         message.success(error?.response?.data?.message);
+      } finally {
+        setIsLoading(false);
       }
     },
   });
@@ -163,10 +168,9 @@ const AddProductsComp = React.memo(() => {
           <p className="text-base text-red-600">{errors.categoryName}</p>
         ) : null}
         <Button
-          className={
-            "border-2 border-navbarColor bg-navbarColor rounded-md px-4 py-2 font-semibold text-white text-base w-auto"
-          }
-          title="Confirm"
+          className="border-2 border-navbarColor bg-navbarColor rounded-md px-4 py-2 font-semibold text-white text-base w-auto"
+          title={isLoading ? <Loader width={20} height={3} /> : "Confirm"}
+          disabled={isLoading ? true : false}
           id="confirm-product-details-btn"
           name="confirm-product-details-btn"
           type="submit"

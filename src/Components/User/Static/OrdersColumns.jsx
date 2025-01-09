@@ -30,7 +30,6 @@ const OrdersColumns = [
     key: "deliveryCharges",
     render: (deliveryCharges) => `Rs ${deliveryCharges.toFixed(2)}`,
   },
-
   {
     title: "Status",
     align: "center",
@@ -39,7 +38,7 @@ const OrdersColumns = [
     render: (status, { _id }) => {
       let color = "blue";
       if (status === "pending") color = "orange";
-      else if (status === "completed") color = "green";
+      else if (status === "delivered") color = "green";
       else if (status === "cancelled") color = "red";
 
       return (

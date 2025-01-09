@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { useFormik } from "formik";
-import { message, Space, Tag } from "antd";
+import { message, Skeleton, Space, Tag } from "antd";
 import { IoIosDocument } from "react-icons/io";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
@@ -16,11 +16,13 @@ import Select from "../../SelectInput.jsx";
 import { dateTimeFormatter } from "../../../Constatns/index.js";
 
 const ViewDetailsContent = React.memo(({ orderDetails }) => {
+  const [isLoading, setIsLoading] = useState(false);
   const { values, handleBlur, handleSubmit, setFieldValue } = useFormik({
     initialValues: {
       status: orderDetails?.status,
     },
     onSubmit: async (values) => {
+      setIsLoading(true);
       try {
         const response = await axios.put(
           `${import.meta.env?.VITE_API_URI}/order/admin/order/${
@@ -35,8 +37,11 @@ const ViewDetailsContent = React.memo(({ orderDetails }) => {
           }
         );
         message.success(response?.data?.message);
+        setIsLoading(false);
       } catch (error) {
         message.error(error?.response?.data?.message);
+      } finally {
+        setIsLoading(false);
       }
     },
   });
@@ -95,7 +100,10 @@ const ViewDetailsContent = React.memo(({ orderDetails }) => {
           id="delivery-status-confirm-btn"
           type="submit"
           name="delivery-status-confirm-btn"
-          title="Confirm"
+          title={
+            isLoading ? <Loader width={20} height={3} /> : "Update Order Status"
+          }
+          disabled={isLoading ? true : false}
           className={
             "border-2 border-navbarColor bg-navbarColor rounded-md px-2 py-1 font-semibold text-white text-base"
           }
@@ -150,7 +158,7 @@ const ViewDetails = React.memo(({ id }) => {
   return (
     <>
       <Button
-        title="View Details"
+        title="View"
         icon={<IoIosDocument size={18} />}
         name="view-details-btn"
         type="button"
@@ -165,9 +173,7 @@ const ViewDetails = React.memo(({ id }) => {
         title="View And Edit Details"
         content={
           loading ? (
-            <div className="p-4">
-              <Loader width={30} height={0} />
-            </div>
+            <Skeleton active />
           ) : (
             <ViewDetailsContent orderDetails={orderDetails} />
           )
@@ -233,13 +239,17 @@ const OrdersColumns = [
     align: "center",
     dataIndex: "status",
     key: "status",
-    render: (status) => {
-      const colors = {
-        pending: "orange",
-        delivered: "green",
-        cancelled: "red",
-      };
-      return <Tag color={colors[status] || "blue"}>{status.toUpperCase()}</Tag>;
+    render: (status, { _id }) => {
+      let color = "blue";
+      if (status === "pending") color = "orange";
+      else if (status === "delivered") color = "green";
+      else if (status === "cancelled") color = "red";
+
+      return (
+        <Tag key={_id} color={color}>
+          {status.toUpperCase()}
+        </Tag>
+      );
     },
   },
   {
@@ -250,9 +260,9 @@ const OrdersColumns = [
     render: (date) => dateTimeFormatter.format(new Date(date)),
   },
   {
-    title: "Action",
+    title: "View Details",
     align: "center",
-    key: "action",
+    key: "view-details",
     render: ({ _id }) => (
       <Space size="middle">
         <ViewDetails id={_id} />

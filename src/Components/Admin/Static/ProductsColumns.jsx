@@ -1,7 +1,7 @@
 // Libraries Imports
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import { Avatar, message, Space } from "antd";
+import { Avatar, message, Skeleton, Space } from "antd";
 import { useFormik } from "formik";
 import { GiPriceTag, GiStockpiles } from "react-icons/gi";
 import { MdDelete, MdModeEdit, MdOutlineDescription } from "react-icons/md";
@@ -18,6 +18,7 @@ import PopupConfirm from "../../PopupConfirm.jsx";
 import { dateTimeFormatter } from "../../../Constatns/index.js";
 
 const ViewProductContent = React.memo(({ productDetails }) => {
+  const [isLoading, setIsLoading] = useState(false);
   const initialValues = {
     name: productDetails?.name || "",
     description: productDetails?.description || "",
@@ -36,7 +37,7 @@ const ViewProductContent = React.memo(({ productDetails }) => {
         stock: values.stock || productDetails?.stock,
         categoryName: values.categoryName || productDetails?.categoryName,
       };
-
+      setIsLoading(true);
       try {
         const response = await axios.put(
           `${import.meta.env?.VITE_API_URI}/product/admin/product/${
@@ -51,8 +52,11 @@ const ViewProductContent = React.memo(({ productDetails }) => {
           }
         );
         message.success(response?.data?.message);
+        setIsLoading(false);
       } catch (error) {
         message.success(error?.response?.data?.message);
+      } finally {
+        setIsLoading(false);
       }
     },
   });
@@ -129,10 +133,11 @@ const ViewProductContent = React.memo(({ productDetails }) => {
             automatically keep previous detail(s).
           </p>
           <Button
-            className={
-              "border-2 border-navbarColor bg-navbarColor rounded-md px-4 py-2 font-semibold text-white text-base w-auto"
+            className="border-2 border-navbarColor bg-navbarColor rounded-md px-4 py-2 font-semibold text-white text-base w-auto"
+            title={
+              isLoading ? <Loader width={20} height={3} /> : "Update Product"
             }
-            title="Confirm"
+            disabled={isLoading ? true : false}
             id="confirm-product-details-btn"
             name="confirm-product-details-btn"
             type="submit"
@@ -204,9 +209,7 @@ const EditProductDetailsComp = React.memo(({ id }) => {
         title="View and Edit Product Details"
         content={
           loading ? (
-            <div className="p-4">
-              <Loader width={30} height={0} />
-            </div>
+            <Skeleton active />
           ) : (
             <ViewProductContent productDetails={productDetails} />
           )
