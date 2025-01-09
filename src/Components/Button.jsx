@@ -33,7 +33,7 @@ ButtonComp.propTypes = {
   name: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
   onClick: PropTypes.func,
-  title: PropTypes.string.isRequired,
+  title: PropTypes.oneOfType([PropTypes.string, PropTypes.node]).isRequired,
   icon: PropTypes.node,
 };
 

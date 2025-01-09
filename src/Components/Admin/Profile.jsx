@@ -17,115 +17,15 @@ import {
   userNameSchema,
   userPasswordChangeSchema,
 } from "../../Schemas";
+import Loader from "../Loader";
 
 const AdminAccountComp = () => {
   const { user } = useUser();
-
-  const {
-    values: userNameValues,
-    errors: userNameErrors,
-    touched: userNameTouched,
-    handleBlur: userNameHandleBlur,
-    handleSubmit: userNameHandleSubmit,
-    handleChange: userNameHandleChange,
-    handleReset: userNameHandleReset,
-  } = useFormik({
-    initialValues: {
-      name: "",
-    },
-    validationSchema: userNameSchema,
-    onSubmit: async (userNameValues) => {
-      try {
-        const response = await axios.put(
-          `${import.meta.env.VITE_API_URI}/user/name`,
-          userNameValues,
-          {
-            headers: {
-              "Content-Type": "application/json",
-            },
-            withCredentials: true,
-          }
-        );
-        message.success(response?.data?.message || "Congratulation!");
-        userNameHandleReset();
-      } catch (error) {
-        message.error(
-          error?.response?.data?.message || "Something went wrong!"
-        );
-      }
-    },
-  });
-
-  const {
-    values: userEmailValues,
-    errors: userEmailErrors,
-    touched: userEmailTouched,
-    handleBlur: userEmailHandleBlur,
-    handleSubmit: userEmailHandleSubmit,
-    handleChange: userEmailHandleChange,
-    handleReset: userEmailHandleReset,
-  } = useFormik({
-    initialValues: {
-      secondaryEmail: "",
-    },
-    validationSchema: userEmailSchema,
-    onSubmit: async (userEmailValues) => {
-      try {
-        const response = await axios.post(
-          `${import.meta.env.VITE_API_URI}/user/email`,
-          userEmailValues,
-          {
-            headers: {
-              "Content-Type": "application/json",
-            },
-            withCredentials: true,
-          }
-        );
-        message.success(response?.data?.message || "Congratulation!");
-        userEmailHandleReset();
-      } catch (error) {
-        message.error(
-          error?.response?.data?.message || "Something went wrong!"
-        );
-      }
-    },
-  });
-
-  const {
-    values: userPasswordValues,
-    errors: userPasswordErrors,
-    touched: userPasswordTouched,
-    handleBlur: userPasswordHandleBlur,
-    handleSubmit: userPasswordHandleSubmit,
-    handleChange: userPasswordHandleChange,
-    handleReset: userPasswordHandleReset,
-  } = useFormik({
-    initialValues: {
-      currentPassword: "",
-      newPassword: "",
-    },
-    validationSchema: userPasswordChangeSchema,
-    onSubmit: async (userPasswordValues) => {
-      try {
-        const response = await axios.put(
-          `${import.meta.env.VITE_API_URI}/user/password`,
-          userPasswordValues,
-          {
-            headers: {
-              "Content-Type": "application/json",
-            },
-            withCredentials: true,
-          }
-        );
-        message.success(response?.data?.message || "Congratulation!");
-        userPasswordHandleReset();
-      } catch (error) {
-        message.error(
-          error?.response?.data?.message || "Something went wrong!"
-        );
-      }
-    },
-  });
+  const [isUploadPictureLoading, setIsUploadPictureLoading] = useState(false);
+  const [isDeletePictureLoading, setIsDeletePictureLoading] = useState(false);
+  const [isUpdateNameLoading, setIsUpdateNameLoading] = useState(false);
+  const [isAddEmailLoading, setIsAddEmailLoading] = useState(false);
+  const [isUpdatePasswordLoading, setIsUpdatePasswordLoading] = useState(false);
 
   const [file, setFile] = useState(null);
   const handleFileChange = (e) => {
@@ -152,7 +52,7 @@ const AdminAccountComp = () => {
 
     let data = new FormData();
     data.append("userAvatar", file[0]);
-
+    setIsUploadPictureLoading(true);
     try {
       const response = await axios.post(
         `${import.meta.env.VITE_API_URI}/user/avatar/upload`,
@@ -165,13 +65,16 @@ const AdminAccountComp = () => {
         }
       );
       message.success(response?.data?.message || "Congratulation!");
-      setFile(null);
+      setIsUploadPictureLoading(false);
     } catch (error) {
       message.error(error?.response?.data?.message || "Something went wrong!");
+    } finally {
+      setIsUploadPictureLoading(false);
     }
   };
 
   const handleDeleteAvatar = async () => {
+    setIsDeletePictureLoading(true);
     try {
       const response = await axios.delete(
         `${import.meta.env?.VITE_API_URI}/user/avatar`,
@@ -181,10 +84,131 @@ const AdminAccountComp = () => {
         }
       );
       message.success(response?.data?.message || "Congratulations!");
+      setIsDeletePictureLoading(false);
     } catch (error) {
       message.error(error?.response?.data?.message || "Something went wrong!");
+    } finally {
+      setIsDeletePictureLoading(false);
     }
   };
+
+  const {
+    values: userNameValues,
+    errors: userNameErrors,
+    touched: userNameTouched,
+    handleBlur: userNameHandleBlur,
+    handleSubmit: userNameHandleSubmit,
+    handleChange: userNameHandleChange,
+    handleReset: userNameHandleReset,
+  } = useFormik({
+    initialValues: {
+      name: "",
+    },
+    validationSchema: userNameSchema,
+    onSubmit: async (userNameValues) => {
+      setIsUpdateNameLoading(true);
+      try {
+        const response = await axios.put(
+          `${import.meta.env.VITE_API_URI}/user/name`,
+          userNameValues,
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+            withCredentials: true,
+          }
+        );
+        message.success(response?.data?.message || "Congratulation!");
+        userNameHandleReset();
+        setIsUpdateNameLoading(false);
+      } catch (error) {
+        message.error(
+          error?.response?.data?.message || "Something went wrong!"
+        );
+      } finally {
+        setIsUpdateNameLoading(false);
+      }
+    },
+  });
+
+  const {
+    values: userEmailValues,
+    errors: userEmailErrors,
+    touched: userEmailTouched,
+    handleBlur: userEmailHandleBlur,
+    handleSubmit: userEmailHandleSubmit,
+    handleChange: userEmailHandleChange,
+    handleReset: userEmailHandleReset,
+  } = useFormik({
+    initialValues: {
+      secondaryEmail: "",
+    },
+    validationSchema: userEmailSchema,
+    onSubmit: async (userEmailValues) => {
+      setIsAddEmailLoading(true);
+      try {
+        const response = await axios.post(
+          `${import.meta.env.VITE_API_URI}/user/email`,
+          userEmailValues,
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+            withCredentials: true,
+          }
+        );
+        message.success(response?.data?.message || "Congratulation!");
+        userEmailHandleReset();
+        setIsAddEmailLoading(false);
+      } catch (error) {
+        message.error(
+          error?.response?.data?.message || "Something went wrong!"
+        );
+      } finally {
+        setIsAddEmailLoading(false);
+      }
+    },
+  });
+
+  const {
+    values: userPasswordValues,
+    errors: userPasswordErrors,
+    touched: userPasswordTouched,
+    handleBlur: userPasswordHandleBlur,
+    handleSubmit: userPasswordHandleSubmit,
+    handleChange: userPasswordHandleChange,
+    handleReset: userPasswordHandleReset,
+  } = useFormik({
+    initialValues: {
+      currentPassword: "",
+      newPassword: "",
+    },
+    validationSchema: userPasswordChangeSchema,
+    onSubmit: async (userPasswordValues) => {
+      setIsUpdatePasswordLoading(true);
+      try {
+        const response = await axios.put(
+          `${import.meta.env.VITE_API_URI}/user/password`,
+          userPasswordValues,
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+            withCredentials: true,
+          }
+        );
+        message.success(response?.data?.message || "Congratulation!");
+        userPasswordHandleReset();
+        setIsUpdatePasswordLoading(false);
+      } catch (error) {
+        message.error(
+          error?.response?.data?.message || "Something went wrong!"
+        );
+      } finally {
+        setIsUpdatePasswordLoading(false);
+      }
+    },
+  });
 
   return (
     <div className="flex flex-col">
@@ -197,7 +221,14 @@ const AdminAccountComp = () => {
             id="upload-pic-btn"
             name="upload-pic-btn"
             type="button"
-            title="Upload Picture"
+            title={
+              isUploadPictureLoading ? (
+                <Loader width={20} height={3} />
+              ) : (
+                "Uplaod Picture"
+              )
+            }
+            disabled={isUploadPictureLoading ? true : false}
             className="bg-scrollBarColor border rounded-md shadow-sm px-4 py-2 font-bold"
             onClick={handleFileUpload}
           />
@@ -205,7 +236,14 @@ const AdminAccountComp = () => {
             id="delete-pic-btn"
             name="delete-pic-btn"
             type="button"
-            title="Delete"
+            title={
+              isDeletePictureLoading ? (
+                <Loader width={20} height={3} />
+              ) : (
+                "Delete Picture"
+              )
+            }
+            disabled={isDeletePictureLoading ? true : false}
             className="bg-scrollBarColor border rounded-md shadow-sm px-4 py-2 font-semibold"
             onClick={handleDeleteAvatar}
           />
@@ -235,7 +273,14 @@ const AdminAccountComp = () => {
           id="addUserName"
           name="addUserName"
           type="submit"
-          title="Save Name"
+          title={
+            isUpdateNameLoading ? (
+              <Loader width={20} height={3} />
+            ) : (
+              "Update Name"
+            )
+          }
+          disabled={isUpdateNameLoading ? true : false}
           className="sm:w-[30%] md:w-[20%] bg-scrollBarColor border rounded-md shadow-sm px-4 py-2 font-semibold"
         />
       </form>
@@ -265,7 +310,10 @@ const AdminAccountComp = () => {
           id="addUserEmail"
           name="addUserEmail"
           type="submit"
-          title="Save Email"
+          title={
+            isAddEmailLoading ? <Loader width={20} height={3} /> : "Add Email"
+          }
+          disabled={isAddEmailLoading ? true : false}
           className="sm:w-[30%] md:w-[20%] bg-scrollBarColor border rounded-md shadow-sm px-4 py-2 font-semibold"
         />
       </form>
@@ -312,7 +360,14 @@ const AdminAccountComp = () => {
           id="changePassword"
           name="changePassword"
           type="submit"
-          title="Change Password"
+          title={
+            isUpdatePasswordLoading ? (
+              <Loader width={20} height={3} />
+            ) : (
+              "Update Password"
+            )
+          }
+          disabled={isUpdatePasswordLoading ? true : false}
           className="sm:w-[30%] md:w-[20%] bg-scrollBarColor border rounded-md shadow-sm px-4 py-2 font-semibold"
         />
       </form>
