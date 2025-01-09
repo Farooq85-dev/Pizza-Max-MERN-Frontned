@@ -14,7 +14,7 @@ const UserProvider = ({ children }) => {
   const fetchUser = async () => {
     try {
       const response = await axios.get(
-        `${import.meta.env?.VITE_API_URI}/user/isUser`,
+        `${import.meta.env?.VITE_API_URI}/user/authenticate`,
         {
           withCredentials: true,
         }
