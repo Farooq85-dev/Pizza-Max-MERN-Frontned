@@ -1,15 +1,15 @@
 // Libraries Imkports
-import React, { useCallback, useEffect, useState } from "react";
-import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { useMediaQuery } from "react-responsive";
-import { LazyLoadImage } from "react-lazy-load-image-component";
-import "react-lazy-load-image-component/src/effects/blur.css";
 import { Drawer } from "antd";
+import PropTypes from "prop-types";
+import React, { useCallback, useEffect, useState } from "react";
 import { ImSpoonKnife } from "react-icons/im";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
-import { RxCross2 } from "react-icons/rx";
+import { MdDelete } from "react-icons/md";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
+import { useDispatch, useSelector } from "react-redux";
+import { useMediaQuery } from "react-responsive";
+import { Link } from "react-router-dom";
 
 // Local Imports
 import {
@@ -19,8 +19,8 @@ import {
   removeItemFromCart,
 } from "../Redux/Reducers/Cart.reducer";
 import Button from "./Button";
-import Result from "./Result";
 import PopupConfirm from "./PopupConfirm";
+import Result from "./Result";
 
 const AddToCartDrawerComp = React.memo(({ isOpen, handleDrawer }) => {
   const [subtotal, setSubtotal] = useState(0);
@@ -149,7 +149,7 @@ const AddToCartDrawerComp = React.memo(({ isOpen, handleDrawer }) => {
                   </div>
                   <div className="flex flex-col justify-between items-end">
                     <div className="cart-product-rm-btn-container bg-navbarColor rounded-md p-1 text-center">
-                      <RxCross2
+                      <MdDelete
                         size={20}
                         cursor={"pointer"}
                         color="white"
