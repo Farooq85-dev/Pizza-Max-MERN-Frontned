@@ -11,9 +11,11 @@ import axios from "axios";
 import { userLoginSchema, userRegisterationSchema } from "../Schemas";
 import Button from "./Button";
 import Input from "./Input";
+import Loader from "./Loader";
 
 const LoginRegisterComp = () => {
   const [formState, setFormState] = useState("Register");
+  const [isLoading, setIsLoading] = useState(false);
   const registerInitialValues = {
     name: "",
     email: "",
@@ -33,6 +35,7 @@ const LoginRegisterComp = () => {
     initialValues: registerInitialValues,
     validationSchema: userRegisterationSchema,
     onSubmit: async (registerValues) => {
+      setIsLoading(true);
       try {
         const response = await axios.post(
           `${import.meta.env.VITE_API_URI}/user/register`,
@@ -47,10 +50,13 @@ const LoginRegisterComp = () => {
         message.success(response?.data?.message || "Congratulation!");
         registerHandleReset();
         setFormState("Login");
+        setIsLoading(false);
       } catch (error) {
         message.error(
           error?.response?.data?.message || "Something went wrong!"
         );
+      } finally {
+        setIsLoading(false);
       }
     },
   });
@@ -72,6 +78,7 @@ const LoginRegisterComp = () => {
     initialValues: loginInitialValues,
     validationSchema: userLoginSchema,
     onSubmit: async (loginValues) => {
+      setIsLoading(true);
       try {
         const response = await axios.post(
           `${import.meta.env.VITE_API_URI}/user/login`,
@@ -85,10 +92,13 @@ const LoginRegisterComp = () => {
         );
         message.success(response?.data?.message || "Congratulation!");
         loginHandleReset();
+        setIsLoading(false);
       } catch (error) {
         message.error(
           error?.response?.data?.message || "Something went wrong!"
         );
+      } finally {
+        setIsLoading(false);
       }
     },
   });
@@ -164,7 +174,8 @@ const LoginRegisterComp = () => {
           ) : null}
           <Button
             className="border-2 border-navbarColor bg-navbarColor rounded-md px-4 py-2 font-semibold text-white text-base w-auto"
-            title="Register"
+            title={isLoading ? <Loader width={20} height={3} /> : "Register"}
+            disabled={isLoading ? true : false}
             id="register-btn"
             name="register-btn"
             type="submit"
@@ -219,7 +230,8 @@ const LoginRegisterComp = () => {
           ) : null}
           <Button
             className="border-2 border-navbarColor bg-navbarColor rounded-md px-4 py-2 font-semibold text-white text-base w-auto"
-            title="Login"
+            title={isLoading ? <Loader width={20} height={3} /> : "Login"}
+            disabled={isLoading ? true : false}
             id="login-btn"
             name="login-btn"
             type="submit"
