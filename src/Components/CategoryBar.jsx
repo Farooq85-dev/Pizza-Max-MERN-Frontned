@@ -5,9 +5,10 @@ import { MdArrowBackIos, MdArrowForwardIos } from "react-icons/md";
 
 // Local Imports
 import { useProducts } from "../Context/Products.context";
+import { Skeleton } from "antd";
 
 const CategoryBarComp = () => {
-  const { products } = useProducts();
+  const { products, isLoading } = useProducts();
   const scrollRef = useRef(null);
 
   const handleScroll = (direction) => {
@@ -34,19 +35,25 @@ const CategoryBarComp = () => {
           className="categories flex lg:justify-center lg:items-center gap-4 sm:gap-6 overflow-x-auto scrollbar-hide 
           [&::-webkit-scrollbar]:hidden px-12 py-2 bg-bodycolor w-full"
         >
-          {products?.map((category) => (
-            <Link
-              className="text-base sm:text-xl text-center font-semibold whitespace-nowrap cursor-pointer hover:text-primary transition-colors"
-              to={category?.category}
-              smooth={true}
-              duration={1200}
-              activeClass="active-category"
-              spy={true}
-              key={category?.category}
-            >
-              {category?.category}
-            </Link>
-          ))}
+          {isLoading ? (
+            <Skeleton.Input active />
+          ) : (
+            <>
+              {products?.map((category) => (
+                <Link
+                  className="text-base sm:text-xl text-center font-semibold whitespace-nowrap cursor-pointer hover:text-primary transition-colors"
+                  to={category?.category}
+                  smooth={true}
+                  duration={1200}
+                  activeClass="active-category"
+                  spy={true}
+                  key={category?.category}
+                >
+                  {category?.category}
+                </Link>
+              ))}
+            </>
+          )}
         </div>
         <button
           onClick={() => handleScroll("right")}
