@@ -20,6 +20,7 @@ import Input from "../Components/Input";
 import Result from "../Components/Result";
 import Select from "../Components/SelectInput";
 import TextArea from "../Components/TextAreaInput";
+import Loader from "../Components/Loader";
 
 const initialValues = {
   fullName: "",
@@ -34,6 +35,7 @@ const initialValues = {
 const CheckoutPage = () => {
   const cartItems = useSelector((state) => state.cart.cart);
   const { user } = useUser();
+  const [isLoading, setIsLoading] = useState(false);
   const [subtotal, setSubtotal] = useState(0);
 
   useEffect(() => {
@@ -60,7 +62,6 @@ const CheckoutPage = () => {
       if (!user) {
         return message.error("Please login or signup to place order!");
       }
-
       const data = {
         userId: user?._id,
         ...values,
@@ -70,6 +71,7 @@ const CheckoutPage = () => {
         products: cartItems,
       };
 
+      setIsLoading(true);
       try {
         const response = await axios.post(
           `${import.meta.env.VITE_API_URI}/order/place`,
@@ -83,10 +85,13 @@ const CheckoutPage = () => {
         );
         message.success(response?.data?.message || "Congratulation!");
         handleReset();
+        setIsLoading(false);
       } catch (error) {
         message.error(
           error?.response?.data?.message || "Something went wrong!"
         );
+      } finally {
+        setIsLoading(false);
       }
     },
   });
@@ -240,7 +245,7 @@ const CheckoutPage = () => {
           ))}
           {cartItems?.length > 0 ? (
             <>
-              <Link to={"/"}>
+              <Link to="/">
                 <span className="hover:text-red-600 underline flex justify-end">
                   +Add more items
                 </span>
@@ -281,7 +286,10 @@ const CheckoutPage = () => {
                   id="place-order-btn"
                   name="place-order-btn"
                   type="submit"
-                  title="Place Order"
+                  title={
+                    isLoading ? <Loader width={20} height={3} /> : "Place Order"
+                  }
+                  disabled={isLoading ? true : false}
                   className={
                     "border-2 border-navbarColor bg-navbarColor rounded-md px-4 py-2 font-semibold text-white text-base"
                   }
