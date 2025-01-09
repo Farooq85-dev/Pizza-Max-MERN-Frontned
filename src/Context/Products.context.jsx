@@ -8,10 +8,12 @@ const productsContext = createContext();
 const useProducts = () => useContext(productsContext);
 
 const ProductsProvider = ({ children }) => {
+  const [isLoading, setIsLoading] = useState(false);
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
 
   const fetchProducts = async () => {
+    setIsLoading(true);
     try {
       // Fetch categories first
       const categoriesResponse = await axios.get(
@@ -38,8 +40,11 @@ const ProductsProvider = ({ children }) => {
         })
       );
       setProducts(allProducts);
+      setIsLoading(true);
     } catch (error) {
-      console.log("error ===>", error);
+      console.log(error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -48,7 +53,7 @@ const ProductsProvider = ({ children }) => {
   }, []);
 
   return (
-    <productsContext.Provider value={{ products, categories }}>
+    <productsContext.Provider value={{ products, categories, isLoading }}>
       {children}
     </productsContext.Provider>
   );
