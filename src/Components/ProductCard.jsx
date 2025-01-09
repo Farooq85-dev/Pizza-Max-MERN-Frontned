@@ -2,15 +2,18 @@
 import PropTypes from "prop-types";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
+import { message } from "antd";
 import { FaRegHeart } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 
 // Local Imports
+import { useUser } from "../Context/User.context";
 import { addItemToCart } from "../Redux/Reducers/Cart.reducer";
 import { addItemToFavourite } from "../Redux/Reducers/Favourite.reducer";
 import Button from "./Button";
 
 const ProductCard = ({ product }) => {
+  const { isUser } = useUser();
   const dispatch = useDispatch();
 
   const handleAddToCart = (product) => {
@@ -18,6 +21,11 @@ const ProductCard = ({ product }) => {
   };
 
   const handleAddToFavourite = (product) => {
+    if (!isUser) {
+      return message.error(
+        "Please login first. If you are not registered. Please registrer yourself!"
+      );
+    }
     dispatch(addItemToFavourite(product));
   };
 
@@ -55,7 +63,7 @@ const ProductCard = ({ product }) => {
             </span>
             <FaRegHeart
               size={20}
-              className="text-gray-500 hover:text-red-500 transition cursor-pointer"
+              className="text-gray-500 transition cursor-pointer"
               onClick={() => handleAddToFavourite(product)}
             />
           </div>

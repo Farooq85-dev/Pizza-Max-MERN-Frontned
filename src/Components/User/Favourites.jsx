@@ -3,14 +3,14 @@ import { IoIosHeartDislike } from "react-icons/io";
 import { ImSpoonKnife } from "react-icons/im";
 import { useDispatch, useSelector } from "react-redux";
 
-// Local Imports  
+// Local Imports
 import { addItemToCart } from "../../Redux/Reducers/Cart.reducer";
 import { removeItemFromFavourite } from "../../Redux/Reducers/Favourite.reducer";
 import Result from "../Result";
 import Button from "../Button";
 
 const FavouritesComp = () => {
-  const cartItems = useSelector((state) => state.favourite.favourite);
+  const favouriteItems = useSelector((state) => state.favourite.favourite);
   const dispatch = useDispatch();
 
   const handleAddToCart = (product) => {
@@ -23,9 +23,9 @@ const FavouritesComp = () => {
 
   return (
     <div>
-      {cartItems?.length > 0 ? (
+      {favouriteItems?.length > 0 ? (
         <div className="favourite-product-container grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {cartItems?.map((product) => (
+          {favouriteItems?.map((product) => (
             <div
               key={product?._id}
               className="flex flex-col justify-start gap-4 bg-white rounded-md p-4 shadow-md"
