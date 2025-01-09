@@ -289,4 +289,4 @@ const ProductsColumns = [
   },
 ];
 
-export { ProductsColumns };
+export default ProductsColumns;

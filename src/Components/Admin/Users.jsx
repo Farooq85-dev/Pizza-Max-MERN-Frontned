@@ -1,13 +1,13 @@
 // Libraries Imports
-import { useEffect, useState } from "react";
+import { useEffect, useState, lazy } from "react";
 import { FaUserSlash } from "react-icons/fa";
 import { LuUserSearch, LuUsersRound } from "react-icons/lu";
 import axios from "axios";
 
 // Local Imports
-import Table from "../Table";
-import { Userscolumns } from "./Static/UsersColumns";
-import UsersStatusCard from "../StatusCard";
+import UsersTable from "../Table";
+import UsersColumns from "./Static/UsersColumns";
+const UsersStatusCard = lazy(() => import("../StatusCard"));
 import Loader from "../Loader";
 
 const UsersComp = () => {
@@ -69,7 +69,7 @@ const UsersComp = () => {
           quantity={howMuchUnVerifiedUsers?.length}
         />
       </div>
-      <Table data={data} columns={Userscolumns} pageSize={10} />
+      <UsersTable data={data} columns={UsersColumns} pageSize={10} />
     </div>
   );
 };

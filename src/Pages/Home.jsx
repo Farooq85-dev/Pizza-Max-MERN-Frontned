@@ -1,7 +1,10 @@
+// Libraries Imports
+import { lazy } from "react";
+
 // Local Imports
-import Slider from "../Components/Slider";
+const Slider = lazy(() => import("../Components/Slider"));
 import CategoryBar from "../Components/CategoryBar";
-import Products from "../Components/Products";
+const Products = lazy(() => import("../Components/Products"));
 import FloatBtn from "../Components/FloatBtn";
 
 const HomePage = () => {

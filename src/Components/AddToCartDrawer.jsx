@@ -62,13 +62,16 @@ const AddToCartDrawerComp = React.memo(({ isOpen, handleDrawer }) => {
       title="Your Cart"
       placement={isMobile ? "bottom" : "right"}
       width={400}
+      keyboard={true}
       onClose={handleDrawer}
       footer={
         <div>
           {cartItems?.length > 0 && (
             <div className="flex flex-col justify-between items-start gap-1">
               <div className="subtotal-container flex justify-between items-center w-full">
-                <h4 className="text-base font-medium sm:font-bold sm:text-lg">Subtotal</h4>
+                <h4 className="text-base font-medium sm:font-bold sm:text-lg">
+                  Subtotal
+                </h4>
                 <h4 className="text-base font-medium sm:font-bold sm:text-lg">
                   Rs: {subtotal}
                 </h4>

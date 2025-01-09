@@ -45,11 +45,12 @@ body {
 }
 
 // Product Css
+
 .product {
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px !important;
 }
 
-// Drawer Css
+// Modal Css
 .ant-drawer .ant-drawer-header-title {
   flex-direction: row-reverse !important;
 }
@@ -62,18 +63,7 @@ body {
   margin: 0px !important;
 }
 
-@media only screen and (min-width: 576px) {
-  .ant-drawer .ant-drawer-content {
-    border-radius: 15px 0px 0px 15px !important;
-  }
-}
-
-@media only screen and (max-width: 576px) {
-  .ant-drawer .ant-drawer-content {
-    border-radius: 15px 15px 0px 0px !important;
-  }
-}
-
+// Modal and Drawer Mask Css
 .ant-modal-root .ant-modal-wrap,
 .ant-drawer .ant-drawer-mask {
   background: rgba(255, 255, 255, 0);

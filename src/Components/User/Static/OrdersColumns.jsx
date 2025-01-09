@@ -4,7 +4,7 @@ import { Tag } from "antd";
 // Local Imports
 import { dateTimeFormatter } from "../../../Constatns/index.js";
 
-const columns = [
+const OrdersColumns = [
   {
     title: "Full Name",
     align: "center",
@@ -65,4 +65,4 @@ const columns = [
   },
 ];
 
-export { columns };
+export default OrdersColumns;

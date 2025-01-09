@@ -26,7 +26,6 @@ const Orders = lazy(() => import("../Components/User/Orders"));
 const Favourites = lazy(() => import("../Components/User/Favourites"));
 const Profile = lazy(() => import("../Components/User/Profile"));
 const DashboardDrawer = lazy(() => import("../Components/DashboardDrawer"));
-import "./UserDashboard.scss";
 
 function getItem(label, key, icon) {
   return { key, icon, label };

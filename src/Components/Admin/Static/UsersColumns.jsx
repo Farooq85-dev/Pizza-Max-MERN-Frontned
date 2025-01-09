@@ -4,7 +4,7 @@ import { Avatar } from "antd";
 // Lcoal Imports
 import { dateTimeFormatter } from "../../../Constatns/index.js";
 
-const Userscolumns = [
+const UsersColumns = [
   {
     title: "Image",
     dataIndex: "avatar",
@@ -29,4 +29,4 @@ const Userscolumns = [
   },
 ];
 
-export { Userscolumns };
+export default UsersColumns;

@@ -76,7 +76,7 @@ const ViewDetailsContent = React.memo(({ orderDetails }) => {
       </div>
       <div className="delivery-address-contianer">
         <h3 className="text-base sm:text-xl font-semibold">Delivery Address</h3>
-        <p className="text-base sm:text-lg">{orderDetails?.address || "N/A"}</p>
+        <p className="text-base sm:text-lg">{orderDetails?.address}</p>
       </div>
       <form onSubmit={handleSubmit} className="flex flex-col gap-2">
         <Select
@@ -181,7 +181,7 @@ ViewDetails.propTypes = {
   id: PropTypes.string.isRequired,
 };
 
-const Orderscolumns = [
+const OrdersColumns = [
   {
     title: "Full Name",
     align: "center",
@@ -212,7 +212,7 @@ const Orderscolumns = [
     align: "center",
     dataIndex: "deliveryPreference",
     key: "deliveryPreference",
-    render: (pref) => `Rs ${pref.toFixed(2)}`,
+    render: (deliveryPreference) => `${deliveryPreference.toUpperCase()}`,
   },
   {
     title: "Subtotal",
@@ -261,4 +261,4 @@ const Orderscolumns = [
   },
 ];
 
-export { Orderscolumns, ViewDetails };
+export { OrdersColumns, ViewDetails };

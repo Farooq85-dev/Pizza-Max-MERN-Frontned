@@ -1,12 +1,12 @@
 // Libraries Imports
-import { useEffect, useState } from "react";
+import { useEffect, useState, lazy } from "react";
 import { IoStatsChartSharp } from "react-icons/io5";
 import axios from "axios";
 
 // Local Imports
-import Table from "../Table";
-import { Orderscolumns } from "./Static/OrdersColumns";
-import OrdersStatusCard from "../StatusCard";
+import OrdersTable from "../Table";
+import { OrdersColumns } from "./Static/OrdersColumns";
+const OrdersStatusCard = lazy(() => import("../StatusCard"));
 import Loader from "../Loader";
 
 const OrdersComp = () => {
@@ -88,7 +88,7 @@ const OrdersComp = () => {
         </div>
       </div>
       <div className="order-table-container mt-4">
-        <Table data={data} columns={Orderscolumns} pageSize={10} />
+        <OrdersTable data={data} columns={OrdersColumns} pageSize={10} />
       </div>
     </div>
   );

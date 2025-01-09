@@ -1,5 +1,5 @@
 // Libraries Imports
-import { useEffect, useState } from "react";
+import { useEffect, useState, lazy } from "react";
 import { AiFillProduct } from "react-icons/ai";
 import { BiCategoryAlt } from "react-icons/bi";
 import { MdAdd } from "react-icons/md";
@@ -8,10 +8,10 @@ import axios from "axios";
 // Local Imports Imports
 import Button from "../Button";
 import Modal from "../Modal";
-import ProductsStatusCard from "../StatusCard";
+const ProductsStatusCard = lazy(() => import("../StatusCard"));
 import ProductsTable from "../Table";
 import AddProducts from "./AddProducts";
-import { ProductsColumns } from "./Static/ProductsColumns";
+import ProductsColumns from "./Static/ProductsColumns";
 import Loader from "../Loader";
 
 const AdminProductsComp = () => {
