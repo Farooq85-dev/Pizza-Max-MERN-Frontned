@@ -28,6 +28,7 @@ const socialMediaPlatforms = [
 ];
 
 const FooterComp = () => {
+  const now = new Date();
   return (
     <footer className="bg-gray-100 py-8 p-6 md:px-20">
       <div className="flex flex-col md:flex-row justify-between items-center">
@@ -54,7 +55,7 @@ const FooterComp = () => {
           </p>
           <p className="text-sm sm:text-base">
             <span className="font-bold">Address: </span>
-            123 Pizza Street, Karachi, Pakistan
+            123 Pizza Street, Arifwala, Pakistan
           </p>
         </div>
 
@@ -94,7 +95,9 @@ const FooterComp = () => {
       </div>
 
       <div className="text-center mt-6 border-t border-navbarColor pt-4">
-        <p className="text-sm">&copy; 2024 Pizza Max. All rights reserved.</p>
+        <p className="text-sm">
+          &copy; {now.getFullYear()} Pizza Max. All rights reserved.
+        </p>
       </div>
     </footer>
   );
