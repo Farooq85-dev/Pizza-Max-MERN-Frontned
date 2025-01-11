@@ -249,6 +249,12 @@ const ProductsColumns = [
   { title: "Price", align: "center", dataIndex: "price", key: "price" },
   { title: "Total Stock", align: "center", dataIndex: "stock", key: "stock" },
   {
+    title: "Category",
+    align: "center",
+    dataIndex: "categoryName",
+    key: "categoryName",
+  },
+  {
     title: "Added Date",
     align: "center",
     dataIndex: "createdAt",
@@ -281,9 +287,9 @@ const ProductsColumns = [
     ),
   },
   {
-    title: "Edit",
+    title: "Edit Details",
     align: "center",
-    key: "edit",
+    key: "editDetails",
     render: ({ _id }) => (
       <Space size="medium">
         <EditProductDetailsComp id={_id} />
