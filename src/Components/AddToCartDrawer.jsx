@@ -65,8 +65,8 @@ const AddToCartDrawerComp = React.memo(({ isOpen, handleDrawer }) => {
       keyboard={true}
       onClose={handleDrawer}
       footer={
-        <div>
-          {cartItems?.length > 0 && (
+        <>
+          {cartItems?.length > 0 ? (
             <div className="flex flex-col justify-between items-start gap-1">
               <div className="subtotal-container flex justify-between items-center w-full">
                 <h4 className="text-base font-medium sm:font-bold sm:text-lg">
@@ -97,8 +97,8 @@ const AddToCartDrawerComp = React.memo(({ isOpen, handleDrawer }) => {
                 </Link>
               </div>
             </div>
-          )}
-        </div>
+          ) : null}
+        </>
       }
       open={isOpen}
     >

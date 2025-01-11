@@ -47,6 +47,11 @@ const cartSlice = createSlice({
         (product) => product._id === action?.payload
       );
 
+      if (updatedItem.quantity > updatedItem.stock) {
+        message.error("Product Out of Stock!");
+        return;
+      }
+
       if (updatedItem.quantity >= 1) {
         updatedItem.quantity += 1;
         localStorage.setItem("cart", JSON.stringify(state.cart));
