@@ -6,7 +6,8 @@ export default {
       colors: {
         navbarColor: "#270800",
         btnColor: "#0F0F0F",
-        bodycolor: "#f8f9fa",
+        bodyColor: "#f8f9fa",
+        footerColor: "#f3f4f6",
       },
       screens: {
         sm: "480px",

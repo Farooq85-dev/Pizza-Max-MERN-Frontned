@@ -107,7 +107,7 @@ const AddToCartDrawerComp = React.memo(({ isOpen, handleDrawer }) => {
           <div className="cart-product flex flex-col gap-2">
             {cartItems?.map((product) => (
               <div key={product._id}>
-                <div className="flex justify-between bg-bodycolor rounded-md p-2 gap-2">
+                <div className="flex justify-between bg-gray-100 rounded-md p-2 gap-2">
                   <div className="cart-image">
                     <LazyLoadImage
                       effect="blur"

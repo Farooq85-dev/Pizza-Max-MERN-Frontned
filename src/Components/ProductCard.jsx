@@ -1,6 +1,7 @@
 // Libraries Imports
-import { message } from "antd";
+import { useState } from "react";
 import PropTypes from "prop-types";
+import { message } from "antd";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
@@ -12,9 +13,19 @@ import { useUser } from "../Context/User.context";
 import { addItemToCart } from "../Redux/Reducers/Cart.reducer";
 import { addItemToFavourite } from "../Redux/Reducers/Favourite.reducer";
 import Button from "./Button";
+import ProductModal from "./Modal";
+import ModalProduct from "./ModalProduct";
 
 const ProductCard = ({ product }) => {
   const favouriteItems = useSelector((state) => state.favourite.favourite);
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [modalProduct, setModalProduct] = useState({
+    _id: "",
+    name: "",
+    description: "",
+    image: "",
+    price: 0,
+  });
   const { isUser } = useUser();
   const dispatch = useDispatch();
 
@@ -29,6 +40,11 @@ const ProductCard = ({ product }) => {
       );
     }
     dispatch(addItemToFavourite(product));
+  };
+
+  const handleModal = (pd) => {
+    setIsModalVisible(!isModalVisible);
+    setModalProduct(pd);
   };
 
   const isFavourite = favouriteItems.some(
@@ -83,10 +99,18 @@ const ProductCard = ({ product }) => {
             <IoDocumentText
               size={20}
               className="text-btnColor transition cursor-pointer"
+              onClick={() => handleModal(product)}
             />
           </div>
         </div>
       </div>
+      <ProductModal
+        isVisible={isModalVisible}
+        isConfirm={false}
+        onClose={handleModal}
+        content={<ModalProduct modalProduct={modalProduct} />}
+        title={"Product Details"}
+      />
     </div>
   );
 };
@@ -98,6 +122,7 @@ ProductCard.propTypes = {
     description: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
+    stock: PropTypes.number.isRequired,
   }).isRequired,
 };
 
