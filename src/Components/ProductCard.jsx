@@ -1,12 +1,13 @@
 // Libraries Imports
+import { message } from "antd";
 import PropTypes from "prop-types";
+import { FaHeart, FaRegHeart } from "react-icons/fa";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
-import { message } from "antd";
-import { FaHeart, FaRegHeart } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 
 // Local Imports
+import { IoDocumentText } from "react-icons/io5";
 import { useUser } from "../Context/User.context";
 import { addItemToCart } from "../Redux/Reducers/Cart.reducer";
 import { addItemToFavourite } from "../Redux/Reducers/Favourite.reducer";
@@ -36,7 +37,7 @@ const ProductCard = ({ product }) => {
 
   return (
     <div className="product flex flex-col sm:flex-row bg-white rounded-lg overflow-hidden shadow-lg">
-      <div className="product-image w-full sm:w-40 flex-shrink-0 bg-gray-100 flex items-center justify-center">
+      <div className="product-image w-full sm:w-32 flex-shrink-0 bg-gray-100 flex items-center justify-center">
         <LazyLoadImage
           className="w-full h-full sm:h-full object-contain"
           effect="blur"
@@ -46,11 +47,11 @@ const ProductCard = ({ product }) => {
       </div>
       <div className="flex flex-col flex-grow p-4">
         <div className="flex-grow">
-          <h3 className="text-lg font-semibold text-gray-800">
+          <h3 className="text-left text-lg font-semibold text-gray-800">
             {product?.name}
           </h3>
-          <p className="text-sm text-gray-600 mt-1 line-clamp-2">
-            {product?.description}
+          <p className="text-left text-sm text-gray-600 mt-1 line-clamp-2">
+            {product?.description?.slice(0, 20) + "..."}
           </p>
         </div>
         <div className="flex flex-row justify-between items-center mt-4">
@@ -63,22 +64,26 @@ const ProductCard = ({ product }) => {
               name="add-to-cart-btn"
               onClick={() => handleAddToCart(product)}
             />
-            <span className="text-lg font-bold text-btnColor">
+            <span className="text-sm font-bold text-btnColor">
               Rs {product?.price}
             </span>
             {isFavourite ? (
               <FaHeart
                 size={20}
-                className="text-red-600 transition cursor-pointer"
+                className="text-navbarColor transition cursor-pointer"
                 onClick={() => handleAddToFavourite(product)}
               />
             ) : (
               <FaRegHeart
                 size={20}
-                className="text-gray-500 transition cursor-pointer"
+                className="text-btnColor transition cursor-pointer"
                 onClick={() => handleAddToFavourite(product)}
               />
             )}
+            <IoDocumentText
+              size={20}
+              className="text-btnColor transition cursor-pointer"
+            />
           </div>
         </div>
       </div>

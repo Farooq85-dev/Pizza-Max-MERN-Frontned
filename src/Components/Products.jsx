@@ -28,7 +28,7 @@ const ProductsComp = () => {
   };
 
   return (
-    <div className="text-center sm:text-left p-6 sm:px-20">
+    <div className="text-center sm:text-left pb-6 pl-6 pr-6 sm:px-20">
       {isLoading ? (
         <div className="flex items-center gap-4">
           <Skeleton.Image active style={{ height: 120 }} />
@@ -49,7 +49,8 @@ const ProductsComp = () => {
               icon={<IoSearchSharp size={20} />}
             />
           </div>
-          {filteredCategories?.length > 0 ? (
+          {filteredCategories && filteredCategories?.length > 0 ? (
+            filteredCategories &&
             filteredCategories.map((category) => (
               <div id={category.category} key={category.category}>
                 <h2 className="text-left text-2xl font-bold">
@@ -64,7 +65,7 @@ const ProductsComp = () => {
             ))
           ) : (
             <p className="text-center text-base sm:text-xl">
-              No products matches with your search.
+              No products found!
             </p>
           )}
         </>
