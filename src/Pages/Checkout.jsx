@@ -60,7 +60,7 @@ const CheckoutPage = () => {
     validationSchema: checkoutSchema,
     onSubmit: async (values) => {
       if (!user) {
-        return message.error("Please login or signup to place order!");
+        return message.error("Please login to place order!");
       }
       const data = {
         userId: user?._id,
