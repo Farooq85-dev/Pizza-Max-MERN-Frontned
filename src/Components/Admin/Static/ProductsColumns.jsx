@@ -63,7 +63,7 @@ const ViewProductContent = React.memo(({ productDetails }) => {
 
   return (
     <div>
-      <div className="view-edit-prodcut-details-conatiner flex flex justify-start gap-2">
+      <div className="view-edit-prodcut-details-conatiner flex justify-start gap-2">
         <form
           onSubmit={handleSubmit}
           className="flex flex-col justify-start gap-2 w-full"
