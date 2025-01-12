@@ -223,11 +223,13 @@ EditProductDetailsComp.propTypes = {
   id: PropTypes.string.isRequired,
 };
 
-const handleDeleteProduct = async (id) => {
+const handleDeleteProduct = async (id, image) => {
+  console.log(image);
   try {
     const response = await axios.delete(
       `${import.meta.env.VITE_API_URI}/product/admin/product/${id}`,
       {
+        data: { productImgId: image },
         withCredentials: true,
       }
     );
@@ -272,7 +274,7 @@ const ProductsColumns = [
     title: "Delete",
     align: "center",
     key: "delete",
-    render: ({ _id }) => (
+    render: ({ _id, image }) => (
       <Space size="middle">
         <PopupConfirm
           title="Are you sure to delete the product?"
@@ -280,7 +282,7 @@ const ProductsColumns = [
           btnId="delete-product-btn"
           btnName="delete-product-btn"
           icon={<MdDelete />}
-          onConfirm={() => handleDeleteProduct(_id)}
+          onConfirm={() => handleDeleteProduct(_id, image)}
           className="font-semibold text-red-600 text-base"
         />
       </Space>
