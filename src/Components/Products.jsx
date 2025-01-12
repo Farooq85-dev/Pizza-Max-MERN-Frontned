@@ -53,7 +53,7 @@ const ProductsComp = () => {
             filteredCategories &&
             filteredCategories.map((category) => (
               <div id={category.category} key={category.category}>
-                <h2 className="text-left text-2xl font-bold">
+                <h2 className="text-left text-2xl font-bold pb-4 pt-4">
                   {category.category}
                 </h2>
                 <div className="products-grid grid sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-6 py-2 sm:py-4">
