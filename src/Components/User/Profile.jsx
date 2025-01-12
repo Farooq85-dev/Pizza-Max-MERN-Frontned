@@ -37,17 +37,17 @@ const ProfileComp = () => {
     if (!file) {
       return message.error("Please provide a file!");
     }
-    if (file.length > 1) {
+    if (file?.length > 1) {
       return message.error("Please provide a single file!");
     }
 
-    if (file[0].type !== "image/webp") {
+    if (file[0]?.type !== "image/webp") {
       return message.error("File must be in WEBP Foramt!");
     }
 
-    // if (file[0].size > 100000) {
-    //   return message.error("File must be lower than 100 KB!");
-    // }
+    if (file[0]?.size > 50000) {
+      return message.error("File must be lower than 100 KB!");
+    }
 
     let data = new FormData();
     data.append("userAvatar", file[0]);
