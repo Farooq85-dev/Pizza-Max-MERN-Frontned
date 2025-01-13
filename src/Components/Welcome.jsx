@@ -7,6 +7,7 @@ import { VscDebugStart } from "react-icons/vsc";
 // Local Imports
 import { useUser } from "../Context/User.context";
 import Button from "./Button";
+import WELCOME_IMG from "../Assets/Images/welcome-img.png";
 
 const WelcomeComp = () => {
   const [dateTime, setDateTime] = useState([]);
@@ -81,7 +82,7 @@ const WelcomeComp = () => {
           <LazyLoadImage
             width="80%"
             height="auto"
-            src="https://img.freepik.com/free-photo/fun-3d-cartoon-teenage-boy_183364-81177.jpg?t=st=1736095898~exp=1736099498~hmac=81b3871e57e4e4fb5f3fdd91735ec20c47221b16e65c106fc2bc2e2d9da09cc0&w=740"
+            src={WELCOME_IMG}
             alt="welcome-img"
             effect="blur"
           />

@@ -1,23 +1,23 @@
 // Libraries Imports
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { Avatar, message, Skeleton, Space } from "antd";
+import { Avatar, message, Space } from "antd";
 import { useFormik } from "formik";
+import axios from "axios";
+import { BiCategoryAlt } from "react-icons/bi";
 import { GiPriceTag, GiStockpiles } from "react-icons/gi";
 import { MdDelete, MdModeEdit, MdOutlineDescription } from "react-icons/md";
 import { SiNamecheap } from "react-icons/si";
-import { BiCategoryAlt } from "react-icons/bi";
-import axios from "axios";
 
 // Local Imports
+import { dateTimeFormatter } from "../../../Constatns/index.js";
 import Button from "../../Button.jsx";
 import Input from "../../Input.jsx";
 import Loader from "../../Loader.jsx";
-import Modal from "../../Modal.jsx";
+import EditProductModal from "../../Modal.jsx";
 import PopupConfirm from "../../PopupConfirm.jsx";
-import { dateTimeFormatter } from "../../../Constatns/index.js";
 
-const ViewProductContent = React.memo(({ productDetails }) => {
+const EditProductForm = React.memo(({ productDetails }) => {
   const [isLoading, setIsLoading] = useState(false);
   const initialValues = {
     name: productDetails?.name || "",
@@ -41,7 +41,7 @@ const ViewProductContent = React.memo(({ productDetails }) => {
       try {
         const response = await axios.put(
           `${import.meta.env?.VITE_API_URI}/product/admin/product/${
-            productDetails?._id
+            productDetails?.id
           }`,
           data,
           {
@@ -148,9 +148,9 @@ const ViewProductContent = React.memo(({ productDetails }) => {
   );
 });
 
-ViewProductContent.propTypes = {
+EditProductForm.propTypes = {
   productDetails: PropTypes.shape({
-    _id: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
@@ -160,67 +160,54 @@ ViewProductContent.propTypes = {
   }).isRequired,
 };
 
-const EditProductDetailsComp = React.memo(({ id }) => {
-  const [isModalVisible, setModalVisible] = useState(false);
-  const [productDetails, setProductDetails] = useState([]);
-  const [loading, setLoading] = useState(true);
+const EditProductModalTrigger = React.memo(
+  ({ id, name, description, price, stock, categoryName }) => {
+    const [isModalVisible, setModalVisible] = useState(false);
 
-  const handleToggelModal = () => {
-    setModalVisible(!isModalVisible);
-  };
-
-  useEffect(() => {
-    const fetchProductById = async () => {
-      setLoading(true);
-      try {
-        const response = await axios.get(
-          `${import.meta.env?.VITE_API_URI}/product/admin/product/${id}`,
-          {
-            withCredentials: true,
-          }
-        );
-        setProductDetails(response?.data?.product || []);
-        message.success(response?.data?.message);
-      } catch (error) {
-        message.error(error?.response?.data?.message);
-      } finally {
-        setLoading(false);
-      }
+    const productDetails = {
+      id,
+      name,
+      description,
+      price,
+      stock,
+      categoryName,
     };
 
-    if (isModalVisible) fetchProductById();
-  }, [id, isModalVisible]);
+    const handleToggelModal = () => {
+      setModalVisible(!isModalVisible);
+    };
 
-  return (
-    <div>
-      <Button
-        title="Edit"
-        id="edit-product-btn"
-        name="edit-product-btn"
-        type="button"
-        className="font-semibold text-red-600 text-base"
-        icon={<MdModeEdit />}
-        onClick={handleToggelModal}
-      />
-      <Modal
-        isConfirm={false}
-        isVisible={isModalVisible}
-        onClose={handleToggelModal}
-        title="View and Edit Product Details"
-        content={
-          loading ? (
-            <Skeleton active />
-          ) : (
-            <ViewProductContent productDetails={productDetails} />
-          )
-        }
-      />
-    </div>
-  );
-});
+    return (
+      <div>
+        <Button
+          title="Edit"
+          id="edit-product-btn"
+          name="edit-product-btn"
+          type="button"
+          className="font-semibold text-red-600 text-base"
+          icon={<MdModeEdit />}
+          onClick={handleToggelModal}
+        />
+        <EditProductModal
+          isConfirm={false}
+          isVisible={isModalVisible}
+          onClose={handleToggelModal}
+          title="Edit Product Details"
+          content={<EditProductForm productDetails={productDetails} />}
+        />
+      </div>
+    );
+  }
+);
 
-EditProductDetailsComp.propTypes = {
+EditProductModalTrigger.propTypes = {
   id: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  image: PropTypes.string.isRequired,
+  price: PropTypes.number.isRequired,
+  stock: PropTypes.number.isRequired,
+  categoryName: PropTypes.string.isRequired,
 };
 
 const handleDeleteProduct = async (id, image) => {
@@ -292,9 +279,16 @@ const ProductsColumns = [
     title: "Edit Details",
     align: "center",
     key: "editDetails",
-    render: ({ _id }) => (
+    render: ({ _id, name, description, price, stock, categoryName }) => (
       <Space size="medium">
-        <EditProductDetailsComp id={_id} />
+        <EditProductModalTrigger
+          id={_id}
+          name={name}
+          description={description}
+          price={price}
+          stock={stock}
+          categoryName={categoryName}
+        />
       </Space>
     ),
   },
