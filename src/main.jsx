@@ -10,7 +10,7 @@ import { UserProvider } from "./Context/User.context";
 import { ProductsProvider } from "./Context/Products.context";
 
 // Css Imports
-import "./Index.scss";
+import "./index.scss";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
