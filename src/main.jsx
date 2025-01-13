@@ -3,11 +3,11 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 
 // Local Imports
+import App from "./App";
 import { Provider } from "react-redux";
-import { UserProvider } from "./Context/User.context.jsx";
-import { ProductsProvider } from "./Context/Products.context.jsx";
-import App from "./App.jsx";
-import store from "./Redux/Store.jsx";
+import store from "./Redux/Store";
+import { UserProvider } from "./Context/User.context";
+import { ProductsProvider } from "./Context/Products.context";
 
 // Css Imports
 import "./Index.scss";
