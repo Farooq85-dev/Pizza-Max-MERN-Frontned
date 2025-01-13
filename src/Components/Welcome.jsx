@@ -36,7 +36,7 @@ const WelcomeComp = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 ">
         <div className="left-side flex flex-col justify-between items-start gap-4">
           <div className="left-top flex flex-col justify-start items-start gap-4">
-            <h3 className="text-xl md:text-2xl lg:text-3xl xl:text-4xl font-medium sm:font-bold">
+            <h3 className="text-xl md:text-2xl lg:text-3xl font-medium sm:font-bold">
               Welcome!
             </h3>
             <p className="text-sm sm:text-base md:text-xl font-medium sm:font-normal">
@@ -71,7 +71,7 @@ const WelcomeComp = () => {
             {dateTime?.map((dateT, index) => (
               <h3
                 key={index}
-                className="text-xl lg:text-2xl xl:text-3xl font-medium sm:font-bold"
+                className="text-xl lg:text-2xl font-medium sm:font-bold"
               >
                 {dateT}
               </h3>
