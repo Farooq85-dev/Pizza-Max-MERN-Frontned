@@ -14,7 +14,7 @@ import axios from "axios";
 
 // Local Imports
 import { useUser } from "../Context/User";
-import { checkoutSchema } from "../Schemas";
+import { checkoutSchema } from "../Schemas/Index.js";
 import ButtonComp from "../Components/Button";
 import Input from "../Components/Input";
 import Result from "../Components/Result";

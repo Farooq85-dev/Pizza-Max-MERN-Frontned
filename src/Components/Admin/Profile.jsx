@@ -16,7 +16,7 @@ import {
   userEmailSchema,
   userNameSchema,
   userPasswordChangeSchema,
-} from "../../Schemas";
+} from "../../Schemas/Index.js";
 import Loader from "../Loader";
 
 const AdminAccountComp = () => {

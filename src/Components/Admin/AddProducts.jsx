@@ -12,7 +12,7 @@ import axios from "axios";
 import Input from "../Input";
 import Uploader from "../FileInput";
 import Button from "../Button";
-import { addProductSchema } from "../../Schemas";
+import { addProductSchema } from "../../Schemas/Index.js";
 import Loader from "../Loader";
 
 const AddProductsComp = React.memo(() => {

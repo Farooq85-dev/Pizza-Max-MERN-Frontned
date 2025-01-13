@@ -8,7 +8,7 @@ import { MdEmail } from "react-icons/md";
 import axios from "axios";
 
 //  Local Imports
-import { userLoginSchema, userRegisterationSchema } from "../Schemas";
+import { userLoginSchema, userRegisterationSchema } from "../Schemas/Index.js";
 import Button from "./Button";
 import Input from "./Input";
 import Loader from "./Loader";
