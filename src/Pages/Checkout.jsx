@@ -13,7 +13,7 @@ import { MdConfirmationNumber, MdEmail } from "react-icons/md";
 import axios from "axios";
 
 // Local Imports
-import { useUser } from "../Context/User.context";
+import { useUser } from "../Context/User";
 import { checkoutSchema } from "../Schemas";
 import ButtonComp from "../Components/Button";
 import Input from "../Components/Input";

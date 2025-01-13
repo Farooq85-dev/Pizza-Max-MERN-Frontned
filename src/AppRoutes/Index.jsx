@@ -3,7 +3,7 @@ import { lazy, Suspense } from "react";
 import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 
 // Local Imports
-import { useUser } from "../Context/User.context.jsx";
+import { useUser } from "../Context/User";
 const Home = lazy(() => import("../Pages/Home"));
 const Checkout = lazy(() => import("../Pages/Checkout"));
 const UserDashboard = lazy(() => import("../Pages/UserDashboard"));

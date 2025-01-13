@@ -20,7 +20,7 @@ import { LuUsersRound } from "react-icons/lu";
 import { SiWelcometothejungle } from "react-icons/si";
 
 // Local Imports
-import { useUser } from "../Context/User.context";
+import { useUser } from "../Context/User";
 const Welcome = lazy(() => import("../Components/Welcome"));
 const Products = lazy(() => import("../Components/Admin/Products"));
 const Orders = lazy(() => import("../Components/Admin/Orders"));

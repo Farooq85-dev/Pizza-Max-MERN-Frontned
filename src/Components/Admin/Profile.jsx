@@ -8,7 +8,7 @@ import { MdEmail } from "react-icons/md";
 import axios from "axios";
 
 // Local Imports
-import { useUser } from "../../Context/User.context";
+import { useUser } from "../../Context/User";
 import Input from "../Input";
 import UploaderComp from "../FileInput";
 import Button from "../Button";
@@ -45,7 +45,7 @@ const AdminAccountComp = () => {
     if (file[0].type !== "image/webp") {
       return message.error("File must be in WEBP Foramt!");
     }
-    
+
     if (file[0]?.size > 50000) {
       return message.error("File must be lower than 50 KB!");
     }

@@ -8,7 +8,7 @@ import { MdEmail } from "react-icons/md";
 import axios from "axios";
 
 //  Local Imports
-import { useUser } from "../../Context/User.context";
+import { useUser } from "../../Context/User";
 import UploaderComp from "../FileInput";
 import Input from "../Input";
 import Button from "../Button";

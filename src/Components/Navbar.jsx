@@ -6,7 +6,7 @@ import { MdShoppingBag } from "react-icons/md";
 import { RiAccountCircle2Fill } from "react-icons/ri";
 
 // Local Imports
-import { useUser } from "../Context/User.context";
+import { useUser } from "../Context/User";
 import LoginRegister from "./LoginRegister";
 import Modal from "./Modal";
 import AddToCartDrawer from "./AddToCartDrawer";

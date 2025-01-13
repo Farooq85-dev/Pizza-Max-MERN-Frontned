@@ -4,7 +4,7 @@ import { useState } from "react";
 import { IoSearchSharp } from "react-icons/io5";
 
 // Local Imports
-import { useProducts } from "../Context/Products.context";
+import { useProducts } from "../Context/Products";
 import useDebounce from "../Hooks/Debounce.hook";
 import Input from "./Input";
 import ProductCard from "./ProductCard";

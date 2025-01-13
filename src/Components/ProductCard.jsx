@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 // Local Imports
 import { IoDocumentText } from "react-icons/io5";
-import { useUser } from "../Context/User.context";
+import { useUser } from "../Context/User";
 import { addItemToCart } from "../Redux/Reducers/Cart.reducer";
 import { addItemToFavourite } from "../Redux/Reducers/Favourite.reducer";
 import Button from "./Button";

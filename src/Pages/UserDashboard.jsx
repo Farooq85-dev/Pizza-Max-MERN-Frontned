@@ -17,7 +17,7 @@ import { FaRegUserCircle } from "react-icons/fa";
 import { SiWelcometothejungle } from "react-icons/si";
 import { useMediaQuery } from "react-responsive";
 import { useNavigate } from "react-router-dom";
-import { useUser } from "../Context/User.context";
+import { useUser } from "../Context/User";
 import axios from "axios";
 
 // Local Imports

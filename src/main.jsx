@@ -6,8 +6,8 @@ import { createRoot } from "react-dom/client";
 import App from "./App";
 import { Provider } from "react-redux";
 import store from "./Redux/Store";
-import { UserProvider } from "./Context/User.context";
-import { ProductsProvider } from "./Context/Products.context";
+import { UserProvider } from "./Context/User";
+import { ProductsProvider } from "./Context/Products";
 
 // Css Imports
 import "./index.scss";

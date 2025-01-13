@@ -4,7 +4,7 @@ import { Link } from "react-scroll";
 import { MdArrowBackIos, MdArrowForwardIos } from "react-icons/md";
 
 // Local Imports
-import { useProducts } from "../Context/Products.context";
+import { useProducts } from "../Context/Products";
 import { Skeleton } from "antd";
 
 const CategoryBarComp = () => {

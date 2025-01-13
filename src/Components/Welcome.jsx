@@ -5,7 +5,7 @@ import "react-lazy-load-image-component/src/effects/blur.css";
 import { VscDebugStart } from "react-icons/vsc";
 
 // Local Imports
-import { useUser } from "../Context/User.context";
+import { useUser } from "../Context/User";
 import Button from "./Button";
 import WELCOME_IMG from "../Assets/Images/welcome-img.png";
 
