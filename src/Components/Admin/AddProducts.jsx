@@ -55,26 +55,36 @@ const AddProductsComp = React.memo(() => {
         return message.error("File must be in WEBP Foramt!");
       }
 
-      if (file[0]?.size > 100000) {
-        return message.error("File must be lower than 100 KB!");
+      if (file[0]?.size > 50) {
+        return message.error("File must be lower than 50 KB!");
       }
 
-      const data = new FormData();
-      data.append("productImage", file[0]);
-      data.append("name", values.name);
-      data.append("description", values.description);
-      data.append("price", values.price);
-      data.append("stock", values.stock);
-      data.append("categoryName", values.categoryName);
+      const formData = new FormData();
+      formData.append("file", file[0]);
+      formData.append("upload_preset", "Pizza-Max-Preset");
 
       setIsLoading(true);
       try {
+        const uploadResponse = await axios.post(
+          `https://api.cloudinary.com/v1_1/${
+            import.meta.env?.VITE_CLOUD_NAME
+          }/image/upload`,
+          formData
+        );
+
         const response = await axios.post(
           `${import.meta.env?.VITE_API_URI}/product/admin/product/add`,
-          data,
+          {
+            image: uploadResponse?.data?.secure_url,
+            name: values.name,
+            description: values.description,
+            price: values.price,
+            stock: values.stock,
+            categoryName: values.categoryName,
+          },
           {
             headers: {
-              "Content-Type": "multipart/formData",
+              "Content-Type": "application/json",
             },
             withCredentials: true,
           }

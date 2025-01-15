@@ -46,20 +46,28 @@ const ProfileComp = () => {
     }
 
     if (file[0]?.size > 50000) {
-      return message.error("File must be lower than 100 KB!");
+      return message.error("File must be lower than 50 KB!");
     }
 
-    let data = new FormData();
-    data.append("userAvatar", file[0]);
+    const formData = new FormData();
+    formData.append("file", file[0]);
+    formData.append("upload_preset", "Pizza-Max-Preset");
 
     setIsUploadPictureLoading(true);
     try {
+      const uploadResponse = await axios.post(
+        `https://api.cloudinary.com/v1_1/${
+          import.meta.env?.VITE_CLOUD_NAME
+        }/image/upload`,
+        formData
+      );
+
       const response = await axios.post(
         `${import.meta.env.VITE_API_URI}/user/avatar/upload`,
-        data,
+        { userAvatar: uploadResponse?.data?.secure_url },
         {
           headers: {
-            "Content-Type": "multipart/formData",
+            "Content-Type": "application/json",
           },
           withCredentials: true,
         }
